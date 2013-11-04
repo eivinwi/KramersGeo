@@ -22,6 +22,6 @@ function initialize_map() {
 		});
 	} else {
 
-		alert('Your browser does not support Geolocatio.')
+		alert('Your browser does not support Geolocation.')
 	}
 }

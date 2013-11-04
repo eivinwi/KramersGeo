@@ -1,3 +1,4 @@
+
 function getData() {
 	
 }
@@ -21,7 +22,6 @@ function initialize_map() {
 			handleNoGeolocation(true);
 		});
 	} else {
-		// Browser doesn't support Geolocation
-		// Should really tell the user…
+		alert("We recomend you to use Google Chrome");
 	}
 }

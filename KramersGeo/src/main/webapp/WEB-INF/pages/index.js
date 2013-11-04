@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
  
-<!-- For å inkludere kart --> 
+<!-- For aa inkludere kart --> 
 <style>
 html, body {
         height: 100%;
@@ -20,13 +20,17 @@ html, body {
 </head>
 <body>
 
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
 
-
-
-<!-- For å inkludere kart -->
+	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+	<script src="js/project.js"></script>
+	
+<!-- For aa inkludere kart -->
 <div id="map-canvas" class="container map"></div>
 	
-<!-- Loads the map right away -->
+	<!-- Loads the map right away -->
 	<script>
 	$(document).ready(function() {
 		initialize_map();

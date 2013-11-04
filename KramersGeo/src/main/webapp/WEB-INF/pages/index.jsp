@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- 
 <!-- For aa inkludere kart --> 
 <style>
 html, body {
@@ -18,6 +17,7 @@ html, body {
 }
 </style>
 </head>
+
 <body>
 
 	<!-- Bootstrap core JavaScript
@@ -25,12 +25,13 @@ html, body {
 	<!-- Placed at the end of the document so the pages load faster -->
 
 	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/project.js"></script>
 	
 <!-- For aa inkludere kart -->
 <div id="map-canvas" class="container map"></div>
 	
-	<!-- Loads the map right away -->
+	<!-- Loads the map right away after the page is deployed-->loaded
 	<script>
 	$(document).ready(function() {
 		initialize_map();

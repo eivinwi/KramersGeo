@@ -25,6 +25,13 @@ html, body {
 
 <!-- For å inkludere kart -->
 <div id="map-canvas" class="container map"></div>
+	
+<!-- Loads the map right away -->
+	<script>
+	$(document).ready(function() {
+		initialize_map();
+	});
+	</script>
 
 <!-- For å vise kart -->
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>

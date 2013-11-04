@@ -3,7 +3,6 @@ function getData() {
 	
 }
 
-
 //Add map
 var map;
 function initialize_map() {

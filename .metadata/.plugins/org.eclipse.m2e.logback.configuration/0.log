@@ -1,0 +1,249 @@
+2013-11-04 11:23:36,561 [ModalContext] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2013-11-04 11:23:36,884 [New I/O client worker #1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/maven-metadata.xml
+2013-11-04 11:23:36,889 [New I/O client worker #1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/maven-metadata.xml
+2013-11-04 11:23:36,961 [ModalContext] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2013-11-04 11:23:37,039 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.1/maven-archetype-quickstart-1.1.jar
+2013-11-04 11:23:37,040 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.1/maven-archetype-quickstart-1.1.jar
+2013-11-04 11:27:32,757 [Worker-6] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2013-11-04 11:27:32,866 [New I/O client worker #3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.1/maven-archetype-quickstart-1.1.pom
+2013-11-04 11:27:32,867 [New I/O client worker #3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/org/apache/maven/archetypes/maven-archetype-quickstart/1.1/maven-archetype-quickstart-1.1.pom
+2013-11-04 11:27:32,939 [pool-5-thread-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded file:///home/andrekor/.m2/repository/org/apache/maven/archetypes/maven-archetype-quickstart/1.1/maven-archetype-quickstart-1.1.jar
+2013-11-04 11:27:32,991 [Worker-6] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Collecting project info '/pom.xml' /home/andrekor/KramersGeo/KramersGeo/pom.xml
+2013-11-04 11:27:34,193 [Worker-6] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: no.uio.inf5750:KramersGeo:0.0.1-SNAPSHOT @ /home/andrekor/KramersGeo/KramersGeo/pom.xml.
+2013-11-04 11:27:35,772 [Worker-6] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /KramersGeo/src/main/java
+2013-11-04 11:27:35,784 [Worker-6] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /KramersGeo/src/test/java
+2013-11-04 11:27:35,839 [Worker-3] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: no.uio.inf5750:KramersGeo:0.0.1-SNAPSHOT @ /home/andrekor/KramersGeo/KramersGeo/pom.xml.
+2013-11-04 11:27:36,930 [Worker-6] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Project import completed 3 sec
+2013-11-04 11:27:38,057 [Worker-9] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: no.uio.inf5750:KramersGeo:0.0.1-SNAPSHOT @ /home/andrekor/KramersGeo/KramersGeo/pom.xml.
+2013-11-04 11:27:38,148 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 11:27:38,148 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 11:27:38,151 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 11:27:38,151 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 11:28:15,612 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-egit does not contain lifecycle mapping metadata
+2013-11-04 11:28:15,622 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subversive does not contain lifecycle mapping metadata
+2013-11-04 11:28:15,623 [ModalContext] WARN  o.e.m.i.discovery.MavenDiscovery - CatalogItem org.eclipse.m2e.discovery.lifecyclemapping.m2e-subclipse does not contain lifecycle mapping metadata
+2013-11-04 11:31:04,952 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 11:31:04,952 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 11:31:04,956 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 11:31:04,956 [Worker-6] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 11:59:05,054 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 11:59:05,054 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 11:59:05,056 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 11:59:05,056 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:01:59,769 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:01:59,769 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:01:59,770 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:01:59,770 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:02:08,286 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:02:08,286 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:02:08,289 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:02:08,289 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:02:28,927 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:02:28,928 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:02:28,930 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:02:28,930 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:03:45,294 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:03:45,294 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:03:45,297 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:03:45,297 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:03:56,670 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:03:56,670 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:03:56,673 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:03:56,673 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:04:21,497 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:04:21,497 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:04:21,500 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:04:21,500 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:04:25,166 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:04:25,166 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:04:25,169 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:04:25,169 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:04:40,812 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:04:40,812 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:04:40,817 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:04:40,818 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:05:00,050 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:00,051 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:05:00,054 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:00,054 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:05:01,069 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:01,069 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:05:01,070 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:01,070 [Worker-20] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:05:18,376 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:18,377 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:05:18,380 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:18,380 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:05:25,947 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:25,947 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:05:25,950 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:25,950 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:05:43,317 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:43,317 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:05:43,320 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:05:43,320 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:13:15,000 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:13:15,000 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:13:15,002 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:13:15,002 [Worker-18] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:18:19,269 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:18:19,269 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:18:19,271 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:18:19,271 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:18:29,400 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:18:29,400 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:18:29,402 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:18:29,402 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:19:22,451 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:19:22,452 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:19:22,453 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:19:22,453 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:19:38,099 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:19:38,100 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:19:38,101 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:19:38,101 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:19:54,140 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:19:54,141 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:19:54,143 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:19:54,143 [Worker-24] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:20:29,491 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:20:29,492 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:20:29,493 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:20:29,494 [Worker-26] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:20:52,939 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:20:52,940 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:20:52,941 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:20:52,942 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:20:54,983 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:20:54,983 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:20:54,986 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:20:54,986 [Worker-27] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:25:08,076 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:25:08,077 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:25:08,078 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:25:08,078 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:27:13,086 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:27:13,086 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:27:13,089 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:27:13,089 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:27:18,667 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:27:18,668 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:27:18,671 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:27:18,671 [Worker-29] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:27:19,737 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:27:19,738 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:27:19,742 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:27:19,743 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:28:57,666 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:28:57,667 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:28:57,669 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:28:57,669 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:29:01,074 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:01,074 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:29:01,077 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:01,077 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:29:03,374 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:03,375 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:29:03,377 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:03,377 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:29:05,107 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:05,108 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:29:05,111 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:05,111 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:29:34,043 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:34,044 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:29:34,046 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:34,047 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:29:54,165 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:54,165 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:29:54,166 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:29:54,166 [Worker-16] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:36:49,115 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:36:49,115 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:36:49,117 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:36:49,117 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:38:55,311 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:38:55,312 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:38:55,316 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:38:55,317 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:38:57,698 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:38:57,698 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:38:57,700 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:38:57,700 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:39:00,282 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:39:00,283 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:39:00,285 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:39:00,285 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:44:20,698 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:44:20,698 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:44:20,700 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:44:20,700 [Worker-35] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:48:19,641 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:48:19,641 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:48:19,644 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:48:19,644 [Worker-31] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:58:03,739 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:58:03,739 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:58:03,741 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:58:03,742 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:58:06,828 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:58:06,828 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:58:06,832 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:58:06,832 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 12:59:28,331 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:59:28,331 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 12:59:28,333 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 12:59:28,333 [Worker-42] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 13:00:12,701 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:00:12,701 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 13:00:12,704 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:00:12,704 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 13:00:13,718 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:00:13,718 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 13:00:13,721 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:00:13,722 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 13:02:07,308 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:02:07,308 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 13:02:07,309 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:02:07,310 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 13:02:20,106 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:02:20,106 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 13:02:20,109 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:02:20,109 [Worker-43] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 13:02:39,291 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:02:39,291 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 13:02:39,297 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:02:39,297 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 13:03:11,771 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:03:11,771 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 13:03:11,774 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:03:11,774 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 13:14:10,335 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:14:10,336 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 13:14:10,338 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:14:10,338 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 13:33:03,035 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:33:03,035 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 13:33:03,038 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 13:33:03,038 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 16:49:41,194 [Worker-2] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: no.uio.inf5750:KramersGeo:0.0.1-SNAPSHOT @ /home/andrekor/KramersGeo/KramersGeo/pom.xml.
+2013-11-04 16:49:42,930 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:49:42,931 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 16:49:42,933 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:49:42,933 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 16:52:12,486 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:52:12,487 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 16:52:12,488 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:52:12,488 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 16:53:23,066 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:53:23,066 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 16:53:23,067 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:53:23,068 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 16:53:50,594 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:53:50,594 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 16:53:50,595 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:53:50,595 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources
+2013-11-04 16:55:44,634 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:55:44,638 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/main/resources
+2013-11-04 16:55:44,641 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2013-11-04 16:55:44,641 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /home/andrekor/KramersGeo/KramersGeo/src/test/resources

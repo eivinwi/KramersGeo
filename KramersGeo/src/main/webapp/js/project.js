@@ -21,7 +21,7 @@ function initialize_map() {
 			handleNoGeolocation(true);
 		});
 	} else {
-		// Browser doesn't support Geolocation
-		// Should really tell the user…
+
+		alert('Your browser does not support Geolocatio.')
 	}
 }

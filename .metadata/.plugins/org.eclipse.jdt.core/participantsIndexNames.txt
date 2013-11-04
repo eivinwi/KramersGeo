@@ -1,3 +1,0 @@
-INDEX VERSION 1.126
-/home/andrekor/KramersGeo/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3928034532.index
-/KramersGeo/src/main/java

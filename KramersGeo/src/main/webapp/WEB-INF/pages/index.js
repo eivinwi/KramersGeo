@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+ 
 <!-- For å inkludere kart --> 
 <style>
 html, body {

@@ -8,12 +8,12 @@ html,body {
 }
 
 #map-canvas {
-	height: 40%;
+	height: 80%;
 	padding-right: 15px;
 	padding-left: 15px;
 	margin-right: auto;
 	margin-left: auto;
-	width: 60%;
+	width: 80%;
 }
 </style>
 </head>
@@ -24,19 +24,24 @@ html,body {
 	<!-- Placed at the end of the document so the pages load faster -->
 
 	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery-2.0.3.min.js"</script>
+	<script src="js/bootstrap.min.js"></script>
 	<script src="js/project.js"></script>
 
-	<!-- To include map -->
+
+	<form>
+	Event Name<input type="text" name="name"><br>
+	Event Date<input type="text" name="name"><br>
+	Include position<input type="checkbox" name="pos"><br>
+	</form> 
+
+	<!-- For aa inkludere kart -->
 	<div id="map-canvas" class="container map"></div>
 
 	<!-- Loads the map right away after the page is deployed loaded-->
 	<script>
 		$(document).ready(function() {
-			
 			initialize_map();
-			alert('Heyhey');
 		});
 	</script>
 

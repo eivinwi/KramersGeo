@@ -27,12 +27,13 @@ html, body {
 
 	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-2.0.3.min.js"</script>
 	<script src="js/project.js"></script>
 	
 <!-- For aa inkludere kart -->
 <div id="map-canvas" class="container map"></div>
 	
-	<!-- Loads the map right away after the page is deployed-->loaded
+	<!-- Loads the map right away after the page is deployed loaded-->
 	<script>
 	$(document).ready(function() {
 		alert('Heyhey');

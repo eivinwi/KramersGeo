@@ -6,6 +6,7 @@ function getData() {
 //Add map
 var map;
 function initialize_map() {
+	alert('Initialize_map');
 	var mapOptions = {
 		zoom : 10,
 		mapTypeId : google.maps.MapTypeId.ROADMAP

@@ -1,24 +1,55 @@
-<html>
+<html lang="en">
 <head>
+<!-- For aa inkludere kart -->
+<link href="css/bootstrap.css" rel="stylesheet">
+<style>
+html,body {
+	height: 100%;
+}
 
+#map-canvas {
+	height: 75%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 90%;
+}
+</style>
 </head>
-
-
 <body>
-
-<h1>TEST</h1>
-
-<script src="WEB-INF/pages/index.js"></script>
-<script src="js/jquery-2.0.3.min.js"></script>
-<script src="js/project.jsp"></script>
-
+	<h1>TEST</h1>
 	<script>
-	$(document).ready(function() {
-		alert('test');
-		initialize_map();
-		alert('wut');	
-	});
+		$(document).ready(function() {
+			alert('test');
+			initialize_map();
+			alert('wut');
+		});
 	</script>
+
+	<!-- Bootstrap core JavaScript
+	================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+
+	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-2.0.3.min.js"</script>
+	<script src="js/project.js"></script>
+
+	<!-- For aa inkludere kart -->
+	<div id="map-canvas" class="container map"></div>
+
+	<!-- Loads the map right away after the page is deployed loaded-->
+	<script>
+		$(document).ready(function() {
+			alert('Heyhey');
+			initialize_map();
+		});
+	</script>
+
+	<!-- For å vise kart -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 
 </body>
 </html>

@@ -29,11 +29,23 @@ html,body {
 	<script src="js/project.js"></script>
 
 
-	<form>
-	Event Name<input type="text" name="name"><br>
-	Event Date<input type="text" name="name"><br>
-	Include position<input type="checkbox" name="pos"><br>
-	</form> 
+	<div class="container">
+
+		<form id="studentlocationform" name="studentlocationform">
+			<table class="table" id="studentLocationTable">
+				<tr>
+					<td>Event Name <input id="nameform" type="text" value=""></td>
+				</tr>
+			</table>
+			<table class="table">
+				<tr>
+					<td><input id="registerbtn" class="btn btn-primary"
+						type="button" value="Register Event"></td>
+				</tr>
+			</table>
+		</form>
+
+	</div>
 
 	<!-- To include map -->
 	<div id="map-canvas" class="container map"></div>

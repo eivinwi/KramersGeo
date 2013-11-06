@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
 <!-- For aa inkludere kart --> 
+<link href="css/bootstrap.css" rel="stylesheet">
 <style>
 html, body {
         height: 100%;
@@ -34,7 +35,8 @@ html, body {
 	<!-- Loads the map right away after the page is deployed-->loaded
 	<script>
 	$(document).ready(function() {
-		initialize_map();
+		alert('Heyhey');
+		initialize_map();		
 	});
 	</script>
 

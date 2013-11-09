@@ -23,4 +23,5 @@ function initialize_map() {
 	} else {
 		alert("We recomend you to use Google Chrome");
 	}
+	
 }

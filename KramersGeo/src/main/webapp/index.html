@@ -6,15 +6,30 @@
 html,body {
 	height: 100%;
 }
-
+#line{
+	height: 100%;
+	
+}
+#form-canvas {
+	height: 100%;
+	padding-right: 5px;
+	padding-left: 5px;
+	margin-right: auto;
+	margin-left: auto;
+	width: 20%;
+	float: left;
+	border-right: 3px solid #000000;
+}
 #map-canvas {
-	height: 80%;
-	padding-right: 15px;
-	padding-left: 15px;
+	height: 100%;
+	padding-right: 5px;
+	padding-left: 5px;
 	margin-right: auto;
 	margin-left: auto;
 	width: 80%;
+	float: right;
 }
+
 </style>
 </head>
 <body>
@@ -22,21 +37,14 @@ html,body {
 
 
 	<!-- Static navbar -->
-	<div class="navbar navbar-default navbar-static-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="-">Clinic</a></li>
-					<li><a href="-">Program</a></li>
-				</ul>
-			</div>
+ 	<div class="navbar navbar-default navbar-static-top">	
+	<!-- <div class="navbar-collapse collapse"> -->
+			<ul class="nav navbar-nav">
+				<li><a href="-">Clinic</a></li>
+				<li><a href="-">Program</a></li>
+			</ul>
+		</div>
+	<!-- </div> --> 
 			<!--/.nav-collapse -->
 
 			<!-- Bootstrap core JavaScript
@@ -48,15 +56,14 @@ html,body {
 			<script src="js/bootstrap.min.js"></script>
 			<script src="js/project.js"></script>
 
-			<legend>Form Name</legend>
-
+<div id="form-canvas">
 			<!-- Program -->
 			<div class="control-group">
 				<label class="control-label" for="textinput">Program:</label>
 				<div class="controls">
 					<input id="textinput" name="textinput" type="text"
 						placeholder="Program" class="input-xlarge">
-					<p class="help-block">help</p>
+					<p class="help-block"></p>
 				</div>
 			</div>
 
@@ -66,7 +73,7 @@ html,body {
 				<div class="controls">
 					<input id="textinput" name="textinput" type="text"
 						placeholder="First name" class="input-xlarge">
-					<p class="help-block">help</p>
+					<p class="help-block"></p>
 				</div>
 			</div>
 
@@ -76,29 +83,12 @@ html,body {
 				<div class="controls">
 					<input id="textinput" name="textinput" type="text"
 						placeholder="Last name" class="input-xlarge">
-					<p class="help-block">help</p>
+					<p class="help-block"></p>
 				</div>
 			</div>
+</div>
 
 
-
-			<div class="container">
-
-				<form id="studentlocationform" name="studentlocationform">
-					<table class="table" id="studentLocationTable">
-						<tr>
-							<td>Event Name <input id="nameform" type="text" value=""></td>
-						</tr>
-					</table>
-					<table class="table">
-						<tr>
-							<td><input id="registerbtn" class="btn btn-primary"
-								type="button" value="Register Event"></td>
-						</tr>
-					</table>
-				</form>
-
-			</div>
 
 			<!-- To include map -->
 			<div id="map-canvas" class="container map"></div>

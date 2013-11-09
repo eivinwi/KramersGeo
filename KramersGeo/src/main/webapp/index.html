@@ -21,7 +21,7 @@ html,body {
 
 
 
-<!-- Static navbar -->
+	<!-- Static navbar -->
 	<div class="navbar navbar-default navbar-static-top">
 		<div class="container">
 			<div class="navbar-header">
@@ -30,97 +30,89 @@ html,body {
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="/assignment2-gui/">Student system</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li><a href="-">Clinic</a></li>
 					<li><a href="-">Program</a></li>
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li class="active"><a href="init">Init
-							database</a></li>
-				</ul>
-
-
 			</div>
 			<!--/.nav-collapse -->
 
-	<!-- Bootstrap core JavaScript
+			<!-- Bootstrap core JavaScript
 	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
+			<!-- Placed at the end of the document so the pages load faster -->
 
-	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
-	<script src="js/jquery-2.0.3.min.js"</script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/project.js"></script>
+			<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+			<script src="js/jquery-2.0.3.min.js"</script>
+			<script src="js/bootstrap.min.js"></script>
+			<script src="js/project.js"></script>
 
-	<legend>Form Name</legend>
+			<legend>Form Name</legend>
 
-	<!-- Program -->
-	<div class="control-group">
-		<label class="control-label" for="textinput">Program:</label>
-		<div class="controls">
-			<input id="textinput" name="textinput" type="text"
-				placeholder="Program" class="input-xlarge">
-			<p class="help-block">help</p>
-		</div>
-	</div>
+			<!-- Program -->
+			<div class="control-group">
+				<label class="control-label" for="textinput">Program:</label>
+				<div class="controls">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="Program" class="input-xlarge">
+					<p class="help-block">help</p>
+				</div>
+			</div>
 
-	<!-- Text input-->
-	<div class="control-group">
-		<label class="control-label" for="textinput">First name:</label>
-		<div class="controls">
-			<input id="textinput" name="textinput" type="text"
-				placeholder="First name" class="input-xlarge">
-			<p class="help-block">help</p>
-		</div>
-	</div>
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="textinput">First name:</label>
+				<div class="controls">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="First name" class="input-xlarge">
+					<p class="help-block">help</p>
+				</div>
+			</div>
 
-	<!-- Text input-->
-	<div class="control-group">
-		<label class="control-label" for="textinput">Last name:</label>
-		<div class="controls">
-			<input id="textinput" name="textinput" type="text"
-				placeholder="Last name" class="input-xlarge">
-			<p class="help-block">help</p>
-		</div>
-	</div>
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="textinput">Last name:</label>
+				<div class="controls">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="Last name" class="input-xlarge">
+					<p class="help-block">help</p>
+				</div>
+			</div>
 
 
 
-	<div class="container">
+			<div class="container">
 
-		<form id="studentlocationform" name="studentlocationform">
-			<table class="table" id="studentLocationTable">
-				<tr>
-					<td>Event Name <input id="nameform" type="text" value=""></td>
-				</tr>
-			</table>
-			<table class="table">
-				<tr>
-					<td><input id="registerbtn" class="btn btn-primary"
-						type="button" value="Register Event"></td>
-				</tr>
-			</table>
-		</form>
+				<form id="studentlocationform" name="studentlocationform">
+					<table class="table" id="studentLocationTable">
+						<tr>
+							<td>Event Name <input id="nameform" type="text" value=""></td>
+						</tr>
+					</table>
+					<table class="table">
+						<tr>
+							<td><input id="registerbtn" class="btn btn-primary"
+								type="button" value="Register Event"></td>
+						</tr>
+					</table>
+				</form>
 
-	</div>
+			</div>
 
-	<!-- To include map -->
-	<div id="map-canvas" class="container map"></div>
+			<!-- To include map -->
+			<div id="map-canvas" class="container map"></div>
 
-	<!-- Loads the map right away after the page is deployed loaded-->
-	<script>
-		$(document).ready(function() {
-			initialize_map();
+			<!-- Loads the map right away after the page is deployed loaded-->
+			<script>
+				$(document).ready(function() {
+					initialize_map();
 
-		});
-	</script>
+				});
+			</script>
 
-	<!-- To show map -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-
+			<!-- To show map -->
+			<script
+				src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </body>
 </html>

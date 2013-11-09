@@ -28,6 +28,37 @@ html,body {
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/project.js"></script>
 
+	<form class="form-horizontal">
+		<fieldset>
+
+			<!-- Form Name -->
+			<legend>Form Name</legend>
+
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="textinput">Text Input</label>
+				<div class="controls">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="placeholder" class="input-xlarge">
+					<p class="help-block">help</p>
+				</div>
+			</div>
+
+			<!-- Password input-->
+			<div class="control-group">
+				<label class="control-label" for="passwordinput">Password
+					Input</label>
+				<div class="controls">
+					<input id="passwordinput" name="passwordinput" type="password"
+						placeholder="placeholder" class="input-xlarge">
+					<p class="help-block">help</p>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+
+
 
 	<div class="container">
 
@@ -54,6 +85,7 @@ html,body {
 	<script>
 		$(document).ready(function() {
 			initialize_map();
+
 		});
 	</script>
 

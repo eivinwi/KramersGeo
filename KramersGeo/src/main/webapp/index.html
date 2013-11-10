@@ -6,10 +6,11 @@
 html,body {
 	height: 100%;
 }
-#line{
+
+#line {
 	height: 100%;
-	
 }
+
 #form-canvas {
 	background-color: #f7f7f7;
 	height: 100%;
@@ -21,12 +22,13 @@ html,body {
 	float: left;
 	border-right: 2px solid #CCCCCC;
 }
-#map-canvas {
 
+#map-canvas {
 	height: 100%;
 	width: 80%;
 	float: right;
 }
+
 .navbar {
 	margin-bottom: 0;
 }
@@ -35,72 +37,79 @@ html,body {
 <body>
 
 	<!-- Static navbar -->
- 	<div class="navbar navbar-default navbar-static-top">	
-	<!-- <div class="navbar-collapse collapse"> -->
-			<ul class="nav navbar-nav">
-				<li><a href="-">Clinic</a></li>
-				<li><a href="-">Program</a></li>
-			</ul>
-		</div>
-	<!-- </div> --> 
-			<!--/.nav-collapse -->
+	<div class="navbar navbar-default navbar-static-top">
+		<!-- <div class="navbar-collapse collapse"> -->
+		<ul class="nav navbar-nav">
+			<li><a href="-">Clinic</a></li>
+			<li><a href="-">Program</a></li>
+		</ul>
+	</div>
+	<!-- </div> -->
+	<!--/.nav-collapse -->
 
-			<!-- Bootstrap core JavaScript
+	<!-- Bootstrap core JavaScript
 	================================================== -->
-			<!-- Placed at the end of the document so the pages load faster -->
+	<!-- Placed at the end of the document so the pages load faster -->
 
-			<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
-			<script src="js/jquery-2.0.3.min.js"</script>
-			<script src="js/bootstrap.min.js"></script>
-			<script src="js/project.js"></script>
+	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+	<script src="js/jquery-2.0.3.min.js"</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/project.js"></script>
 
-<div id="form-canvas">
-			<!-- Program -->
-			<div class="control-group">
-				<label class="control-label" for="textinput">Program:</label>
-				<div class="controls">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="Program" class="input-xlarge">
-					<p class="help-block"></p>
-				</div>
+	<div id="form-canvas">
+		<!-- Program -->
+		<div class="control-group">
+			<label class="control-label" for="textinput">Program:</label>
+			<div class="controls">
+				<input id="textinput" name="textinput" type="text"
+					placeholder="Program" class="input-xlarge">
+				<p class="help-block"></p>
 			</div>
+		</div>
 
-			<!-- Text input-->
-			<div class="control-group">
-				<label class="control-label" for="textinput">First name:</label>
-				<div class="controls">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="First name" class="input-xlarge">
-					<p class="help-block"></p>
-				</div>
+		<!-- Text input-->
+		<div class="control-group">
+			<label class="control-label" for="textinput">First name:</label>
+			<div class="controls">
+				<input id="textinput" name="textinput" type="text"
+					placeholder="First name" class="input-xlarge">
+				<p class="help-block"></p>
 			</div>
+		</div>
 
-			<!-- Text input-->
-			<div class="control-group">
-				<label class="control-label" for="textinput">Last name:</label>
-				<div class="controls">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="Last name" class="input-xlarge">
-					<p class="help-block"></p>
-				</div>
+		<!-- Text input-->
+		<div class="control-group">
+			<label class="control-label" for="textinput">Last name:</label>
+			<div class="controls">
+				<input id="textinput" name="textinput" type="text"
+					placeholder="Last name" class="input-xlarge">
+				<p class="help-block"></p>
 			</div>
-</div>
+		</div>
+		
+		<input type="button" value="hide form" onclick="show_hide_form()" </input>
+
+		<form>
+			<input type="radio" name="sex" value="male">Male </input>
+			<input type="radio" name="sex" value="female">Female </input>
+		</form>
+	</div>
 
 
 
-			<!-- To include map -->
-			<div id="map-canvas" class="container map"></div>
+	<!-- To include map -->
+	<div id="map-canvas" class="container map"></div>
 
-			<!-- Loads the map right away after the page is deployed loaded-->
-			<script>
-				$(document).ready(function() {
-					initialize_map();
+	<!-- Loads the map right away after the page is deployed loaded-->
+	<script>
+		$(document).ready(function() {
+			initialize_map();
 
-				});
-			</script>
+		});
+	</script>
 
-			<!-- To show map -->
-			<script
-				src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<!-- To show map -->
+	<script
+		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 </body>
 </html>

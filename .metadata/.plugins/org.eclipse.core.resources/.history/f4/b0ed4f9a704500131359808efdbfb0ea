@@ -1,6 +1,0 @@
-//JSON document describing various aspects of the web application
-
-{
-	"name": "KramersGeo",
-	"description": "Describe the application"
-}

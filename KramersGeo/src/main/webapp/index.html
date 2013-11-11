@@ -59,25 +59,28 @@ html,body {
 	<div id="form-canvas">
 		<!-- Program -->
 		<div class="control-group">
-			<label class="control-label" for="textinput">Program:</label>
+			<label class="control-label" for="textinput">Date of
+				Admission:</label>
 			<div class="controls">
 				<input id="textinput" name="textinput" type="text"
-					placeholder="Program" class="input-xlarge">
+					placeholder="00.00.0000" class="input-xlarge">
 				<p class="help-block"></p>
 			</div>
 		</div>
 
 		<!-- Text input-->
 		<div class="control-group">
-			<label class="control-label" for="textinput">First name:</label>
+			<label class="control-label" for="textinput">Date of Death:</label>
 			<div class="controls">
 				<input id="textinput" name="textinput" type="text"
-					placeholder="First name" class="input-xlarge">
+					placeholder="00.00.0000" class="input-xlarge">
 				<p class="help-block"></p>
 			</div>
 		</div>
 
-		<!-- Text input-->
+		<input type="button" value="Show/hide form" onclick="show_hide_form()"</input>
+
+		<!-- Text input
 		<div class="control-group">
 			<label class="control-label" for="textinput">Last name:</label>
 			<div class="controls">
@@ -85,16 +88,37 @@ html,body {
 					placeholder="Last name" class="input-xlarge">
 				<p class="help-block"></p>
 			</div>
-		</div>
-		
-		<input type="button" value="hide form" onclick="show_hide_form()" </input>
+		</div> -->
+		<br> <br> <br>
+		<form>
+			Age: <input type="number" min="0" max="120"> </input> Sex: <input
+				type="radio" name="sex" value="male">Male </input> <input
+				type="radio" name="sex" value="female">Female </input>
+		</form>
 
 		<form>
-			<input type="radio" name="sex" value="male">Male </input>
-			<input type="radio" name="sex" value="female">Female </input>
+			<input type="radio" name="status" value="died">Died </input> <input
+				type="radio" name="status" value="Transfer">Transfer </input> <input
+				type="radio" name="status" value="Discharged">Discharged </input>
 		</form>
-	</div>
 
+		ICD: <input type="text" name="code"</input>
+
+		<div id="container">
+			<div id="mainContent">
+				<div id="addcomment">
+					<a href='#'>add comment</a>
+				</div>
+				<div id='postComment'>
+					<textarea name='comment' id='comment'></textarea> <br>
+					<input type='submit' value='submitt' onclick="add_comment()" />
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
 
 
 	<!-- To include map -->

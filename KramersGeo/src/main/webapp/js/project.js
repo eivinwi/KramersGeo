@@ -37,3 +37,9 @@ function show_hide_form() {
 		alert("not visible");
 	}
 }
+
+function add_comment() {
+	$("postComment").show("slow");
+	alert($("postComment").show("slow"));
+}
+

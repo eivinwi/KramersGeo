@@ -57,30 +57,33 @@ html,body {
 	<script src="js/project.js"></script>
 
 	<div id="form-canvas">
-		<!-- Program -->
-		<div class="control-group">
-			<label class="control-label" for="textinput">Date of
-				Admission:</label>
-			<div class="controls">
-				<input id="textinput" name="textinput" type="text"
-					placeholder="00.00.0000" class="input-xlarge">
-				<p class="help-block"></p>
+		<br>
+		<a href="#" class="btn btn-info btn-small" onclick="show_hide_form()"><i
+			class="icon-white icon-share-alt"></i> show/hide form</a>
+			<br><br>
+		<form>
+			<!-- Program -->
+			<div class="control-group">
+				<label class="control-label" for="textinput">Date of
+					Admission:</label>
+				<div class="controls">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="00.00.0000" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
 			</div>
-		</div>
 
-		<!-- Text input-->
-		<div class="control-group">
-			<label class="control-label" for="textinput">Date of Death:</label>
-			<div class="controls">
-				<input id="textinput" name="textinput" type="text"
-					placeholder="00.00.0000" class="input-xlarge">
-				<p class="help-block"></p>
+			<!-- Text input-->
+			<div class="control-group">
+				<label class="control-label" for="textinput">Date of Death:</label>
+				<div class="controls">
+					<input id="textinput" name="textinput" type="text"
+						placeholder="00.00.0000" class="input-xlarge">
+					<p class="help-block"></p>
+				</div>
 			</div>
-		</div>
 
-		<input type="button" value="Show/hide form" onclick="show_hide_form()"</input>
-
-		<!-- Text input
+			<!-- Text input
 		<div class="control-group">
 			<label class="control-label" for="textinput">Last name:</label>
 			<div class="controls">
@@ -89,38 +92,31 @@ html,body {
 				<p class="help-block"></p>
 			</div>
 		</div> -->
-		<br> <br> <br>
-		<form>
-			Age: <input type="number" min="0" max="120"> </input> Sex: <input
-				type="radio" name="sex" value="male">Male </input> <input
-				type="radio" name="sex" value="female">Female </input>
-		</form>
-
-		<form>
+			<br>Age: <input type="number" min="0"
+				max="120"> </input> Sex: <input type="radio" name="sex" value="male">Male
+			</input> <input type="radio" name="sex" value="female">Female </input>
 			Status:<br> <input type="radio" name="status" value="died">Died
 			</input> <input type="radio" name="status" value="Transfer">Transfer
 			</input> <input type="radio" name="status" value="Discharged">Discharged
-			</input>
-		</form>
-
-		ICD: <input type="text" name="code"</input> <br> <br>
-		<div id="container">
-			<div id="mainContent">
-				<div id="addcomment">
-					<a href='#'>add comment</a>
-				</div>
-				<div id='postComment'>
-					<textarea name='comment' id='comment'></textarea>
-					<br> <input type='submit' value='submitt'
-						onclick="add_comment()" />
+			</input> <br> ICD: <input type="text" name="code"</input> <br> <br>
+			<div id="container">
+				<div id="mainContent">
+					<div id="addcomment">
+						<a href='#'>add comment</a>
+					</div>
+					<div id='postComment'>
+						<textarea name='comment' id='comment'></textarea>
+						<br> <input type='submit' value='submitt'
+							onclick="add_comment()" />
+					</div>
 				</div>
 			</div>
-		</div>
 
-		<div id='postComment'>
-			<a href="#" class="btn btn-info btn-small" onclick="submitt_form()"><i
-				class="icon-white icon-share-alt"></i> Submitt</a>
-		</div>
+			<div id='postComment'>
+				<a href="#" class="btn btn-info btn-small" onclick="submitt_form()"><i
+					class="icon-white icon-share-alt"></i> Submitt</a>
+			</div>
+		</form>
 	</div>
 
 

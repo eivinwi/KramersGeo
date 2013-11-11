@@ -28,13 +28,11 @@ function initialize_map() {
 
 var isVisible=form.style.display != 'none';
 function show_hide_form() {
-	alert($('form').is(":visible"));
+	//alert($('form').is(":visible"));
 	if ($('form').is(":visible")) {
 		$('form').hide()
-		alert("visible");
 	} else {
 		$('form').show()
-		alert("not visible");
 	}
 }
 

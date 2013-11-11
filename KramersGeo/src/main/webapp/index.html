@@ -57,10 +57,9 @@ html,body {
 	<script src="js/project.js"></script>
 
 	<div id="form-canvas">
-		<br>
-		<a href="#" class="btn btn-info btn-small" onclick="show_hide_form()"><i
-			class="icon-white icon-share-alt"></i> show/hide form</a>
-			<br><br>
+		<br> <a href="#" class="btn btn-info btn-small"
+			onclick="show_hide_form()"><i class="icon-white icon-share-alt"></i>
+			show/hide form</a> <br> <br>
 		<form>
 			<!-- Program -->
 			<div class="control-group">
@@ -92,13 +91,13 @@ html,body {
 				<p class="help-block"></p>
 			</div>
 		</div> -->
-			<br>Age: <input type="number" min="0"
-				max="120"> </input> Sex: <input type="radio" name="sex" value="male">Male
-			</input> <input type="radio" name="sex" value="female">Female </input>
-			Status:<br> <input type="radio" name="status" value="died">Died
-			</input> <input type="radio" name="status" value="Transfer">Transfer
-			</input> <input type="radio" name="status" value="Discharged">Discharged
-			</input> <br> ICD: <input type="text" name="code"</input> <br> <br>
+			<br>Age: <input type="number" min="0" max="120"> </input> Sex: <input
+				type="radio" name="sex" value="male">Male </input> <input
+				type="radio" name="sex" value="female">Female </input> Status:<br>
+			<input type="radio" name="status" value="died">Died </input> <input
+				type="radio" name="status" value="Transfer">Transfer </input> <input
+				type="radio" name="status" value="Discharged">Discharged </input> <br>
+			ICD: <input type="text" name="code"</input> <br> <br>
 			<div id="container">
 				<div id="mainContent">
 					<div id="addcomment">
@@ -106,12 +105,12 @@ html,body {
 					</div>
 					<div id='postComment'>
 						<textarea name='comment' id='comment'></textarea>
-						<br> <input type='submit' value='submitt'
-							onclick="add_comment()" />
+						<!-- <br> <input type='submit' value='submitt'
+							onclick="add_comment()" /> -->
 					</div>
 				</div>
 			</div>
-
+			<br>
 			<div id='postComment'>
 				<a href="#" class="btn btn-info btn-small" onclick="submitt_form()"><i
 					class="icon-white icon-share-alt"></i> Submitt</a>
@@ -127,7 +126,7 @@ html,body {
 	<script>
 		$(document).ready(function() {
 			initialize_map();
-
+			test()
 		});
 	</script>
 

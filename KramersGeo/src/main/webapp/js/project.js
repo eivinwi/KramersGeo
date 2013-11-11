@@ -46,3 +46,12 @@ function submitt_form() {
 	alert($("postComment").show("slow"))
 	alert("LALALALA");
 }
+
+
+//Test for å hide form, og gjøre map større, og motsatt...
+function test() {	
+	var formcanvas = $(document.form-canvas)
+	formcanvas.hide()
+	var $body = $(document.body)
+	$body.hide();
+}

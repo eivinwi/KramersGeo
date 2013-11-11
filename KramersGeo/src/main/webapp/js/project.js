@@ -43,3 +43,8 @@ function add_comment() {
 	alert($("postComment").show("slow"));
 }
 
+
+function submitt_form() {
+	alert($("postComment").show("slow"))
+	alert("LALALALA");
+}

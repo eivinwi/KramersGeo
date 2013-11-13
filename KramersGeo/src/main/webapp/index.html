@@ -2,10 +2,14 @@
 <head>
 <!-- To include map -->
 <link href="css/bootstrap.css" rel="stylesheet">
+	<script src="js/jquery-2.0.3.min.js"</script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/project.js"></script>
+
 <style>
 html,body {
 	height: 100%;
-	background-color: #f7f7f7;
+	background: #000;
 }
 
 #line {
@@ -16,18 +20,23 @@ html,body {
 	height: 100%;
 	padding-right: 5px;
 	padding-left: 5px;
-	margin-right: auto;
-	margin-left: auto;
-	width: 20%;
-	float: left;
-	
+	width: 235px;
+	display: block;
+	position: absolute;
+	top: 44px;
+	transition: margin-left 0.38s;
+	border-right: 1px solid #CCCCCC;
+	background-color: #f7f7f7;
+}
+
+.hidden-bar #form-canvas {
+	margin-left: -235px;
 }
 
 #map-canvas {
 	height: 100%;
-	width: 80%;
-	float: right;
-	border-left: 2px solid #CCCCCC;
+	width: 100%;
+	display: block;
 }
 
 .navbar {
@@ -37,6 +46,7 @@ html,body {
 </head>
 <body>
 
+
 	<!-- Static navbar -->
 	<div class="navbar navbar-default navbar-static-top">
 		<!-- <div class="navbar-collapse collapse"> -->
@@ -45,23 +55,17 @@ html,body {
 			<li><a href="-">Program</a></li>
 		</ul>
 	</div>
-	<!-- </div> -->
-	<!--/.nav-collapse -->
 
-	<!-- Bootstrap core JavaScript
-	================================================== -->
-	<!-- Placed at the end of the document so the pages load faster -->
 
-	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
-	<script src="js/jquery-2.0.3.min.js"</script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/project.js"></script>
 
-<form>
+	<div id="map-canvas" class="container map"></div>
+
+
 	<div id="form-canvas">
 		<br> <a href="#" class="btn btn-info btn-small"
 			onclick="show_hide_form()"><i class="icon-white icon-share-alt"></i>
 			show/hide form</a> <br> <br>
+		<form>
 			<!-- Program -->
 			<div class="control-group">
 				<label class="control-label" for="textinput">Date of
@@ -116,15 +120,11 @@ html,body {
 				<a href="#" class="btn btn-info btn-small" onclick="submitt_form()"><i
 					class="icon-white icon-share-alt"></i> Submitt</a>
 			</div>
-		
+		</form>
 	</div>
-	</form>
 
 
-	<!-- To include map -->
-	<div id="map-canvas" class="container map"></div>
 
-	<!-- Loads the map right away after the page is deployed loaded-->
 	<script>
 		$(document).ready(function() {
 			initialize_map();
@@ -135,5 +135,7 @@ html,body {
 	<!-- To show map -->
 	<script
 		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+		
 </body>
 </html>

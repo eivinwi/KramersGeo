@@ -28,6 +28,9 @@ function initialize_map() {
 
 var isVisible=form.style.display != 'none';
 function show_hide_form() {
+	$('body').toggleClass('hidden-bar');
+	alert("Now your fucked");
+	return;
 	//alert($('form').is(":visible"));
 	if ($('form').is(":visible")) {
 		$('form').hide()
@@ -36,9 +39,10 @@ function show_hide_form() {
 	}
 }
 
+
 function add_comment() {
 	$("postComment").show("slow");
-	alert($("postComment").show("slow"));
+	alert($("postComment").show("slow"));	
 }
 
 

@@ -6,7 +6,22 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/project.js"></script>
 
-<style> 
+
+
+<link rel="stylesheet"
+	href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<!-- Sets the radio-button layout -->
+<script>
+	$(function() {
+		$("#radio").buttonset();
+	});
+</script>
+
+
+<style>
 html,body {
 	height: 100%;
 	background: #000;
@@ -57,7 +72,6 @@ html,body {
 </head>
 <body>
 
-
 	<!-- Static navbar -->
 	<div class="navbar navbar-default navbar-static-top">
 		<!-- <div class="navbar-collapse collapse"> -->
@@ -66,7 +80,6 @@ html,body {
 			<li><a href="-">Program</a></li>
 		</ul>
 	</div>
-
 
 
 	<div id="map-canvas" class="container map"></div>
@@ -100,6 +113,13 @@ html,body {
 					<p class="help-block"></p>
 				</div>
 			</div>
+
+			<div id="radio">
+				<input type="radio" id="radio1" name="radio" /><label for="radio1">Male</label>
+				<input type="radio" id="radio2" name="radio" checked="checked" /><label
+					for="radio2">Female</label>
+			</div>
+
 
 			<br>Age: <input type="number" min="0" max="120"> </input> Sex: <input
 				type="radio" name="sex" value="male">Male </input> <input

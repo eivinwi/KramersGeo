@@ -45,7 +45,7 @@ function add_comment() {
 }
 
 
-function submitt_form() {
+function submit_form() {
 	alert($("postComment").show("slow"))
 	alert("LALALALA");
 }

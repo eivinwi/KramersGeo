@@ -47,7 +47,23 @@ function add_comment() {
 
 function submit_form() {
 	alert($("postComment").show("slow"))
-	alert("LALALALA");
+/*
+	{
+	  "program": "eBAyeGv0exc",  //find the program-id
+	  "orgUnit": "DiszpKrYNg8",  //find org unit-id
+	  "eventDate": "2013-05-17", //date from form
+	  "status": "COMPLETED",	 //status from form
+	  "storedBy": "admin",		//get userid
+	  "coordinate": {			
+	    "latitude": "59.8",		//latitude from form/gps
+	    "longitude": "10.9"		//longitude from form/gps
+	  },
+	  "dataValues": [		//other values from form
+	    { "dataElement": "qrur9Dvnyt5", "value": "22" },
+	    { "dataElement": "oZg33kd9taw", "value": "Male" },
+	    { "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
+	  ]
+	} */
 }
 
 

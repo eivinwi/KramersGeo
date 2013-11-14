@@ -1,3 +1,16 @@
+$(function() {
+  var availableTags = ["A0 Cholera", "B1 Malaria"];
+  $( "#icd" ).autocomplete({
+    source:availableTags
+  });
+
+$("#radio").buttonset();
+ $( "#status" ).buttonset();
+$('.datepicker').datepicker();
+
+});
+
+
 //To get single event data perhaps?
 function getData() {
 	

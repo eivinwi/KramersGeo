@@ -19,7 +19,6 @@ body {
   position: fixed;
   margin-left: 300px;
   top: 44px;
-  transition: margin-left 0.38s;
   background-color: #f7f7f7;
   border-right: 1px #ddd solid;
   box-shadow: #ddd 0 0 2px 0;

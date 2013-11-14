@@ -46,16 +46,16 @@
 	<fieldset>
 	  <label for=dateadmission>Date of Admission <input
 					                type="date" class=datepicker id="dateadmission">
-	  </label><br> <label for=datedischarge>Date of Discharge <input
-					                             type="date" class=datepicker id="datedischarge">
-	  </label>
+	  </label><br><br> <label for=datedischarge>Date of Discharge <input
+					                                 type="date" class=datepicker id="datedischarge">
+	  </label> 
 	</fieldset>
-
+        
 	<div id="radio">
-	  <label for="radio">Gender</label> <input type="radio" id="radio1"
-					           name="radio" /> <label for="radio1">Male</label> <input
-					                                                               type="radio" id="radio2" name="radio" checked="checked" /> <label
-					                                                                                                                             for="radio2">Female</label>
+	  <br><label for="radio">Gender</label> <input type="radio" id="radio1"
+					               name="radio" /> <label for="radio1">Male</label> <input
+					                                                                   type="radio" id="radio2" name="radio" checked="checked" /> <label
+					                                                                                                                                 for="radio2">Female</label>
 	</div>
 
 
@@ -77,25 +77,18 @@
 	  <label for="ICD">ICD: </label> <input id="icd" />
 	</div>
 
-	<br> <br>
-	<div id="container">
-	  <div id="mainContent">
-	    <div id="addcomment">
-	      <a href='#'>add comment</a>
-	    </div>
-	    <div id='postComment'>
-	      <textarea name='comment' id='comment'></textarea>
-	      <!-- <br> <input type='submit' value='submitt'
-		   onclick="add_comment()" /> -->
-	    </div>
-	  </div>
+        <br>
+        <div class="span5">
+	  <label>Comment</label> <br>
+	  <textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
 	</div>
-	<br>
+<!--        <button type="submit" class="btn btn-primary pull-right">Send</button> -->
+      
+      </form>
 	<div id='postComment'>
 	  <a href="#" class="btn btn-info btn-small" onclick="submit_form()"><i
 					                                        class="icon-white icon-share-alt"></i> Submitt</a>
 	</div>
-      </form>
     </div>
 
     <script>

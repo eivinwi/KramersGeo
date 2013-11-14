@@ -20,9 +20,12 @@
 
 
 <style>
+
 html,body {
 	height: 100%;
 	background: #000;
+	margin: 0;
+	padding: 0;
 }
 
 #line {
@@ -60,7 +63,9 @@ html,body {
 	height: 100%;
 	width: 100%;
 	background-color: #333;
-	display: block;
+	overflow: visible;
+	/*display: block;*/
+	margin: 0;
 }
 
 .navbar {
@@ -79,7 +84,7 @@ html,body {
 		</ul>
 	</div>
 
-	<div id="map-canvas" class="container map"></div>
+	<div id="map-canvas"></div>
 
 	<div id="button-space">
 		<br> <a href="#" class="btn btn-info btn-small"

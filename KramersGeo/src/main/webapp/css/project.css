@@ -7,7 +7,6 @@ body {
 }
 
     
-
 #line {
   height: 100%;
 }
@@ -15,9 +14,10 @@ body {
 #form-canvas {
   height: 100%;
   padding: 12px 6px;
-  width: 235px;
+  width: 750px;
   display: block;
   position: fixed;
+  margin-left: 300px;
   top: 44px;
   transition: margin-left 0.38s;
   background-color: #f7f7f7;
@@ -28,8 +28,8 @@ body {
 }
 
 .hidden-bar #form-canvas {
-  margin-left: 235px;
-  width: 725px;
+  margin-left: 0px;
+  width: 300px;
 }
 
 #button-space {

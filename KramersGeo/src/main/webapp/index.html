@@ -13,9 +13,17 @@
 </head>
 <body>
   <div id=header>
-		<ul class="nav navbar-nav">
-			<li><a href="-">Clinic</a></li>
-			<li><a href="-">Program</a></li>
+    
+    <a id=headerText href="../dhis-web-dashboard-integration/index.action" title="View interpretations">
+    <img id=headerBanner src=http://apps.dhis2.org/demo/dhis-web-commons/css/light_blue/logo_banner.png>
+    <h1>DHIS 2 Demo - Sierra Leone</h1>
+    </a>
+    
+		<ul id=nav class="nav navbar-nav">
+			<li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Maintenance</a></li>
+			<li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Services</a></li>
+      <li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Help</a></li>
+      <li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Profile</a></li>
 		</ul>
 	</div>
 
@@ -30,18 +38,16 @@
 
 
 		<form>
-			<p>
-			<label>Date of Admission: </label>
-			<input type="date" class=datepicker id="dateadmission" />
-       </p>
-			<p>
-			<label>Date of Discharge: </label>
-			<input type="date" class=datepicker id="datedischarge" />
-				<br></p>
-			
-			
+      <fieldset>
+			<label for=dateadmission>Date of Admission
+			  <input type="date" class=datepicker id="dateadmission">
+      </label>
+			<label for=datedischarge>Date of Discharge
+			  <input type="date" class=datepicker id="datedischarge">
+      </label>
+      </fieldset>
 
-			<div id="radio"><label for="radio">Sex: </label>
+			<div id="radio"><label for="radio">Gender</label>
 				<input type="radio" id="radio1" name="radio" />
 					<label for="radio1">Male</label>
 				<input type="radio" id="radio2" name="radio" checked="checked" />

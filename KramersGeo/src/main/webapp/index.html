@@ -16,11 +16,10 @@
 	$(function() {
 		$("#radio").buttonset();
 	});
-</script>
- <script>
-$(function() {
-$( "#radio" ).buttonset();
-});
+
+	$(function() {
+		$( "#status" ).buttonset();
+	});
 </script>
 
 <style>
@@ -143,13 +142,13 @@ $(function() {
 			
 			<div id="status">
 				<label for="status">Status: </label>
-				
-				<input type="radio" id="status1" name="radio" value="Died" checked="checked">
-				<label for="status1">Died</label>
-				<input type="radio" id="status2" name="radio" value="Transferd">
-				<label for="status2">Transfered</label>
-				<input type="radio" id="status3" name="radio" value="Discharged">
-				<label for="status3">Discharged</label>
+				<br>
+				<input type="radio" id="status1" name="status" value="Died" checked="checked">
+				<label for="status1">Died</label><br>
+				<input type="radio" id="status2" name="status" value="Transferd">
+				<label for="status2">Transfer</label><br>
+				<input type="radio" id="status3" name="status" value="Discharged">
+				<label for="status3">Discharge</label><br>
 				<br>
 			
 			</div>	

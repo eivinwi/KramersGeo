@@ -1,0 +1,14 @@
+KramersGeo
+==========
+
+Geolocation app for the DHIS2 project.  
+
+<<<<<<< HEAD
+* Based on single event data entry.
+* Deployed as DHIS2 web app & as android app (phonegap)
+=======
+Annen endring
+
+*Based on single event data entry.
+*Deployed as DHIS2 web app & as android app (phonegap)
+>>>>>>> 623887249c5ae3b84c9f2b9cf4c32510dddc8fde

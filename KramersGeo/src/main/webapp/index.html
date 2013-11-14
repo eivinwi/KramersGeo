@@ -20,6 +20,13 @@
 	$(function() {
 		$( "#status" ).buttonset();
 	});
+	
+	$(function() {
+		 $( "#dateadmission" ).datepicker();
+	});
+	$(function() {
+		 $( "#datedischarge" ).datepicker();
+	});
 </script>
 
 <style>
@@ -109,26 +116,17 @@ $(function() {
 	<div id="form-canvas">
 		<form>
 			<br>
-			<!-- Program -->
-			<div class="control-group">
-				<label class="control-label" for="textinput">Date of
-					Admission:</label>
-				<div class="controls">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="00.00.0000" class="input-xlarge">
-					<p class="help-block"></p>
-				</div>
-			</div>
 
-			<!-- Text input-->
-			<div class="control-group">
-				<label class="control-label" for="textinput">Date of Death:</label>
-				<div class="controls">
-					<input id="textinput" name="textinput" type="text"
-						placeholder="00.00.0000" class="input-xlarge">
-					<p class="help-block"></p>
-				</div>
-			</div>
+			<p>
+			<label>Date of Admission: </label>
+			<input type="text" id="dateadmission" />
+				<br></p>
+			<p>
+			<label>Date of Discharge: </label>
+			<input type="text" id="datedischarge" />
+				<br></p>
+			
+			
 
 			<div id="radio"><label for="radio">Sex: </label>
 				<input type="radio" id="radio1" name="radio" />

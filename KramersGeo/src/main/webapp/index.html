@@ -69,6 +69,17 @@ html,body {
 	margin-bottom: 0;
 }
 </style>
+
+<!-- For autocomplete av icd-nr. Skal sette inn icd-database -->
+<script>
+$(function() {
+	var availableTags = ["A0 Cholera", "B1 Malaria"];
+	$( "#icd" ).autocomplete({
+		source:availableTags
+	});
+});
+</script>
+
 </head>
 <body>
 
@@ -129,8 +140,13 @@ html,body {
 				<input type="radio" name="status" value="Transfer">Transfer
 				<input type="radio" name="status" value="Discharged">Discharged
 				<br>
-			ICD: <input type="text" name="code">
-			<br> <br>
+			ICD: 
+			<div class="ui-widget">
+				<label for="ICD"></label>
+				<input id="icd" />
+			</div>
+			
+			<br><br>
 			<div id="container">
 				<div id="mainContent">
 					<div id="addcomment">

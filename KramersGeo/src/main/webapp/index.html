@@ -17,7 +17,11 @@
 		$("#radio").buttonset();
 	});
 </script>
-
+ <script>
+$(function() {
+$( "#radio" ).buttonset();
+});
+</script>
 
 <style>
 
@@ -72,6 +76,17 @@ html,body {
 	margin-bottom: 0;
 }
 </style>
+
+<!-- For autocomplete av icd-nr. Skal sette inn icd-database -->
+<script>
+$(function() {
+	var availableTags = ["A0 Cholera", "B1 Malaria"];
+	$( "#icd" ).autocomplete({
+		source:availableTags
+	});
+});
+</script>
+
 </head>
 <body>
 
@@ -116,23 +131,36 @@ html,body {
 				</div>
 			</div>
 
-			<div id="radio">
-				<input type="radio" id="radio1" name="radio" /><label for="radio1">Male</label>
-				<input type="radio" id="radio2" name="radio" checked="checked" /><label
-					for="radio2">Female</label>
+			<div id="radio"><label for="radio">Sex: </label>
+				<input type="radio" id="radio1" name="radio" />
+					<label for="radio1">Male</label>
+				<input type="radio" id="radio2" name="radio" checked="checked" />
+					<label for="radio2">Female</label>
 			</div>
 
 
-			<br>Age: <input type="number" min="0" max="120"> Sex: 
-				<input type="radio" name="sex" value="male">Male
-				<input type="radio" name="sex" value="female">Female
-				Status:<br>
-			<input type="radio" name="status" value="died">Died
-				<input type="radio" name="status" value="Transfer">Transfer
-				<input type="radio" name="status" value="Discharged">Discharged
+			<br><label>Age: </label><input type="number" min="0" max="120">
+			
+			<div id="status">
+				<label for="status">Status: </label>
+				
+				<input type="radio" id="status1" name="radio" value="Died" checked="checked">
+				<label for="status1">Died</label>
+				<input type="radio" id="status2" name="radio" value="Transferd">
+				<label for="status2">Transfered</label>
+				<input type="radio" id="status3" name="radio" value="Discharged">
+				<label for="status3">Discharged</label>
 				<br>
-			ICD: <input type="text" name="code">
-			<br> <br>
+			
+			</div>	
+				
+				
+			<div class="ui-widget">
+				<label for="ICD">ICD: </label>
+				<input id="icd" />
+			</div>
+			
+			<br><br>
 			<div id="container">
 				<div id="mainContent">
 					<div id="addcomment">

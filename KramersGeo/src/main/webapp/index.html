@@ -56,10 +56,10 @@
 					               name="radio" /> <label for="radio1">Male</label> <input
 					                                                                   type="radio" id="radio2" name="radio" checked="checked" /> <label
 					                                                                                                                                 for="radio2">Female</label>
+                  <label> Age: </label><input type="number" min="0" max="120">
 	</div>
 
 
-	<br> <label>Age: </label><input type="number" min="0" max="120">
 	<br> <br>
 
 	<div id="status">
@@ -82,14 +82,15 @@
 	  <label>Comment</label> <br>
 	  <textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
 	</div>
-<!--        <button type="submit" class="btn btn-primary pull-right">Send</button> -->
-      
+        <!--        <button type="submit" class="btn btn-primary pull-right">Send</button> -->
+        
       </form>
-	<div id='postComment'>
-	  <a href="#" class="btn btn-info btn-small" onclick="submit_form()"><i
-					                                        class="icon-white icon-share-alt"></i> Submitt</a>
-	</div>
+      <div id='postComment'>
+	<a href="#" class="btn btn-info btn-small" onclick="submit_form()"><i
+					                                      class="icon-white icon-share-alt"></i> Submitt</a>
+      </div>
     </div>
+    
 
     <script>
       $(document).ready(function() {

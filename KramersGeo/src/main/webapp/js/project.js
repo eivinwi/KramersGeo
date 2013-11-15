@@ -79,7 +79,7 @@ function submit_form() {
 	} */
 }
 
-
+/*
 function getStuff() {
 	//alert("Trying to get json");
 
@@ -94,7 +94,7 @@ function getStuff() {
 	});
 
 
-}
+}*/
 
 
 //Test for å hide form, og gjøre map større, og motsatt...

@@ -1,0 +1,102 @@
+body {
+  height: 100%;
+  background: #000;
+  margin: 0;
+  padding: 0;
+  font: 12px/16px LiberationSansRegular, arial, sans-serif;
+}
+
+    
+#line {
+  height: 100%;
+}
+
+#form-canvas {
+  height: 100%;
+  padding: 12px 6px;
+  width: 750px;
+  display: block;
+  position: fixed;
+  margin-left: 300px;
+  top: 44px;
+  background-color: #f7f7f7;
+  border-right: 1px #ddd solid;
+  box-shadow: #ddd 0 0 2px 0;
+  transition: margin-left 0.38s,
+      width 0.38s;
+}
+
+.hidden-bar #form-canvas {
+  margin-left: 0px;
+  width: 300px;
+}
+
+#button-space {
+  position: static;
+  top: 50px;
+  left: 20%;
+  height: 75px;
+  width: 75px;
+  color: #333;
+}
+
+#map-canvas {
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  overflow: visible;
+  /*display: block;*/
+  margin: 0;
+}
+
+/*
+ * Header
+ */
+#header {
+    background-color: #276696;
+    height: 44px;
+    width: 100%;
+    display: block;
+    position: fixed;
+    z-index: 10;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    box-shadow: 0 0 3px #222;
+}
+
+#headerBanner {
+    top: 13px;
+    left: 55px;
+    width: 64px;
+    height: 17px;
+    position: fixed;
+}
+
+h1 {
+    font: 16px/33px LiberationSansBold, Arial, sans-serif;
+    font-weight: bold;
+    position: fixed;
+    top: 0;
+    margin: 6px 0 0 0;
+    color: #fff;
+    left: 175px;
+}
+
+#nav {
+  position: fixed;
+  left: 595px;
+  height: 44px;
+}
+
+#nav a {
+    display: block;
+    height: 44px;
+    line-height: 44px;
+    padding: 0 16px;
+    color: #fff;
+}
+#nav a:hover {
+    background: #5398d8;
+}
+

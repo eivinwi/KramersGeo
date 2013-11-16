@@ -98,6 +98,23 @@ function submit_form() {
 	} */
 }
 
+/*
+function getStuff() {
+	//alert("Trying to get json");
+
+	var stuff = $.getJSON("dhis-web-commons-ajax-json/getOrganisationUnitTree", function() {
+		console.log("success");
+	}).done(function() {
+		console.log("second success");
+	}).fail(function() {
+		console.log("error");
+	}).always(function() {
+		console.log("complete");
+	});
+
+
+}*/
+
 
 //Test for å hide form, og gjøre map større, og motsatt...
 function test() {	

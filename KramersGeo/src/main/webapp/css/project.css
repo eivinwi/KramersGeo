@@ -18,7 +18,7 @@ body {
   bottom: 0;
   display: block;
   position: absolute;
-  overflow: scroll;
+  overflow-x: visible;
   z-index: 3;
   background-color: #f7f7f7;
   border-right: 1px #ddd solid;
@@ -53,15 +53,11 @@ body {
   margin: 0;
   width: auto;
   top: 44px;
-/*
-
-  z-index: -2;
-  position: fixed !important;
-  top: 44px;
-  bottom: 0;
-  margin: 0;
-*/
   user-select: none;
+}
+
+.popover {
+  z-index: 4;
 }
 
 /*

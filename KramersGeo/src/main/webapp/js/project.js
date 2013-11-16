@@ -31,15 +31,36 @@ $(function() {
 
   $("#radio").buttonset();
   $( "#status" ).buttonset();
-  $('.datepicker').datepicker();
-  $('.tip').tooltip({container: 'body'});
+  $('.tip').tooltip({
+    container: 'body'
+  });
+
+  if (!Modernizr.inputtypes.date) {
+    $('.datepicker').datepicker();
+  }
+
+  $('#comment').popover({
+    html: true,
+    title: 'Comment'
+  });
+
+  $('#submit').click(function(ev) {
+    if (Modernizr.history) {
+      var state = {};
+      history.pushState(state, null, link.href);
+    }
+  });
+
+  $('#map').click(function(ev) {
+  	$('body').toggleClass('hidden-bar');
+  });
 
   add_map();
 });
 
 
 function show_hide_form() {
-	$('body').toggleClass('hidden-bar');
+
 	return;
 	//alert($('form').is(":visible"));
 	if ($('form').is(":visible")) {
@@ -51,7 +72,7 @@ function show_hide_form() {
 
 
 function add_comment() {
-	$("postComment").show("slow");
+	$("postComment").show();
 	alert($("postComment").show("slow"));	
 }
 

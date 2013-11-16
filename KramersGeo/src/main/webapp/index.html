@@ -1,22 +1,23 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset=utf-8>
-  <title>Single Event Data Entry</title>
+  <meta charset=utf-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DHIS 2 - Single Event Data Entry</title>
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/project.css">
   <script src="js/jquery-2.0.3.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/project.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
 </head>
 <body>
   <div id=header>
-    
     <a id=headerText href="../dhis-web-dashboard-integration/index.action" title="View interpretations">
-    <img id=headerBanner src=http://apps.dhis2.org/demo/dhis-web-commons/css/light_blue/logo_banner.png>
-    <h1>DHIS 2 Demo - Sierra Leone</h1>
+      <img id=headerBanner src=http://apps.dhis2.org/demo/dhis-web-commons/css/light_blue/logo_banner.png alt="">
+      <h1>DHIS 2 Demo - Sierra Leone</h1>
     </a>
     
 		<ul id=nav class="nav navbar-nav">
@@ -27,87 +28,99 @@
 		</ul>
 	</div>
 
-	<div id="map-canvas"></div>
+  <div>
+  <div>
+    
+  <div id="map-canvas"></div>
+  
+	<div id="form-canvas" class="container">
+    <form role="form" method="post">
+       <div class="form-horizontal">
+         <div class=form-group>
+           <label for="age" class="control-label col-sm-4">Age</label>
+           <div class="col-sm-8">
+             <input type="number" class="form-control input-sm" id="age" required min=0 max=999>
+           </div>
+         </div>
+         
+         <div class=form-group>
+           <label class="control-label col-sm-4">Gender</label>
+           <div class="btn-group btn-group-sm col-sm-8"  data-toggle="buttons">
+             <label class="btn btn-default" for="genderM">
+             <input type="radio" name="gender" value="M" id="genderM"> Male
+             </label>
+             <label class="btn btn-default" for="genderF">
+             <input type="radio" name="gender" value="F" id="genderF"> Female
+             </label>
+           </div><!-- btn-group -->
+         </div><!-- form-group -->
 
-	<div id="form-canvas">
-  <div id="button-space">
-    <a href="#" class="btn btn-info btn-small"
-    onclick="show_hide_form()"><i class="icon-white icon-share-alt"></i>
-    show/hide form</a>
-  </div>
+         <div class="input-group">
+           <label for="location" class="control-label">Location</label>
+         </div>
 
+         <div class="input-group">
+           <input type="text" class="form-control input-sm" value="Forskningsparken, Oslo, Norway" id="location">
+           <div class="input-group-btn">
+             <button type="button" class="btn btn-default btn-sm tip" style="height:30px" title="Use current location">
+             <span class="glyphicon glyphicon-screenshot"></span></button>
+           </div>
+         </div>
 
-		<form>
-      <fieldset>
-			<label for=dateadmission>Date of Admission
-			  <input type="date" class=datepicker id="dateadmission">
-      </label>
-			<label for=datedischarge>Date of Discharge
-			  <input type="date" class=datepicker id="datedischarge">
-      </label>
-      </fieldset>
+         <div class="input-group">
+           <button type="button" class="btn btn-default btn-sm">
+           <span class="glyphicon glyphicon-map-marker"></span>
+           Map</button>
+         </div>
+ 
+<!--             <button type="button" class="btn btn-default btn-xs active col-xs-2" onclick=show_hide_form()>Map</button>          
+    -->
 
-			<div id="radio"><label for="radio">Gender</label>
-				<input type="radio" id="radio1" name="radio" />
-					<label for="radio1">Male</label>
-				<input type="radio" id="radio2" name="radio" checked="checked" />
-					<label for="radio2">Female</label>
-			</div>
+         <div class="form-group">
+         <label for="dateadmission" class="col-sm-4 control-label">Admission</label>
+         <div class="col-sm-8">
+           <input type="date" class="datepicker form-control input-sm" id="dateadmission" name="dateadmission" placeholder="mm/dd/yyyy">
+         </div>
+         </div>
+         
+         <div class="form-group">
+           <label for="datedischarged" class="control-label col-sm-4">Discharged</label>
+           <div class="col-sm-8">
+             <input type="date" required class="datepicker form-control input-sm" id="datedischarged" name="datedischarged" placeholder="mm/dd/yyyy">
+           </div>
+         </div>
+      
+         <label>Mode of discharge</label>
+         <div class="btn-group btn-group-sm" data-toggle="buttons">
+           <label class="btn btn-default tip" for="modeD" data-toggle="tooltip" title="Discharged">
+           <input type="radio" name="mode" value="Discharged" id="modeD"> Dis
+           </label>
+           <label class="btn btn-default tip" for="modeT" title="Transferred">
+           <input type="radio" name="mode" value="Transferred" id="modeT"> Tr
+           </label>
+           <label class="btn btn-default tip" for="modeA" title="Absconded">
+           <input type="radio" name="mode" value="Absconded" id="modeA"> Abs
+           </label>
+           <label class="btn btn-default tip" for="modeDied" title="Died">
+           <input type="radio" name="mode" value="Died" id="modeDied"> Died
+           </label>
+           <label class="btn btn-default tip" for="modeNA" title="Unspecified">
+           <input type="radio" name="mode" value="Unspecified" id="modeNA"> N/a
+           </label>
+         </div><!-- btn-group -->
+       </div>
 
+    <div class="form-group">
+      <textarea class="form-control" rows="3"></textarea>
+    </div>
 
-			<br><label>Age: </label><input type="number" min="0" max="120">
-			
-			<div id="status">
-				<label for="status">Status: </label>
-				<br>
-				<input type="radio" id="status1" name="status" value="Died" checked="checked">
-				<label for="status1">Died</label><br>
-				<input type="radio" id="status2" name="status" value="Transferd">
-				<label for="status2">Transfer</label><br>
-				<input type="radio" id="status3" name="status" value="Discharged">
-				<label for="status3">Discharge</label><br>
-				<br>
-			
-			</div>	
-				
-				
-			<div class="ui-widget">
-				<label for="ICD">ICD: </label>
-				<input id="icd" />
-			</div>
-			
-			<br><br>
-			<div id="container">
-				<div id="mainContent">
-					<div id="addcomment">
-						<a href='#'>add comment</a>
-					</div>
-					<div id='postComment'>
-						<textarea name='comment' id='comment'></textarea>
-						<!-- <br> <input type='submit' value='submitt'
-							onclick="add_comment()" /> -->
-					</div>
-				</div>
-			</div>
-			<br>
-			<div id='postComment'>
-				<a href="#" class="btn btn-info btn-small" onclick="submit_form()"><i
-					class="icon-white icon-share-alt"></i> Submitt</a>
-			</div>
+    <div class="input-group">
+      <input type="submit" class="btn btn-primary btn-large" value="Submit">
+    </div>
 		</form>
 	</div>
 
-	<script>
-		$(document).ready(function() {
-			initialize_map();
-			//test()
-		});
-	</script>
-
-	<!-- To show map -->
-	<script
-		src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-	<script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
-
+  </div><!-- .row -->
+  </div><!-- .container -->
 </body>
 </html>

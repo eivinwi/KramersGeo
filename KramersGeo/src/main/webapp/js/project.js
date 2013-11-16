@@ -1,45 +1,43 @@
+'use strict';
+
+function initialize_map()
+{
+   var mapOptions = {
+    zoom: 8,
+    minZoom: 3,
+    center: new google.maps.LatLng(59.923022,10.752869),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(document.getElementById('map-canvas'),
+      mapOptions);
+}
+
+var add_map = function()
+{
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&' +
+      'key=AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8&' +
+      'callback=initialize_map';
+  document.body.appendChild(script);
+}
+
 $(function() {
   var availableTags = ["A0 Cholera", "B1 Malaria"];
   $( "#icd" ).autocomplete({
     source:availableTags
   });
 
-$("#radio").buttonset();
- $( "#status" ).buttonset();
-$('.datepicker').datepicker();
+  $("#radio").buttonset();
+  $( "#status" ).buttonset();
+  $('.datepicker').datepicker();
+  $('.tip').tooltip({container: 'body'});
 
+  add_map();
 });
 
 
-//To get single event data perhaps?
-function getData() {
-	
-}
-
-//Add map
-var map;
-function initialize_map() {
-	var mapOptions = {
-		zoom : 10,
-		mapTypeId : google.maps.MapTypeId.ROADMAP
-	};
-	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	// Try HTML5 geolocation
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = new google.maps.LatLng(position.coords.latitude,
-					position.coords.longitude);
-			map.setCenter(pos);
-		}, function() {
-			handleNoGeolocation(true);
-		});
-	} else {
-		alert("We recomend you to use Google Chrome");
-	}
-	
-}
-
-var isVisible=form.style.display != 'none';
 function show_hide_form() {
 	$('body').toggleClass('hidden-bar');
 	return;

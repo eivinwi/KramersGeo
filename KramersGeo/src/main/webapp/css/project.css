@@ -100,3 +100,8 @@ h1 {
     background: #5398d8;
 }
 
+.ui-autocomplete {
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

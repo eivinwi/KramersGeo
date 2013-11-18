@@ -7,11 +7,32 @@ $(function() {
 $(function() {
 	$( "#orgName" ).autocomplete({
 		source: orgList,
+		autoFocus: true,
 		select: function( event, ui ) {
 			event.preventDefault();
+			selectedOrg = ui.item.label;
 			$( "#orgName" ).val( ui.item.label );
 			//$( "#orgId" ).val( ui.item.value );
 		}
+
+	}).click(function( event, ui ) {
+			$(this).autocomplete('search', " ");
+	});
+});
+
+$(function() {
+	$( "#progName" ).autocomplete({
+		source: progList,
+		autoFocus: true,
+		select: function( event, ui ) {
+			event.preventDefault();
+			selectedProg = ui.item.label;
+			$( "#progName" ).val( ui.item.label );
+			//$( "#progId" ).val( ui.item.value );
+		}
+
+	}).click(function( event, ui ) {
+			$(this).autocomplete('search', " ");
 	});
 });
 
@@ -21,6 +42,14 @@ $('.datepicker').datepicker();
 
 });
 
+var real_url = "http://apps.dhis2.org/dev";
+var test_url = "http://localhost:8082";
+var orgsTmp= []; //internal tmp storage
+var orgList = [];  //storing all organistasions as options
+var progTmp = [];
+var progList = [];
+var selectedOrg;
+var selectedProg;
 
 //To get single event data perhaps?
 function getData() {
@@ -90,10 +119,25 @@ function submit_form() {
 	} */
 }
 
-var real_url = "http://apps.dhis2.org/dev";
-var test_url = "http://localhost:8082";
-orgUnits = [];
-orgList = [];
+function loadPrograms() {
+	console.log("Trying to load programs.");
+	$.getJSON("programs.json", function(data) {
+		$.each(data.programs, function(key, val) {
+			progTmp.push(val);
+		});
+		console.log("Programs loaded");
+		populateProgs();
+	}).fail(function(jqXhr, textStatus, error) {
+		console.log("Error loading programs: " + textStatus + ", " + error);
+	});
+}
+
+function populateProgs() {
+	for(var i = 0; i < progTmp.length; i++) {
+		var prog = {label: progTmp[i].name, value: progTmp[i].id}
+		progList.push(prog);
+	}
+}
 
 //TODO: caching
 function loadOrganisations() {
@@ -102,7 +146,7 @@ function loadOrganisations() {
 	//$.getJSON(test_url + '/api/organisationUnits.json', function(data) {
     $.getJSON("organisationUnits.json", function(data) {
    		$.each(data.organisationUnits, function(key, val) {
-   			orgUnits.push(val);
+   			orgsTmp.push(val);
    		});
    		console.log("Organisation tree loaded.");
     	populateOrgs();
@@ -113,11 +157,8 @@ function loadOrganisations() {
 }
 
 function populateOrgs() {
-	for(var i = 0; i < orgUnits.length; i++) {
-		//var org = new Option(orgUnits[i].name, orgUnits[i].code);
-		//org.setLabel(orgUnits[i].name):
-		var org = {label: orgUnits[i].name, value: orgUnits[i].code}
-		//document.getElementById('orgList').options.add(org);
+	for(var i = 0; i < orgsTmp.length; i++) {
+		var org = {label: orgsTmp[i].name, value: orgsTmp[i].id}
 		orgList.push(org);
 	}
 }

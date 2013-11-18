@@ -101,7 +101,7 @@ function loadOrganisations() {
 
 function populateOrgs() {
 	for(var i = 0; i < orgUnits.length; i++) {
-		var org = new Option(orgUnits[i].code, orgUnits[i].name);
+		var org = new Option(orgUnits[i].name, orgUnits[i].code);
 		document.getElementById('orgList').options.add(org);
 	}
 }

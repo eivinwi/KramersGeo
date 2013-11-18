@@ -4,8 +4,19 @@ $(function() {
     source:availableTags
   });
 
+$(function() {
+	$( "#orgName" ).autocomplete({
+		source: orgList,
+		select: function( event, ui ) {
+			event.preventDefault();
+			$( "#orgName" ).val( ui.item.label );
+			//$( "#orgId" ).val( ui.item.value );
+		}
+	});
+});
+
 $("#radio").buttonset();
- $( "#status" ).buttonset();
+$( "#status" ).buttonset();
 $('.datepicker').datepicker();
 
 });
@@ -82,6 +93,8 @@ function submit_form() {
 var real_url = "http://apps.dhis2.org/dev";
 var test_url = "http://localhost:8082";
 orgUnits = [];
+orgList = [];
+
 //TODO: caching
 function loadOrganisations() {
 	console.log("Trying to load organisation tree.");
@@ -101,8 +114,11 @@ function loadOrganisations() {
 
 function populateOrgs() {
 	for(var i = 0; i < orgUnits.length; i++) {
-		var org = new Option(orgUnits[i].name, orgUnits[i].code);
-		document.getElementById('orgList').options.add(org);
+		//var org = new Option(orgUnits[i].name, orgUnits[i].code);
+		//org.setLabel(orgUnits[i].name):
+		var org = {label: orgUnits[i].name, value: orgUnits[i].code}
+		//document.getElementById('orgList').options.add(org);
+		orgList.push(org);
 	}
 }
 

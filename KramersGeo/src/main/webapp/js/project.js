@@ -81,24 +81,30 @@ function submit_form() {
 
 var real_url = "http://apps.dhis2.org/dev";
 var test_url = "http://localhost:8082";
-var orgUnits = [];
+orgUnits = [];
 //TODO: caching
 function loadOrganisations() {
 	console.log("Trying to load organisation tree.");
 
 	//$.getJSON(test_url + '/api/organisationUnits.json', function(data) {
     $.getJSON("organisationUnits.json", function(data) {
-    	var i = 0;
-    	for(i; i < data.organisationUnits.length; i++) {
-    		orgUnits = data.organisationUnits[i];
-    	}
-    	console.log("Loaded "+i+" organisation units.");
+   		$.each(data.organisationUnits, function(key, val) {
+   			orgUnits.push(val);
+   		});
+   		console.log("Organisation tree loaded.");
+    	populateOrgs();
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error loading organisation units: " + textStatus + ", " + error);
 	});
 
 }
 
+function populateOrgs() {
+	for(var i = 0; i < orgUnits.length; i++) {
+		var org = new Option(orgUnits[i].code, orgUnits[i].name);
+		document.getElementById('orgList').options.add(org);
+	}
+}
 
 //Test for å hide form, og gjøre map større, og motsatt...
 function test() {	

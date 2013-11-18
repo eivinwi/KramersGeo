@@ -1,7 +1,7 @@
 $(function() {
-  var availableTags = ["A0 Cholera", "B1 Malaria"];
-  $( "#icd" ).autocomplete({
-    source:availableTags
+	var test = ["A1", "B2"];
+  $( "#sumthing" ).autocomplete({
+    source: test
   });
 
 $(function() {
@@ -36,6 +36,31 @@ $(function() {
 	});
 });
 
+/*$(function() {
+	$( "#icd" ).autocomplete({
+		source: ICD,
+		autoFocus: true,
+		select: function( event, ui ) {
+			event.preventDefault();
+			$( "#icd" ).val( ui.item.label );
+		}
+
+	}).click(function( event, ui ) {
+			$(this).autocomplete('search', " ");
+	});
+});*/
+
+//TODO fix icd array
+$(function() {
+	var placeholders = ["A00 Vondt i kneet", "A01 Død"]; 
+	$( "#icd" ).autocomplete({
+		source: placeholders
+	}).click(function( event, ui ) {
+			$(this).autocomplete('search', " ");
+	});
+
+});
+
 $("#radio").buttonset();
 $( "#status" ).buttonset();
 $('.datepicker').datepicker();
@@ -48,8 +73,11 @@ var orgsTmp= []; //internal tmp storage
 var orgList = [];  //storing all organistasions as options
 var progTmp = [];
 var progList = [];
+var ICDtmp = [];
+var ICD = ["1"];
 var selectedOrg;
 var selectedProg;
+
 
 //To get single event data perhaps?
 function getData() {
@@ -102,8 +130,8 @@ function submit_form() {
 	alert($("postComment").show("slow"))
 /*
 	{
-	  "program": "eBAyeGv0exc",  //find the program-id
-	  "orgUnit": "DiszpKrYNg8",  //find org unit-id
+	  "program": selectedOrg,  
+	  "orgUnit": selectedProg,  
 	  "eventDate": "2013-05-17", //date from form
 	  "status": "COMPLETED",	 //status from form
 	  "storedBy": "admin",		//get userid
@@ -125,6 +153,7 @@ function loadPrograms() {
 		$.each(data.programs, function(key, val) {
 			progTmp.push(val);
 		});
+	}).done(function() {
 		console.log("Programs loaded");
 		populateProgs();
 	}).fail(function(jqXhr, textStatus, error) {
@@ -148,7 +177,8 @@ function loadOrganisations() {
    		$.each(data.organisationUnits, function(key, val) {
    			orgsTmp.push(val);
    		});
-   		console.log("Organisation tree loaded.");
+	}).done(function(){
+		console.log("Organisation tree loaded.");
     	populateOrgs();
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error loading organisation units: " + textStatus + ", " + error);
@@ -161,6 +191,22 @@ function populateOrgs() {
 		var org = {label: orgsTmp[i].name, value: orgsTmp[i].id}
 		orgList.push(org);
 	}
+}
+
+//api/optionSets/eUZ79clX7y1.json
+function loadICD() {
+	console.log("Trying to load ICD dignoses.");
+	$.getJSON("eUZ79clX7y1.json", function(data) {
+ 		$.each(data.options, function(v) {
+   			ICD.push(JSON.parse(v));
+   		});
+
+	}).done(function(data) {
+		console.log("ICD diagnoses loaded."+data.length);
+		//populateICD();
+	}).fail(function(jqXhr, textStatus, error) {
+		console.log("Error loading diagnoses: " + textStatus + ", " + error);
+	});
 }
 
 //Test for å hide form, og gjøre map større, og motsatt...

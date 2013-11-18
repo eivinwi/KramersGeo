@@ -43,113 +43,123 @@
     </div>
 
 
-      <form align="center">
-	<fieldset>
-	  <label for=dateadmission>Date of Admission <input
-					                type="date" class=datepicker id="dateadmission">
-	  </label><br><br> <label for=datedischarge>Date of Discharge <input
-					                                 type="date" class=datepicker id="datedischarge">
-	  </label> 
-	</fieldset>
-        
-	<div id="radio">
-	  <br><label for="radio">Gender</label> <input type="radio" id="radio1"
-					               name="radio" /> <label for="radio1">Male</label> <input
-					                                                                   type="radio" id="radio2" name="radio" checked="checked" /> <label
-					                                                                                                                                 for="radio2">Female</label>
-                  <label> Age: </label><input type="number" min="0" max="120">
-	</div>
-
-
-	<br> <br>
-
-	<div id="status">
-	  <label for="status">Status: </label> <input type="radio"
-					              id="status1" name="status" value="Died" checked="checked">
-	  <label for="status1">Died</label> <input type="radio" id="status2"
-					           name="status" value="Transferd"> <label for="status2">Transfer</label><input
-					                                                                                    type="radio" id="status3" name="status" value="Discharged">
-	  <label for="status3">Discharge</label><br> <br>
-
-	</div>
-    	<div id="button-space">
-		<a href="#" class="btn btn-info btn-small" onclick="show_hide_form();initialize_map()">
-			<i class="icon-white icon-share-alt"></i> show map</a>
-    </div>
-
     <form align="center">
 		<fieldset>
 			<label for=dateadmission>Date of Admission 
-				<input type="date" class=datepicker id="dateadmission">
-		  	</label><br><br> 
-		  	<label for=datedischarge>Date of Discharge 
-		  		<input type="date" class=datepicker id="datedischarge">
+				 <input type="date" class=datepicker id="dateadmission">
+			</label>
+			<br><br> 
+			<label for=datedischarge>Date of Discharge 
+				<input type="date" class=datepicker id="datedischarge">
 			</label> 
 		</fieldset>
 	        
 		<div id="radio">
-			<br>
-			<label for="radio">Gender</label> 
-			<input type="radio" id="radio1" name="radio">
-			<label for="radio1">Male</label> 
-			<input type="radio" id="radio2" name="radio" checked="checked"> 
-			<label for="radio2">Female</label>
+		  <br>
+		  <label for="radio">Gender</label> 
+		  <input type="radio" id="radio1" name="radio" />
+		  <label for="radio1">Male</label> 
+		  <input type="radio" id="radio2" name="radio" checked="checked" /> 
+		  <label for="radio2">Female</label>
+	      <label> Age: </label>
+	      <input type="number" min="0" max="120">
 		</div>
 
 
-		<br> 
-		<label>Age: </label>
-		<input type="number" min="0" max="120"><br><br>
-
+		<br><br>
 		<div id="status">
-		  <label for="status">Status: </label>
-		  <input type="radio" id="status1" name="status" value="Died" checked="checked">
-		  <label for="status1">Died</label> 
-		  <input type="radio" id="status2" name="status" value="Transferd">
-		  <label for="status2">Transfer</label>
-		  <input type="radio" id="status3" name="status" value="Discharged">
-		  <label for="status3">Discharge</label><br><br>
-
+			<label for="status">Status: </label> 
+			<input type="radio" id="status1" name="status" value="Died" checked="checked">
+			<label for="status1">Died</label> 
+			<input type="radio" id="status2" name="status" value="Transferd">
+			<label for="status2">Transfer</label>
+			<input type="radio" id="status3" name="status" value="Discharged">
+			<label for="status3">Discharge</label>
+			<br><br>
 		</div>
+
+	    <div id="button-space">
+			<a href="#" class="btn btn-info btn-small" onclick="show_hide_form();initialize_map()">
+				<i class="icon-white icon-share-alt"></i> show map
+			</a>
+	    </div>
+
+	    <form align="center">
+			<fieldset>
+				<label for=dateadmission>Date of Admission 
+					<input type="date" class=datepicker id="dateadmission">
+			  	</label>
+			  	<br><br> 
+			  	<label for=datedischarge>Date of Discharge 
+			  		<input type="date" class=datepicker id="datedischarge">
+				</label> 
+			</fieldset>
+		        
+			<div id="radio">
+				<br>
+				<label for="radio">Gender</label> 
+				<input type="radio" id="radio1" name="radio">
+				<label for="radio1">Male</label> 
+				<input type="radio" id="radio2" name="radio" checked="checked"> 
+				<label for="radio2">Female</label>
+			</div>
+
+
+			<br> 
+			<label>Age: </label>
+			<input type="number" min="0" max="120"><br><br>
+
+			<div id="status">
+				<label for="status">Status: </label>
+				<input type="radio" id="status1" name="status" value="Died" checked="checked">
+				<label for="status1">Died</label> 
+				<input type="radio" id="status2" name="status" value="Transferd">
+				<label for="status2">Transfer</label>
+				<input type="radio" id="status3" name="status" value="Discharged">
+				<label for="status3">Discharge</label><br><br>
+			</div>
+
+			<div class="ui-widget">
+				<label for="ICD">ICD: </label>
+				<input id="icd">
+			</div>
+
+		    <br>
+		    <div class="span5">
+				<label>Comment</label>
+				<br>
+				<textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
+			</div>
+			<!--        <button type="submit" class="btn btn-primary pull-right">Send</button> -->
+		      
+	    </form>
 
 
 		<div class="ui-widget">
-		  <label for="ICD">ICD: </label>
-		  <input id="icd">
+			<label for="ICD">ICD: </label> <input id="icd" />
 		</div>
-
-	    <br>
-	    <div class="span5">
-		  <label>Comment</label> <br>
-		  <textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
-		</div>
-		<!--        <button type="submit" class="btn btn-primary pull-right">Send</button> -->
-	      
-    </form>
-
-
-	<div class="ui-widget">
-	  <label for="ICD">ICD: </label> <input id="icd" />
-	</div>
 
         <br>
         <div class="span5">
-	  <label>Comment</label> <br>
-	  <textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
-	</div>
+	  		<label>Comment</label>
+	  		<br>
+	  		<textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
+		</div>
         <!--        <button type="submit" class="btn btn-primary pull-right">Send</button> -->
         
-      </form>
-      <div id='postComment'>
-	<a href="#" class="btn btn-info btn-small" onclick="submit_form()"><i
-					                                      class="icon-white icon-share-alt"></i> Submitt</a>
-      </div>
+    </form>
+    	<div id='postComment'>
+		<a href="#" class="btn btn-info btn-small" onclick="submit_form()">
+			<i class="icon-white icon-share-alt"></i> Submit
+		</a>
+   	   </div>
     </div>
     
 
 	<div id='postComment'>
-	  <a href="#" class="btn btn-info btn-small" onclick="submit_form()">
-	  	<i  class="icon-white icon-share-alt"></i> Submitt</a>
+		<a href="#" class="btn btn-info btn-small" onclick="submit_form()">
+	  		<i  class="icon-white icon-share-alt"></i> Submit
+	  	</a>
 	</div>
 
 
@@ -157,7 +167,7 @@
       $(document).ready(function() {
       //initialize_map();
       //test()
-      //getStuff();
+        loadOrganisations();
       });
     </script>
 

@@ -39,7 +39,7 @@ function initialize_map() {
 	
 }
 
-var isVisible=form.style.display != 'none';
+//var isVisible=form.style.display != 'none';
 function show_hide_form() {
 	$('body').toggleClass('hidden-bar');
 	return;
@@ -79,22 +79,25 @@ function submit_form() {
 	} */
 }
 
-/*
-function getStuff() {
-	//alert("Trying to get json");
+var real_url = "http://apps.dhis2.org/dev";
+var test_url = "http://localhost:8082";
+var orgUnits = [];
+//TODO: caching
+function loadOrganisations() {
+	console.log("Trying to load organisation tree.");
 
-	var stuff = $.getJSON("dhis-web-commons-ajax-json/getOrganisationUnitTree", function() {
-		console.log("success");
-	}).done(function() {
-		console.log("second success");
-	}).fail(function() {
-		console.log("error");
-	}).always(function() {
-		console.log("complete");
+	//$.getJSON(test_url + '/api/organisationUnits.json', function(data) {
+    $.getJSON("organisationUnits.json", function(data) {
+    	var i = 0;
+    	for(i; i < data.organisationUnits.length; i++) {
+    		orgUnits = data.organisationUnits[i];
+    	}
+    	console.log("Loaded "+i+" organisation units.");
+	}).fail(function(jqXhr, textStatus, error) {
+		console.log("Error loading organisation units: " + textStatus + ", " + error);
 	});
 
-
-}*/
+}
 
 
 //Test for å hide form, og gjøre map større, og motsatt...

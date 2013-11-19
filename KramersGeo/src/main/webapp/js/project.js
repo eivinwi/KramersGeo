@@ -50,7 +50,16 @@ $(function() {
 	});
 });*/
 
+
+$("#icd").autocomplete({ 
+    source: function(request, response) {
+        var results = $.ui.autocomplete.filter(ICD, request.term);
+        response(results.slice(0, 10));
+    }
+});
+
 //TODO fix icd array
+/*
 $(function() {
 	var placeholders = ["A00 Vondt i kneet", "A01 Død"]; 
 	$( "#icd" ).autocomplete({
@@ -60,7 +69,7 @@ $(function() {
 	});
 
 });
-
+*/
 $("#radio").buttonset();
 $( "#status" ).buttonset();
 $('.datepicker').datepicker();
@@ -197,9 +206,17 @@ function populateOrgs() {
 function loadICD() {
 	console.log("Trying to load ICD dignoses.");
 	$.getJSON("eUZ79clX7y1.json", function(data) {
- 		$.each(data.options, function(v) {
+ 		/*$.each(data.options, function(v) {
    			ICD.push(JSON.parse(v));
-   		});
+   		});*/
+		
+		for ( var idx=0, len = data.options.length; idx < len; idx++ ) {
+   			var icd_elem = data.options[idx];
+			ICD[idx] = {
+				"id" : icd_elem,
+				"label" : icd_elem
+			};
+			}
 
 	}).done(function(data) {
 		console.log("ICD diagnoses loaded."+data.length);

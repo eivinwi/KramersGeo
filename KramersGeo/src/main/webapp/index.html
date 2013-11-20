@@ -3,145 +3,149 @@
 <head>
 	<meta charset=utf-8>
 	<title>Single Event Data Entry</title>
-	<link rel="stylesheet"
-	  href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css">
 	<link rel="stylesheet" media="screen and (min-device-width: 721px)" href="css/project.css">
 	<link rel="stylesheet" media="screen and (max-device-width: 720px)" href="css/mobile.css">
-	<script src="js/jquery-2.0.3.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <script src="//modernizr.com/downloads/modernizr-latest.js"></script>
 	<script src="js/project.js"></script>
-	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 </head>
 
 <body>
-    <div id=header>
-	    <a id=headerText href="../dhis-web-dashboard-integration/index.action"
-		 	title="View interpretations"> 
-		 	<img id=headerBanner
-				src=http://apps.dhis2.org/demo/dhis-web-commons/css/light_blue/logo_banner.png>
-			<h1>DHIS 2 Demo - Sierra Leone</h1>
-	    </a>
+  <div id=header>
+    <a id=headerText href="../dhis-web-dashboard-integration/index.action"
+      title="View interpretations"> 
+    <img id=headerBanner alt="" height="17"
+      src="http://apps.dhis2.org/demo/dhis-web-commons/css/light_blue/logo_banner.png">
+    <h1>DHIS 2 Demo - Sierra Leone</h1>
+    </a>
 
-	    <ul id=nav class="nav navbar-nav">
-			<li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Maintenance</a></li>
-			<li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Services</a></li>
+    <ul id=nav class="nav navbar-nav">
+      <li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Maintenance</a></li>
+      <li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Services</a></li>
       <li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Help</a></li>
       <li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Profile</a></li>
 		</ul>
 	</div>
 
   <div id="map-canvas"></div>
+
+  <div id="leftBar">
+  </div>
   
 	<div id="form-canvas" class="container">
-    <form role="form" method="post">
-       <div class="form-horizontal">
+    <form role="form" method="post" class="form-horizontal">
+      <div class="form-group">
+        <div class="col-sm-3 n-stacked">
+        </div>
+        <label for="age" class="control-labe col-xs-3">Age</label>
+        <label class="control-labe col-xs-6">Gender</label>
 
-         <div class="form-group">
-         <label for="dateadmission" class="col-sm-4 control-label">Admission</label>
-         <div class="col-sm-8">
-           <input type="date" class="datepicker form-control input-sm" id="dateadmission" name="dateadmission" placeholder="mm/dd/yyyy">
-         </div>
-         </div>
+        <div class="clearfix"></div>
+        
+        <div class="col-sm-3 non-stacked">
+        </div>
+        <div class="col-xs-3" id="age-div">
+          <input type="number" class="form-control input-sm" id="age" required min=0 max=999>
+        </div>
+        
+        <div class="btn-group btn-group-sm col-sm-6" id="gender-div" data-toggle="buttons">
+          <label class="btn btn-default" for="genderM">
+          <input type="radio" name="gender" value="M" id="genderM"> Male
+          </label>
+          <label class="btn btn-default" for="genderF">
+          <input type="radio" name="gender" value="F" id="genderF"> Female
+          </label>
+        </div><!-- btn-group -->
+      </div><!-- form-group -->
+
+
+      <div class="form-group">
+        <label for="location" class="control-label col-sm-3">Location</label>
+        <div class="col-sm-9">
+        <div class="input-group" data-toggle="buttons">
+        <input type="text" class="form-control input-sm" value="Forskningsparken, Oslo, Norway" id="location">
+        <div class="input-group-btn">
+          <button type="button" id="map" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-map-marker"></span>
+          </button>
+          
+          <button type="button" id="locate" class="btn btn-default btn-sm" style="margin-right:-2px">
+          <span class="glyphicon glyphicon-screenshot"></span>
+          </button>
+        </div>
+        </div><!-- .input-group -->
+        </div><!-- .col-sm-9 -->
+      </div><!-- .form-group -->
+
+
+      <div class="form-group">
+        <label for="icd" class="control-label col-sm-3">ICD</label>
+
+        <div class="col-sm-9">
+          <input type="text" id="icd" name="icd" class="form-control input-sm">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateadmission" class="col-sm-3 control-label">Admission</label>
+           
+        <div class="col-sm-9">
+          <input type="date" class="datepicker form-control input-sm" id="dateadmission" name="dateadmission" placeholder="mm/dd/yyyy">
+        </div>
+      </div>
          
-         <div class="form-group">
-           <label for="datedischarged" class="control-label col-sm-4">Discharged</label>
-           <div class="col-sm-8">
-             <input type="date" required class="datepicker form-control input-sm" id="datedischarged" name="datedischarged" placeholder="mm/dd/yyyy">
-           </div>
-         </div>
+      <div class="form-group">
+        <label for="datedischarged" class="control-label col-sm-3">Discharged</label>
+        <div class="col-sm-9">
+          <input type="date" required class="datepicker form-control input-sm" id="datedischarged" name="datedischarged" placeholder="mm/dd/yyyy">
+        </div>
+      </div>
+         
+      
+      <div class="form-group">
+        <label class="control-label col-sm-3">Discharge mode</label>
+        <div class="col-sm-9 input-group">
+        <div class="btn-group btn-group-sm" data-toggle="buttons">
+          <label class="btn btn-default tip" for="modeD" data-toggle="tooltip" title="Discharged">
+          <input type="radio" name="mode" value="Discharged" id="modeD"> Dis<span class=exp>charge</span>
+          </label>
+          <label class="btn btn-default tip" for="modeT" title="Transferred">
+          <input type="radio" name="mode" value="Transferred" id="modeT"> Tra<span class=exp>nsfer</span>
+          </label>
+          <label class="btn btn-default tip" for="modeA" title="Absconded">
+          <input type="radio" name="mode" value="Absconded" id="modeA"> Abs<span class=exp>conded</span>
+          </label>
+          <label class="btn btn-default tip" for="modeDied" title="Died">
+          <input type="radio" name="mode" value="Died" id="modeDied"> Die<span class=exp>d</span>
+          </label>
+          <label class="btn btn-default tip" for="modeNA" title="Unspecified">
+          <input type="radio" name="mode" value="Unspecified" id="modeNA"> Uns<span class=exp>pecified</span>
+          </label>
+        </div><!-- btn-group -->
+        </div><!-- col -->
+      </div><!-- form-group -->
 
+      <!--
+      <div class="form-group">
+        <button type="button" id=comment data-content="<textarea autofocus class=form-control rows=3 cols=40></textarea>" data-placement=top class="btn btn-default btn-sm">
+           Add comment
+        </button>
+      </div>
+      -->
 
-         <div class="form-group">
-           <label for="age" class="control-label col-sm-4">Age</label>
-           <div class="col-sm-8">
-             <input type="number" class="form-control input-sm" id="age" required min=0 max=999>
-           </div>
-         </div>
-
-         <div class="form-group">
-           <label class="control-label col-sm-4">Gender</label>
-           <div class="btn-group btn-group-sm col-sm-8"  data-toggle="buttons">
-             <label class="btn btn-default" for="genderM">
-             <input type="radio" name="gender" value="M" id="genderM"> Male
-             </label>
-             <label class="btn btn-default" for="genderF">
-             <input type="radio" name="gender" value="F" id="genderF"> Female
-             </label>
-           </div><!-- btn-group -->
-         </div><!-- form-group -->
- 
-         <div class="form-group">
-           <label for="icd" class="control-label col-sm-4">ICD</label>
-           <div class="col-sm-8">
-             <input type="text" id="icd" name="icd" class="form-control input-sm">
-           </div>
-         </div>
-
-       </div>
-       <div class="form">
-
-         <div class="form-group">
-           <label for="location" class="control-label">Location</label>
-
-           <div class="input-group" data-toggle="buttons">
-             <input type="text" class="form-control input-sm" value="Forskningsparken, Oslo, Norway" id="location">
-             <div class="input-group-btn">
-               <button type="button" class="btn btn-default btn-sm tip" style="height:30px" title="Use current location">
-               <span class="glyphicon glyphicon-screenshot"></span></button>
-             </div>
-           </div><!-- .input-group -->
-         </div><!-- .form-group -->
-
-         <div class="form-group">
-           <div class=input-group data-toggle="buttons">
-           <button type="button" id="map" class="btn btn-default btn-sm">
-           <span class="glyphicon glyphicon-map-marker"></span>
-           </button>
-           </div>
-         </div>
-
-
-         <div class="form-group">
-           <label>Mode of discharge</label>
-           <div class="input-group">
-           <div class="btn-group btn-group-sm" data-toggle="buttons">
-             <label class="btn btn-default tip" for="modeD" data-toggle="tooltip" title="Discharged">
-             <input type="radio" name="mode" value="Discharged" id="modeD"> Dis
-             </label>
-             <label class="btn btn-default tip" for="modeT" title="Transferred">
-             <input type="radio" name="mode" value="Transferred" id="modeT"> Tra
-             </label>
-             <label class="btn btn-default tip" for="modeA" title="Absconded">
-             <input type="radio" name="mode" value="Absconded" id="modeA"> Abs
-             </label>
-             <label class="btn btn-default tip" for="modeDied" title="Died">
-             <input type="radio" name="mode" value="Died" id="modeDied"> Die
-             </label>
-             <label class="btn btn-default tip" for="modeNA" title="Unspecified">
-             <input type="radio" name="mode" value="Unspecified" id="modeNA"> N/a
-             </label>
-           </div><!-- btn-group -->
-           </div>
-         </div>
-       
-    <div class="form-group">
-      <button type="button" id=comment data-content="<textarea autofocus class=form-control rows=3 cols=40></textarea>" data-placement=top class="btn btn-default btn-sm">
-      Add comment
-      </button>
-    </div>
-    
-
-    <div class="form-group">
-      <div class="btn-group">
+      <div class="col-sm-3 not-stacked">
+      </div>
+      <div class="btn-group col-xs-9 form-group">
         <button type="submit" id=submit class="btn btn-primary">
         Complete
         </button>
       </div>
-    </div>
 
-    </div>
-		</form>
+      </form>
   </div><!-- #form-canvas -->
 </body>
 </html>

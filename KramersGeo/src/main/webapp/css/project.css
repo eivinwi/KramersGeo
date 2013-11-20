@@ -1,38 +1,43 @@
 body {
   height: 100%;
-  background: #000;
+  background: #fff;
   margin: 0;
   padding: 0;
   font: 12px/16px LiberationSansRegular, arial, sans-serif;
 }
 
-#line {
-  height: 100%;
+#leftBar {
+  display: block;
+  min-height: 100%;
+  width: 235px;
+  position: absolute;
+  top: 0;
+  background: #f7f7f7;
+  border-right: 1px #ddd solid;
+  box-shadow: #ddd 0 0 2px 0;
 }
 
 #form-canvas {
-  padding: 56px 15px 12px 15px;
+  padding: 63px 15px 12px 15px;
   min-height: 100%;
-  width: 235px;
+  width: 515px;
   margin: 0;
   top: 0;
   bottom: 0;
   display: block;
   position: absolute;
   overflow-x: visible;
+  overflow-y: scroll;
   z-index: 3;
-  background-color: #f7f7f7;
-  border-right: 1px #ddd solid;
-  box-shadow: #ddd 0 0 2px 0;
-  transition: margin-left 0.38s, width 0.38s;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -webkit-transform: translate3d(235px,0,0);
+  transition: -webkit-transform 0.38s;
 }
 
-#form-canvas input {
-  padding: 3px;
-}
-
-.hidden-bar #form-canvas {
-  width: 100%;
+.map #form-canvas {
+  -webkit-transform: translate3d(0px,0,0);
+  width: 235px;
 }
 
 #button-space {
@@ -55,6 +60,76 @@ body {
   width: auto;
   top: 44px;
   user-select: none;
+  opacity: 0;
+  transition: opacity 0.38s;
+}
+#age-div {
+  padding-right: 0;
+}
+.map #gender-div {
+  width: 75%;
+}
+
+/* Eat margin between Age/location */
+.input-group .form-group {
+  margin-bottom: 0;
+}
+.form-group + .form-horizontal {
+  margin-top: -15px;
+}
+
+.map #map-canvas {
+  opacity: 1;
+  transition-duration: 0.62s;
+}
+.exp {
+/*  transition: all 0.38s; */
+  letter-spacing: 0;
+  margin: 0;
+  opacity: 1;
+}
+.map .exp {
+  letter-spacing: -12px;
+  opacity: 0;
+}
+
+/* stack bootstrap */
+.map .col-sm-3,
+.map .col-sm-9 {
+  width: 100%;
+}
+.map .non-stacked {
+  display: none;
+}
+
+.map .col-sm-3,
+.map .col-sm-6,
+.map .col-sm-9 {
+  float: none;
+}
+.control-label {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.form-horizontal .control-label {
+  padding-top: 7px;
+  margin-bottom: 0;
+}
+@media screen and (max-width:768px) {
+.form-horizontal .control-label {
+  text-align: left;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0 0 5px 0;
+}
+}
+.map .control-label {
+  text-align: left;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0 0 5px 0;
 }
 
 /*

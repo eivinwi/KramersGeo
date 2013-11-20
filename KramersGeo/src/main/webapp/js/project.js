@@ -25,12 +25,11 @@ var add_map = function()
 
 $(function() {
   var availableTags = ["A0 Cholera", "B1 Malaria"];
+
   $( "#icd" ).autocomplete({
     source:availableTags
   });
 
-  $("#radio").buttonset();
-  $( "#status" ).buttonset();
   $('.tip').tooltip({
     container: 'body'
   });
@@ -52,23 +51,11 @@ $(function() {
   });
 
   $('#map').click(function(ev) {
-  	$('body').toggleClass('hidden-bar');
+  	$('body').toggleClass('map');
   });
 
   add_map();
 });
-
-
-function show_hide_form() {
-
-	return;
-	//alert($('form').is(":visible"));
-	if ($('form').is(":visible")) {
-		$('form').hide()
-	} else {
-		$('form').show()
-	}
-}
 
 
 function add_comment() {

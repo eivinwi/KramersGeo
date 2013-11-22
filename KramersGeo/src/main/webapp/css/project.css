@@ -8,10 +8,10 @@ body {
 
 #leftBar {
   display: block;
-  min-height: 100%;
   width: 235px;
   position: absolute;
   top: 0;
+  bottom: 0;
   background: #f7f7f7;
   border-right: 1px #ddd solid;
   box-shadow: #ddd 0 0 2px 0;
@@ -20,25 +20,74 @@ body {
 #form-canvas {
   padding: 63px 15px 12px 15px;
   min-height: 100%;
-  width: 515px;
+  max-width: 515px;
   margin: 0;
   top: 0;
   bottom: 0;
   display: block;
   position: absolute;
-  overflow-x: visible;
-  overflow-y: scroll;
-  z-index: 3;
+  overflow: visible;
+  z-index: 0;
+  background: #fff;
+  transform: translate3d(235px,0,0);
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
   -webkit-transform: translate3d(235px,0,0);
-  transition: -webkit-transform 0.38s;
+  transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
+  transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
+}
+
+#leftBar {
+  transition: all 0.38s;
+  opacity: 1;
+}
+
+.map #leftBar {
+
+}
+
+#message {
+  width: 515px;
+  translateY: 100%;
+  top: 44px;
+  height: 44px;
+  line-height: 44px;
+  position: absolute;
+  left: 235px;
+  right: 0;
+  background: #fff;
+  margin: 0 auto;
+  vertical-align: baseline;
+  text-align: center;
+  transition: all 0.38s ease 0;
+  -webkit-transition: all 0.38s ease 0;
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+#message span {
+  font-size: 1.25em;
+}
+
+#message label {
+  margin-left: 1.25em;
+}
+
+.map #message {
+  transform: translateY(0%);  
+  -webkit-transform: translateY(0%);
 }
 
 .map #form-canvas {
-  -webkit-transform: translate3d(0px,0,0);
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(-0,0,0);
+  border-right: 1px #ddd solid;
+  background: #f7f7f7;
+  overflow-y: auto;
   width: 235px;
 }
+
 
 #button-space {
   position: static;
@@ -61,13 +110,13 @@ body {
   top: 44px;
   user-select: none;
   opacity: 0;
-  transition: opacity 0.38s;
+  transition: opacity 0.38s ease 0;
 }
 #age-div {
   padding-right: 0;
 }
 .map #gender-div {
-  width: 75%;
+  width: 66%;
 }
 
 /* Eat margin between Age/location */
@@ -80,7 +129,6 @@ body {
 
 .map #map-canvas {
   opacity: 1;
-  transition-duration: 0.62s;
 }
 .exp {
 /*  transition: all 0.38s; */
@@ -89,7 +137,8 @@ body {
   opacity: 1;
 }
 .map .exp {
-  letter-spacing: -12px;
+  display: none;
+  letter-spacing: -1em;
   opacity: 0;
 }
 
@@ -168,6 +217,9 @@ h1 {
 
 #nav {
   position: fixed;
+  overflow: hidden;
+  top: 0;
+  margin: 0;
   left: 595px;
   height: 44px;
 }

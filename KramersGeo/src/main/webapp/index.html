@@ -31,7 +31,16 @@
 		</ul>
 	</div>
 
-  <div id="map-canvas"></div>
+  <div id="map-canvas">
+  </div>
+  <div id="message">
+    <span>Right-click on map to set location</span>
+    <label for="autohide">
+    <input type="checkbox" id="autohide" name="autohide" checked>
+    Hide map when set
+    </label>
+  </div>
+
 
   <div id="leftBar">
   </div>
@@ -41,18 +50,18 @@
       <div class="form-group">
         <div class="col-sm-3 n-stacked">
         </div>
-        <label for="age" class="control-labe col-xs-3">Age</label>
-        <label class="control-labe col-xs-6">Gender</label>
+        <label for="age" class="control-labe col-xs-4">Age</label>
+        <label class="control-labe col-xs-5">Gender</label>
 
         <div class="clearfix"></div>
         
         <div class="col-sm-3 non-stacked">
         </div>
-        <div class="col-xs-3" id="age-div">
+        <div class="col-xs-4" id="age-div">
           <input type="number" class="form-control input-sm" id="age" required min=0 max=999>
         </div>
         
-        <div class="btn-group btn-group-sm col-sm-6" id="gender-div" data-toggle="buttons">
+        <div class="btn-group btn-group-sm col-sm-5" id="gender-div" data-toggle="buttons">
           <label class="btn btn-default" for="genderM">
           <input type="radio" name="gender" value="M" id="genderM"> Male
           </label>
@@ -67,7 +76,7 @@
         <label for="location" class="control-label col-sm-3">Location</label>
         <div class="col-sm-9">
         <div class="input-group" data-toggle="buttons">
-        <input type="text" class="form-control input-sm" value="Forskningsparken, Oslo, Norway" id="location">
+        <input type="search" class="form-control input-sm" value="" id="location">
         <div class="input-group-btn">
           <button type="button" id="map" class="btn btn-default btn-sm">
           <span class="glyphicon glyphicon-map-marker"></span>
@@ -122,8 +131,8 @@
           <label class="btn btn-default tip" for="modeDied" title="Died">
           <input type="radio" name="mode" value="Died" id="modeDied"> Die<span class=exp>d</span>
           </label>
-          <label class="btn btn-default tip" for="modeNA" title="Unspecified">
-          <input type="radio" name="mode" value="Unspecified" id="modeNA"> Uns<span class=exp>pecified</span>
+          <label class="btn btn-default tip active" for="modeNA" title="Unspecified">
+          <input type="radio" name="mode" checked value="Unspecified" id="modeNA">N/A</span>
           </label>
         </div><!-- btn-group -->
         </div><!-- col -->

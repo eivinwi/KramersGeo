@@ -38,7 +38,7 @@
 
     <div id="button-space">
 		<a href="#" class="btn btn-info btn-small" onclick="show_hide_form();initialize_map()">
-			<i class="icon-white icon-share-alt"></i> show map
+			<i class="icon-white icon-ok"></i> show map
 		</a>
     </div>
 
@@ -72,8 +72,8 @@
 		  <label for="radio1">Male</label> 
 		  <input type="radio" id="radio2" name="radio" checked="checked" /> 
 		  <label for="radio2">Female</label>
-	      <label> Age: </label>
 	      <input type="number" min="0" max="120">
+	      <label> Age: </label>
 		</div>
 
 
@@ -88,38 +88,6 @@
 			<label for="status3">Discharged</label>
 			<br><br>
 		</div>
-
-	    <div id="button-space">
-			<a href="#" class="btn btn-info btn-small" onclick="show_hide_form();initialize_map()">
-				<i class="icon-white icon-share-alt"></i> show map
-			</a>
-	    </div>
-
-	    <form align="center">
-		        
-			<div id="radio">
-				<br>
-				<label for="radio">Gender</label> 
-				<input type="radio" id="radio1" name="radio">
-				<label for="radio1">Male</label> 
-				<input type="radio" id="radio2" name="radio" checked="checked"> 
-				<label for="radio2">Female</label>
-			</div>
-
-
-			<br> 
-			<label>Age: </label>
-			<input type="number" min="0" max="120"><br><br>
-
-			<div id="status">
-				<label for="status">Status: </label>
-				<input type="radio" id="status1" name="status" value="Died" checked="checked">
-				<label for="status1">Died</label> 
-				<input type="radio" id="status2" name="status" value="Transferred">
-				<label for="status2">Transferred</label>
-				<input type="radio" id="status3" name="status" value="Discharged">
-				<label for="status3">Discharged</label><br><br>
-			</div>
 
 			<div class="ui-widget">
 				<label for="icd">ICD: </label>
@@ -156,7 +124,7 @@
 
     <script>
       $(document).ready(function() {
-      	//initialize_map();
+      //initialize_map();
       //test()
         loadOrganisations();
         loadPrograms();

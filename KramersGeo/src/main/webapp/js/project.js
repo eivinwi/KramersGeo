@@ -119,8 +119,8 @@ function initialize_map() {
 //var isVisible=form.style.display != 'none';
 function show_hide_form() {
 	$('body').toggleClass('hidden-bar');
+	alert("Gei");
 	return;
-	//alert($('form').is(":visible"));
 	if ($('form').is(":visible")) {
 		$('form').hide()
 	} else {
@@ -176,11 +176,12 @@ function populateProgs() {
 		progList.push(prog);
 	}
 }
+
 //should send data in json format
 function sendEvent(data) {
 	/**
 	 * oppsett for å sende data til serveren
-	 * */
+	 **/
 	$.ajax({
 		type: "POST"
 		url: "http://apps.dhis2.org/demo/api/events",

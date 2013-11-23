@@ -176,6 +176,26 @@ function populateProgs() {
 		progList.push(prog);
 	}
 }
+//should send data in json format
+function sendEvent(data) {
+	/**
+	 * oppsett for å sende data til serveren
+	 * */
+	$.ajax({
+		type: "POST"
+		url: "http://apps.dhis2.org/demo/api/events",
+		dataType: "json",
+		data: data,
+		username: "admin",
+		password: "district",
+		success
+	}).fail(function() {
+		alert("error");
+	}).done(function() {
+		alert("Done"); 
+	})
+			
+}
 
 //TODO: caching
 function loadOrganisations() {
@@ -225,6 +245,8 @@ function loadICD() {
 		console.log("Error loading diagnoses: " + textStatus + ", " + error);
 	});
 }
+
+
 
 //Test for å hide form, og gjøre map større, og motsatt...
 function test() {	

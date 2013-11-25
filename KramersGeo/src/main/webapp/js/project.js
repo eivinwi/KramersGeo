@@ -131,29 +131,27 @@ $(function() {
 	});
 });
 
-$("#radio").buttonset();
-$( "#status" ).buttonset();
-$('.datepicker').datepicker();
-
-if (!Modernizr.inputtypes.date) {
-	$('.datepicker').datepicker();
-}
-
-$('#comment').popover({
-	html: true,
-	title: 'Comment'
-});
-
-$('#submit').click(function(ev) {
-	if (Modernizr.history) {
- 		var state = {};
-		history.pushState(state, null, link.href);
+$(function() {
+	if (!Modernizr.inputtypes.date) {
+		$('.datepicker').datepicker();
 	}
-});
 
-$('#map').click(function(ev) {
-	$('body').toggleClass('map', $(this).val());
-	add_map();
+	$('#comment').popover({
+		html: true,
+		title: 'Comment'
+	});
+
+	$('#submit').click(function(ev) {
+		if (Modernizr.history) {
+	 		var state = {};
+			history.pushState(state, null, link.href);
+		}
+	});
+
+	$('#map').click(function(ev) {
+		$('body').toggleClass('map', $(this).val());
+		add_map();
+	});
 });
 
 function add_comment() {

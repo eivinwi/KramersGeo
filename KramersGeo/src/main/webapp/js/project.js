@@ -160,23 +160,23 @@ function populateProgs() {
 }
 
 // should send data in json format
-function sendEvent(data) {
+function sendEvent(indata) {
 	/**
 	 * oppsett for å sende data til serveren
 	 */
+
 	$.ajax({
-		type: "POST"
+		type: "POST",
 		url: "http://apps.dhis2.org/demo/api/events",
 		dataType: "json",
 		data: data,
 		username: "admin",
 		password: "district",
-		success
 	}).fail(function() {
 		alert("error");
 	}).done(function() {
 		alert("Done"); 
-	})
+	});
 			
 }
 

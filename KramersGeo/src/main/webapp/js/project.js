@@ -175,8 +175,8 @@ function sendEvent(data) {
 		data: data,
 		username: "admin",
 		password: "district",
-	}).fail(function() {
-		alert("error");
+	}).fail(function(jqXhr, textStatus, error) {
+		console.log("Error sendEvent: " + textStatus + ", " + error);
 	}).done(function() {
 		alert("Done"); 
 	});

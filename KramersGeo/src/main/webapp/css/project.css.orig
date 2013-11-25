@@ -66,8 +66,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+<<<<<<< HEAD
 #message span {
   font-size: 1.25em;
+=======
+/*Sjekk for å aligne form*/
+form {
+	margin: 0 auto;
+	width: 100%;
+}
+
+.hidden-bar #form-canvas {
+  margin-left: 0px;
+  width: 300px;
+>>>>>>> master
 }
 
 #message label {
@@ -236,3 +248,8 @@ h1 {
     background: #5398d8;
 }
 
+.ui-autocomplete {
+  max-height: 150px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

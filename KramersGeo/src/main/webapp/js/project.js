@@ -1,131 +1,132 @@
-$(function() {
-	var test = ["A1", "B2"];
-  $( "#sumthing" ).autocomplete({
-    source: test
-  });
+'use strict';
 
-$(function() {
-	$( "#orgName" ).autocomplete({
-		source: orgList,
-		autoFocus: true,
-		select: function( event, ui ) {
-			event.preventDefault();
-			selectedOrg = ui.item.label;
-			$( "#orgName" ).val( ui.item.label );
-			// $( "#orgId" ).val( ui.item.value );
-		}
+var GoogleAPIKey = 'AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8';
 
-	}).click(function( event, ui ) {
-			$(this).autocomplete('search', " ");
-	});
-});
-
-$(function() {
-	$( "#progName" ).autocomplete({
-		source: progList,
-		autoFocus: true,
-		select: function( event, ui ) {
-			event.preventDefault();
-			selectedProg = ui.item.label;
-			$( "#progName" ).val( ui.item.label );
-			// $( "#progId" ).val( ui.item.value );
-		}
-
-	}).click(function( event, ui ) {
-			$(this).autocomplete('search', " ");
-	});
-});
-
-/*
- * $(function() { $( "#icd" ).autocomplete({ source: ICD, autoFocus: true,
- * select: function( event, ui ) { event.preventDefault(); $( "#icd" ).val(
- * ui.item.label ); }
- * 
- * }).click(function( event, ui ) { $(this).autocomplete('search', " "); }); });
- */
-
-
-$("#icd").autocomplete({ 
-    source: function(request, response) {
-        var results = $.ui.autocomplete.filter(ICD, request.term);
-        response(results.slice(0, 10));
-    }
-});
-
-// TODO fix icd array
-/*
- * $(function() { var placeholders = ["A00 Vondt i kneet", "A01 Død"]; $( "#icd"
- * ).autocomplete({ source: placeholders }).click(function( event, ui ) {
- * $(this).autocomplete('search', " "); });
- * 
- * });
- */
-$("#radio").buttonset();
-$( "#status" ).buttonset();
-$('.datepicker').datepicker();
-
-});
-
-var real_url = "http://apps.dhis2.org/dev";
-var test_url = "http://localhost:8082";
-var orgsTmp= []; // internal tmp storage
-var orgList = [];  // storing all organistasions as options
-var progTmp = [];
-var progList = [];
-var ICDtmp = [];
-var ICD = ["1"];
-var selectedOrg;
-var selectedProg;
-
-
-// To get single event data perhaps?
-function getData() {
-	
-}
-
-// Add map
-var map;
-function initialize_map() {
-	var mapOptions = {
-		zoom : 10,
-		mapTypeId : google.maps.MapTypeId.ROADMAP
+function initialize_gmaps() {
+	var acOptions = {
+		componentRestrictions: {country: 'no'}
 	};
-	map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	// Try HTML5 geolocation
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = new google.maps.LatLng(position.coords.latitude,
-					position.coords.longitude);
-			map.setCenter(pos);
-		}, function() {
-			handleNoGeolocation(true);
+
+	var mapOptions = {
+		zoom: 8,
+		minZoom: 3,
+		center: new google.maps.LatLng(59.923022,10.752869),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	var ac = new google.maps.places.Autocomplete($('#location')[0], {});
+	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	var gc = new google.maps.Geocoder();
+	//var places = new google.maps.places.PlacesService(map);
+	var marker = null;
+
+	var setLocation = function (latLng) {
+		var lat = latLng.ob, lng = latLng.pb;
+		$('#lat').val(lat)
+		$('#lng').val(lng)
+		if (marker != null) {
+		  marker.setVisible(false)
+		  marker.setMap(null)
+		}
+
+		marker = new google.maps.Marker({
+		  position: latLng,
+		  map: map,
+		  animation: google.maps.Animation.DROP
 		});
-	} else {
-		alert("We recomend you to use Google Chrome");
-	}
-	
+	};
+
+	google.maps.event.addListener(ac, 'place_changed', function() {
+		var place = ac.getPlace();
+		setLocation(place.geometry.location);
+	});
+
+	google.maps.event.addListener(map, 'rightclick', function(ev) {
+		/*
+		var deltaLatitude  = ev.ca.y /  111111;
+		var deltaLongitude = ev.ca.x / (111111 * Math.cos(ev.latLng.pb));
+		var sw = new google.maps.LatLng(
+		  ev.latLng.lat() - deltaLatitude  / 2,
+		  ev.latLng.lng() - deltaLongitude / 2);   
+		var ne = new google.maps.LatLng(
+		  ev.latLng.lat() + deltaLatitude  / 2,
+		  ev.latLng.lng() + deltaLongitude / 2);   
+		var extent = new google.maps.LatLngBounds(sw, ne)
+		*/
+		var gcReq = {
+			// bounds: extent, 
+			location: ev.latLng
+		}
+
+		setLocation(ev.latLng);
+		gc.geocode(gcReq, function (results, status) {
+			console.log(status)
+			console.log(results)
+			$('#location').val(results[0].formatted_address);
+		});
+
+
+		if ($('#autohide:checked').length) {
+			$('body').removeClass('map');
+		  	$('#map').val(0);
+			$('#map').removeClass('active');
+		}
+	});
 }
 
-// var isVisible=form.style.display != 'none';
-function show_hide_form() {
-	alert("lol");
-	$('body').toggleClass('hidden-bar');
-	return;
-	if ($('form').is(":visible")) {
-		$('form').hide()
-	} else {
-		$('form').show()
-	}
+var add_map = function()
+{
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
+		'libraries=places&' +
+		'sensor=false&' +
+		'key=' + GoogleAPIKey +
+		'&callback=initialize_gmaps';
+	document.body.appendChild(script);
 }
+
+$(function() {
+	var availableTags = ["A0 Cholera", "B1 Malaria"];
+	$( "#icd" ).autocomplete({
+	source:availableTags
+	});
+
+	$("#radio").buttonset();
+	$( "#status" ).buttonset();
+	$('.datepicker').datepicker();
+
+	if (!Modernizr.inputtypes.date) {
+		$('.datepicker').datepicker();
+	}
+
+	$('#comment').popover({
+		html: true,
+		title: 'Comment'
+	});
+
+	$('#submit').click(function(ev) {
+		if (Modernizr.history) {
+	 		var state = {};
+			history.pushState(state, null, link.href);
+		}
+	});
+
+	$('#map').click(function(ev) {
+		$('body').toggleClass('map', $(this).val());
+	});
+	add_map();
+});
 
 
 function add_comment() {
-	$("postComment").show("slow");
+	$("postComment").show();
 	alert($("postComment").show("slow"));	
 }
 
 
 function submit_form() {
+	/*
 	var data = { 	
 		"program": selectedOrg, 
 		"orgUnit": selectedProg, 
@@ -138,7 +139,7 @@ function submit_form() {
 			{	"dataElement": "oZg33kd9taw", "value": "Male" },
 			{	"dataElement": "msodh3rEMJa", "value": "2013-05-18" } ] 
 	};
-	sendEvent(data);
+	sendEvent(data);*/
 }
 
 function loadPrograms() {
@@ -167,7 +168,7 @@ function sendEvent(data) {
 	/**
 	 * oppsett for å sende data til serveren
 	 */
-	 alert("sendEvent: "+data);
+	alert("sendEvent: "+data);
 	$.ajax({
 		type: "POST",
 		url: "http://apps.dhis2.org/demo/api/events",
@@ -178,9 +179,12 @@ function sendEvent(data) {
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error sendEvent: " + textStatus + ", " + error);
 	}).done(function() {
-		alert("Done"); 
+		console.log("second success");
+	}).fail(function() {
+		console.log("error");
+	}).always(function() {
+		console.log("complete");
 	});
-			
 }
 
 // TODO: caching
@@ -198,7 +202,6 @@ function loadOrganisations() {
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error loading organisation units: " + textStatus + ", " + error);
 	});
-
 }
 
 function populateOrgs() {

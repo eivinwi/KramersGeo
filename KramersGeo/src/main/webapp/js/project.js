@@ -1,5 +1,43 @@
 'use strict';
 
+
+$(function() {
+    $( "#orgName" ).autocomplete({
+        source: orgList,
+        autoFocus: true,
+        select: function( event, ui ) {
+            event.preventDefault();
+            selectedOrg = ui.item.label;
+            $( "#orgName" ).val( ui.item.label );
+            // $( "#orgId" ).val( ui.item.value );
+   		}
+    }).click(function( event, ui ) {
+        $(this).autocomplete('search', " ");
+    });
+});
+
+$(function() {
+    $( "#progName" ).autocomplete({
+        source: progList,
+        autoFocus: true,
+        select: function( event, ui ) {
+            event.preventDefault();
+            selectedProg = ui.item.label;
+            $( "#progName" ).val( ui.item.label );
+            // $( "#progId" ).val( ui.item.value );
+    	}
+    }).click(function( event, ui ) {
+        $(this).autocomplete('search', " ");
+    });
+});
+
+$("#icd").autocomplete({
+    source: function(request, response) {
+        var results = $.ui.autocomplete.filter(ICD, request.term);
+        response(results.slice(0, 10));
+    }
+});
+
 var GoogleAPIKey = 'AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8';
 
 function initialize_gmaps() {

@@ -139,13 +139,21 @@
         </div><!-- col -->
       </div><!-- form-group -->
 
-      <!--
+
+      <!-- Commentbox-->
       <div class="form-group">
-        <button type="button" id=comment data-content="<textarea autofocus class=form-control rows=3 cols=40></textarea>" data-placement=top class="btn btn-default btn-sm">
-           Add comment
-        </button>
-      </div>
-      -->
+        <label class="control-label col-sm-3">Comment</label>
+        <div class="col-sm-9">
+          <div id="comment" title="Leave a note">
+            <form action="" method="post" id="frmCommentSave">
+            <input type="hidden" id="leaveId" />
+            <textarea name="leaveComment" id="leaveComment" cols="49" rows="5" class="commentTextArea"></textarea>
+            <br class="clear" />
+            </form>
+          </div> <!-- comment-->
+        </div> <!-- col -->
+      </div><!-- form-group -->
+      <!-- end of commentbox-->
 
       <div class="col-sm-3 not-stacked">
       </div>
@@ -173,6 +181,7 @@
       loadOrganisations();
       loadPrograms();
       loadICD();
+      //disableDialog();
     //  initialize_gmaps();
     });
   </script>

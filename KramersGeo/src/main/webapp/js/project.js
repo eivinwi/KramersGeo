@@ -269,6 +269,14 @@ function loadICD() {
 	});
 }
 
+function disableDi	alog() {
+  $("#commentDialog").dialog({ 
+      autoOpen: false,
+      width: 350,
+      height: 195
+  });
+}
+
 // Test for å hide form, og gjøre map større, og motsatt...
 function test() {	
 	var formcanvas = $(document.form-canvas)

@@ -122,14 +122,14 @@ $(function() {
     });
 });
 
-$("#icd").autocomplete({
-    source: function(request, response) {
-    	alert("in here");
-        var results = $.ui.autocomplete.filter(ICD, request.term);
-        response(results.slice(0, 10));
-    }
+$(function() {
+	$("#icd").autocomplete({
+	    source: function(request, response) {
+	        var results = $.ui.autocomplete.filter(ICD, request.term);
+	        response(results.slice(0, 10));
+	    }
+	});
 });
-
 
 $("#radio").buttonset();
 $( "#status" ).buttonset();

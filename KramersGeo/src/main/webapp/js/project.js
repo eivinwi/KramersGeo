@@ -146,6 +146,7 @@ $(function() {
 	 		var state = {};
 			history.pushState(state, null, link.href);
 		}
+		addComment();
 	});
 
 	$('#map').click(function(ev) {
@@ -267,14 +268,6 @@ function loadICD() {
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error loading diagnoses: " + textStatus + ", " + error);
 	});
-}
-
-function disableDi	alog() {
-  $("#commentDialog").dialog({ 
-      autoOpen: false,
-      width: 350,
-      height: 195
-  });
 }
 
 // Test for å hide form, og gjøre map større, og motsatt...

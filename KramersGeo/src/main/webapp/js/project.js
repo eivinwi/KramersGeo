@@ -104,13 +104,13 @@ function get_location() {
 
 //should save the location, and add it to the form.
 function location_found(position) {
-
+	alert(position.latitude + "," + position.longitude);
 }
 
 //Handles when an error occur
 function handle_error(err) {
 	if (err == 1) {
-			alert("you have not allowed access to your location");
+		alert("you have not allowed access to your location");
 	} else if (err == 2) {
 		alert("the network is down or the positioning satellites can’t be contacted, we recomend you to type in the position manually");
 	} else { // err == 3rt("stud
@@ -178,6 +178,11 @@ $(function() {
 	$('#map').click(function(ev) {
 		$('body').toggleClass('map', $(this).val());
 		add_map();
+	});
+
+	$('#locate').click(function(e) {
+		e.preventDefault();
+		get_location();
 	});
 });
 

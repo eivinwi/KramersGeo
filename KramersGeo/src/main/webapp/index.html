@@ -3,14 +3,14 @@
 <head>
 	<meta charset=utf-8>
 	<title>Single Event Data Entry</title>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css">
 	<link rel="stylesheet" media="screen and (min-device-width: 721px)" href="css/project.css">
 	<link rel="stylesheet" media="screen and (max-device-width: 720px)" href="css/mobile.css">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-  <script src="//modernizr.com/downloads/modernizr-latest.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
 	<script src="js/project.js"></script>
 </head>
 
@@ -91,19 +91,10 @@
         </div><!-- .col-sm-9 -->
       </div><!-- .form-group -->
 
-	<div id="status">
-	  <label for="status">Status: </label> <input type="radio"
-					              id="status1" name="status" value="Died" checked="checked">
-	  <label for="status1">Died</label> <input type="radio" id="status2"
-					           name="status" value="Transferd"> <label for="status2">Transfer</label><input
-					                                                                                    type="radio" id="status3" name="status" value="Discharged">
-	  <label for="status3">Discharge</label><br> <br>
-
       <div class="form-group">
         <label for="icd" class="control-label col-sm-3">ICD</label>
-
         <div class="col-sm-9">
-          <input type="text" id="icd" name="icd" class="form-control input-sm">
+         <input type="text" id="icd" name="icd" class="form-control input-sm">
         </div>
       </div>
 
@@ -164,5 +155,16 @@
 
       </form>
   </div><!-- #form-canvas -->
+
+  <script>
+  (function($) {
+    $(document).ready(function() {
+      loadOrganisations();
+      loadPrograms();
+      loadICD();
+    });
+  });
+  </script>
+
 </body>
 </html>

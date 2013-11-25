@@ -1,42 +1,7 @@
 'use strict';
 
-
-$(function() {
-    $( "#orgName" ).autocomplete({
-        source: orgList,
-        autoFocus: true,
-        select: function( event, ui ) {
-            event.preventDefault();
-            selectedOrg = ui.item.label;
-            $( "#orgName" ).val( ui.item.label );
-            // $( "#orgId" ).val( ui.item.value );
-   		}
-    }).click(function( event, ui ) {
-        $(this).autocomplete('search', " ");
-    });
-});
-
-$(function() {
-    $( "#progName" ).autocomplete({
-        source: progList,
-        autoFocus: true,
-        select: function( event, ui ) {
-            event.preventDefault();
-            selectedProg = ui.item.label;
-            $( "#progName" ).val( ui.item.label );
-            // $( "#progId" ).val( ui.item.value );
-    	}
-    }).click(function( event, ui ) {
-        $(this).autocomplete('search', " ");
-    });
-});
-
-$("#icd").autocomplete({
-    source: function(request, response) {
-        var results = $.ui.autocomplete.filter(ICD, request.term);
-        response(results.slice(0, 10));
-    }
-});
+var orgList;
+var progList;
 
 var GoogleAPIKey = 'AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8';
 
@@ -113,7 +78,7 @@ function initialize_gmaps() {
 }
 
 var add_map = function()
-{
+{	/*
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
@@ -121,41 +86,72 @@ var add_map = function()
 		'sensor=false&' +
 		'key=' + GoogleAPIKey +
 		'&callback=initialize_gmaps';
-	document.body.appendChild(script);
+	document.body.appendChild(script); */
 }
 
 $(function() {
-	var availableTags = ["A0 Cholera", "B1 Malaria"];
-	$( "#icd" ).autocomplete({
-	source:availableTags
-	});
-
-	$("#radio").buttonset();
-	$( "#status" ).buttonset();
-	$('.datepicker').datepicker();
-
-	if (!Modernizr.inputtypes.date) {
-		$('.datepicker').datepicker();
-	}
-
-	$('#comment').popover({
-		html: true,
-		title: 'Comment'
-	});
-
-	$('#submit').click(function(ev) {
-		if (Modernizr.history) {
-	 		var state = {};
-			history.pushState(state, null, link.href);
-		}
-	});
-
-	$('#map').click(function(ev) {
-		$('body').toggleClass('map', $(this).val());
-	});
-	add_map();
+    $( "#orgName" ).autocomplete({
+        source: orgList,
+        autoFocus: true,
+        select: function( event, ui ) {
+            event.preventDefault();
+            selectedOrg = ui.item.label;
+            $( "#orgName" ).val( ui.item.label );
+            // $( "#orgId" ).val( ui.item.value );
+   		}
+    }).click(function( event, ui ) {
+        $(this).autocomplete('search', " ");
+    });
 });
 
+$(function() {
+    $( "#progName" ).autocomplete({
+        source: progList,
+        autoFocus: true,
+        select: function( event, ui ) {
+            event.preventDefault();
+            selectedProg = ui.item.label;
+            $( "#progName" ).val( ui.item.label );
+            // $( "#progId" ).val( ui.item.value );
+    	}
+    }).click(function( event, ui ) {
+        $(this).autocomplete('search', " ");
+    });
+});
+
+$("#icd").autocomplete({
+    source: function(request, response) {
+    	alert("in here");
+        var results = $.ui.autocomplete.filter(ICD, request.term);
+        response(results.slice(0, 10));
+    }
+});
+
+
+$("#radio").buttonset();
+$( "#status" ).buttonset();
+$('.datepicker').datepicker();
+
+if (!Modernizr.inputtypes.date) {
+	$('.datepicker').datepicker();
+}
+
+$('#comment').popover({
+	html: true,
+	title: 'Comment'
+});
+
+$('#submit').click(function(ev) {
+	if (Modernizr.history) {
+ 		var state = {};
+		history.pushState(state, null, link.href);
+	}
+});
+
+$('#map').click(function(ev) {
+	$('body').toggleClass('map', $(this).val());
+	add_map();
+});
 
 function add_comment() {
 	$("postComment").show();

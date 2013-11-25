@@ -92,6 +92,32 @@ var add_map = function()
 	document.body.appendChild(script); 
 }
 
+//if user just want to get location from browser
+function get_location() {
+	var option = {frequency: 500, maximumAge: 0, timeout: 10000, enableHighAccuracy:true};
+	if (Modernizr.geolocation) {
+		navigator.geolocation.getCurrentPosition(location_found, handle_error, option);
+	} else {
+		x.innerHTML = "Geolocation is not supportet by your browse, you can mark the position manually"
+	}
+}
+
+//should save the location, and add it to the form.
+function location_found(position) {
+
+}
+
+//Handles when an error occur
+function handle_error(err) {
+	if (err == 1) {
+			alert("you have not allowed access to your location");
+	} else if (err == 2) {
+		alert("the network is down or the positioning satellites can’t be contacted, we recomend you to type in the position manually");
+	} else { // err == 3rt("stud
+		alert("network is up but it takes too long to calculate the user’s position, we recomend you to type in the position manually");
+	}
+}
+
 $(function() {
     $( "#orgName" ).autocomplete({
         source: orgList,

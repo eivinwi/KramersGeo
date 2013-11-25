@@ -1,14 +1,17 @@
 'use strict';
 
-var orgList;
-var progList;
+var orgList = [];
+var progList = [];
+var orgsTmp = [];
+var progTmp = [];
+var ICD = [];
+var selectedOrg;
+var selectedProg;
 
 var GoogleAPIKey = 'AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8';
 
 function initialize_gmaps() {
-	var acOptions = {
-		componentRestrictions: {country: 'no'}
-	};
+	var acOptions = { componentRestrictions: {country: 'no'} };
 
 	var mapOptions = {
 		zoom: 8,
@@ -78,7 +81,7 @@ function initialize_gmaps() {
 }
 
 var add_map = function()
-{	/*
+{	
 	var script = document.createElement('script');
 	script.type = 'text/javascript';
 	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
@@ -86,7 +89,7 @@ var add_map = function()
 		'sensor=false&' +
 		'key=' + GoogleAPIKey +
 		'&callback=initialize_gmaps';
-	document.body.appendChild(script); */
+	document.body.appendChild(script); 
 }
 
 $(function() {
@@ -157,7 +160,6 @@ function add_comment() {
 	$("postComment").show();
 	alert($("postComment").show("slow"));	
 }
-
 
 function submit_form() {
 	/*
@@ -268,8 +270,6 @@ function loadICD() {
 		console.log("Error loading diagnoses: " + textStatus + ", " + error);
 	});
 }
-
-
 
 // Test for å hide form, og gjøre map større, og motsatt...
 function test() {	

@@ -92,9 +92,11 @@
       </div><!-- .form-group -->
 
       <div class="form-group">
-        <label for="icd" class="control-label col-sm-3">ICD</label>
-        <div class="col-sm-9">
-         <input type="text" id="icd" name="icd" class="form-control input-sm">
+        <label for="icd" class="control-label col-sm-3">ICD: </label>
+        <div class="ui-widget">
+          <div class="col-sm-9">
+           <input type="text" id="icd" name="icd" class="form-control input-sm">
+          </div>
         </div>
       </div>
 
@@ -153,17 +155,26 @@
         </button>
       </div>
 
+  <!--  <div class="ui-widget">
+    <label for="orgName">Organisation:</label>
+    <input id="orgName">
+    </div> 
+    <div class="ui-widget">
+     <label for="progName">Program: </label>
+     <input id="progName">
+    </div>
+    -->
+
       </form>
   </div><!-- #form-canvas -->
 
   <script>
-  (function($) {
     $(document).ready(function() {
       loadOrganisations();
       loadPrograms();
       loadICD();
+      initialize_gmaps();
     });
-  });
   </script>
 
 </body>

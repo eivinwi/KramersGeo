@@ -126,16 +126,19 @@ function add_comment() {
 
 
 function submit_form() {
-	alert($("postComment").show("slow"))
-/*
- * { "program": selectedOrg, "orgUnit": selectedProg, "eventDate": "2013-05-17",
- * //date from form "status": "COMPLETED", //status from form "storedBy":
- * "admin", //get userid "coordinate": { "latitude": "59.8", //latitude from
- * form/gps "longitude": "10.9" //longitude from form/gps }, "dataValues": [
- * //other values from form { "dataElement": "qrur9Dvnyt5", "value": "22" }, {
- * "dataElement": "oZg33kd9taw", "value": "Male" }, { "dataElement":
- * "msodh3rEMJa", "value": "2013-05-18" } ] }
- */
+	var data = { 	
+		"program": selectedOrg, 
+		"orgUnit": selectedProg, 
+		"eventDate": "2013-05-17",
+	 	"status": "COMPLETED", 
+	 	"storedBy": "admin", 
+	 	"coordinate": {"latitude": "59.8", "longitude": "10.9"}, 			
+	 	"dataValues": [
+			{	"dataElement": "qrur9Dvnyt5", "value": "22" }, 
+			{	"dataElement": "oZg33kd9taw", "value": "Male" },
+			{	"dataElement": "msodh3rEMJa", "value": "2013-05-18" } ] 
+	};
+	sendEvent(data);
 }
 
 function loadPrograms() {
@@ -160,11 +163,11 @@ function populateProgs() {
 }
 
 // should send data in json format
-function sendEvent(indata) {
+function sendEvent(data) {
 	/**
 	 * oppsett for å sende data til serveren
 	 */
-
+	 alert("sendEvent: "+data);
 	$.ajax({
 		type: "POST",
 		url: "http://apps.dhis2.org/demo/api/events",
@@ -219,7 +222,7 @@ function loadICD() {
 				"id" : icd_elem,
 				"label" : icd_elem
 			};
-			}
+		}
 
 	}).done(function(data) {
 		console.log("ICD diagnoses loaded."+data.length);

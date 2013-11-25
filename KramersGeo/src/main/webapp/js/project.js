@@ -12,7 +12,7 @@ $(function() {
 			event.preventDefault();
 			selectedOrg = ui.item.label;
 			$( "#orgName" ).val( ui.item.label );
-			//$( "#orgId" ).val( ui.item.value );
+			// $( "#orgId" ).val( ui.item.value );
 		}
 
 	}).click(function( event, ui ) {
@@ -28,7 +28,7 @@ $(function() {
 			event.preventDefault();
 			selectedProg = ui.item.label;
 			$( "#progName" ).val( ui.item.label );
-			//$( "#progId" ).val( ui.item.value );
+			// $( "#progId" ).val( ui.item.value );
 		}
 
 	}).click(function( event, ui ) {
@@ -36,19 +36,13 @@ $(function() {
 	});
 });
 
-/*$(function() {
-	$( "#icd" ).autocomplete({
-		source: ICD,
-		autoFocus: true,
-		select: function( event, ui ) {
-			event.preventDefault();
-			$( "#icd" ).val( ui.item.label );
-		}
-
-	}).click(function( event, ui ) {
-			$(this).autocomplete('search', " ");
-	});
-});*/
+/*
+ * $(function() { $( "#icd" ).autocomplete({ source: ICD, autoFocus: true,
+ * select: function( event, ui ) { event.preventDefault(); $( "#icd" ).val(
+ * ui.item.label ); }
+ * 
+ * }).click(function( event, ui ) { $(this).autocomplete('search', " "); }); });
+ */
 
 
 $("#icd").autocomplete({ 
@@ -58,18 +52,14 @@ $("#icd").autocomplete({
     }
 });
 
-//TODO fix icd array
+// TODO fix icd array
 /*
-$(function() {
-	var placeholders = ["A00 Vondt i kneet", "A01 Død"]; 
-	$( "#icd" ).autocomplete({
-		source: placeholders
-	}).click(function( event, ui ) {
-			$(this).autocomplete('search', " ");
-	});
-
-});
-*/
+ * $(function() { var placeholders = ["A00 Vondt i kneet", "A01 Død"]; $( "#icd"
+ * ).autocomplete({ source: placeholders }).click(function( event, ui ) {
+ * $(this).autocomplete('search', " "); });
+ * 
+ * });
+ */
 $("#radio").buttonset();
 $( "#status" ).buttonset();
 $('.datepicker').datepicker();
@@ -78,8 +68,8 @@ $('.datepicker').datepicker();
 
 var real_url = "http://apps.dhis2.org/dev";
 var test_url = "http://localhost:8082";
-var orgsTmp= []; //internal tmp storage
-var orgList = [];  //storing all organistasions as options
+var orgsTmp= []; // internal tmp storage
+var orgList = [];  // storing all organistasions as options
 var progTmp = [];
 var progList = [];
 var ICDtmp = [];
@@ -88,12 +78,12 @@ var selectedOrg;
 var selectedProg;
 
 
-//To get single event data perhaps?
+// To get single event data perhaps?
 function getData() {
 	
 }
 
-//Add map
+// Add map
 var map;
 function initialize_map() {
 	var mapOptions = {
@@ -116,10 +106,10 @@ function initialize_map() {
 	
 }
 
-//var isVisible=form.style.display != 'none';
+// var isVisible=form.style.display != 'none';
 function show_hide_form() {
+	alert("lol");
 	$('body').toggleClass('hidden-bar');
-	alert("Gei");
 	return;
 	if ($('form').is(":visible")) {
 		$('form').hide()
@@ -138,22 +128,14 @@ function add_comment() {
 function submit_form() {
 	alert($("postComment").show("slow"))
 /*
-	{
-	  "program": selectedOrg,  
-	  "orgUnit": selectedProg,  
-	  "eventDate": "2013-05-17", //date from form
-	  "status": "COMPLETED",	 //status from form
-	  "storedBy": "admin",		//get userid
-	  "coordinate": {			
-	    "latitude": "59.8",		//latitude from form/gps
-	    "longitude": "10.9"		//longitude from form/gps
-	  },
-	  "dataValues": [		//other values from form
-	    { "dataElement": "qrur9Dvnyt5", "value": "22" },
-	    { "dataElement": "oZg33kd9taw", "value": "Male" },
-	    { "dataElement": "msodh3rEMJa", "value": "2013-05-18" }
-	  ]
-	} */
+ * { "program": selectedOrg, "orgUnit": selectedProg, "eventDate": "2013-05-17",
+ * //date from form "status": "COMPLETED", //status from form "storedBy":
+ * "admin", //get userid "coordinate": { "latitude": "59.8", //latitude from
+ * form/gps "longitude": "10.9" //longitude from form/gps }, "dataValues": [
+ * //other values from form { "dataElement": "qrur9Dvnyt5", "value": "22" }, {
+ * "dataElement": "oZg33kd9taw", "value": "Male" }, { "dataElement":
+ * "msodh3rEMJa", "value": "2013-05-18" } ] }
+ */
 }
 
 function loadPrograms() {
@@ -177,11 +159,11 @@ function populateProgs() {
 	}
 }
 
-//should send data in json format
+// should send data in json format
 function sendEvent(data) {
 	/**
 	 * oppsett for å sende data til serveren
-	 **/
+	 */
 	$.ajax({
 		type: "POST"
 		url: "http://apps.dhis2.org/demo/api/events",
@@ -198,11 +180,11 @@ function sendEvent(data) {
 			
 }
 
-//TODO: caching
+// TODO: caching
 function loadOrganisations() {
 	console.log("Trying to load organisation tree.");
 
-	//$.getJSON(test_url + '/api/organisationUnits.json', function(data) {
+	// $.getJSON(test_url + '/api/organisationUnits.json', function(data) {
     $.getJSON("organisationUnits.json", function(data) {
    		$.each(data.organisationUnits, function(key, val) {
    			orgsTmp.push(val);
@@ -223,13 +205,13 @@ function populateOrgs() {
 	}
 }
 
-//api/optionSets/eUZ79clX7y1.json
+// api/optionSets/eUZ79clX7y1.json
 function loadICD() {
 	console.log("Trying to load ICD dignoses.");
 	$.getJSON("eUZ79clX7y1.json", function(data) {
- 		/*$.each(data.options, function(v) {
-   			ICD.push(JSON.parse(v));
-   		});*/
+ 		/*
+		 * $.each(data.options, function(v) { ICD.push(JSON.parse(v)); });
+		 */
 		
 		for ( var idx=0, len = data.options.length; idx < len; idx++ ) {
    			var icd_elem = data.options[idx];
@@ -241,7 +223,7 @@ function loadICD() {
 
 	}).done(function(data) {
 		console.log("ICD diagnoses loaded."+data.length);
-		//populateICD();
+		// populateICD();
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error loading diagnoses: " + textStatus + ", " + error);
 	});
@@ -249,7 +231,7 @@ function loadICD() {
 
 
 
-//Test for å hide form, og gjøre map større, og motsatt...
+// Test for å hide form, og gjøre map større, og motsatt...
 function test() {	
 	var formcanvas = $(document.form-canvas)
 	formcanvas.hide()

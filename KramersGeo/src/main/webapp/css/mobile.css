@@ -8,7 +8,7 @@ body {
 
 #leftBar {
   display: block;
-  width: 235px;
+  width: 0px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -20,7 +20,7 @@ body {
 #form-canvas {
   padding: 63px 15px 12px 15px;
   min-height: 100%;
-  max-width: 515px;
+  max-width: 100%;
   margin: 0;
   top: 0;
   bottom: 0;
@@ -29,10 +29,10 @@ body {
   overflow: visible;
   z-index: 0;
   background: #fff;
-  transform: translate3d(235px,0,0);
+  transform: translate3d(0,0,0);
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
-  -webkit-transform: translate3d(235px,0,0);
+  -webkit-transform: translate3d(0,0,0);
   transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
   transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
 }
@@ -77,18 +77,61 @@ body {
 .map #message {
   transform: translateY(0%);  
   -webkit-transform: translateY(0%);
+
 }
 
 .map #form-canvas {
   transform: translate3d(0,0,0);
   -webkit-transform: translate3d(-0,0,0);
-  border-right: 1px #ddd solid;
-  background: #f7f7f7;
+  background-color:rgba(255,0,0,0);
   overflow-y: auto;
-  width: 235px;
+  width: 55px;
+}
+
+.map #location{
+	display:none;
+}
+.map #loc_lab{
+	display:none;
+}
+
+.map #locate{
+	display:none;
 }
 
 
+.map #date_group{
+	display:none;
+}
+
+.map #icd_group{
+	display:none;
+}
+
+.map #age_gender_group{
+	display:none;
+	}
+	
+.map #admission_group{
+	display:none;
+	}
+	
+.map #discharged_group{
+	display:none;
+	}
+	
+.map #discharged_mode_group{
+	display:none;
+	}
+
+.map #comment_group{
+	display: none;
+	}
+	
+.map #submit_group{
+	display:none;
+	}
+	
 #button-space {
   position: static;
   top: 50px;
@@ -102,7 +145,7 @@ body {
   display: block;
   min-height: 50%;
   position: absolute;
-  left: 235px;
+  left: 0px;
   right: 0px;
   bottom: 0;
   margin: 0;

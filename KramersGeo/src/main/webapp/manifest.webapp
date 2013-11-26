@@ -1,11 +1,24 @@
-//JSON document describing various aspects of the web application
-
 {
-	"name": "KramersGeo",
-	"description": "Describe the application",
-	"version": "1.0",
-	"developer": {
-		"name":	"André Kramer Orten, Eivind Wikheim, Rune A. Magnussen, Kenneth Klette",
-		"url": "https://github/eivinwi/KramersGeo.git"
-	}	
+	"version":"1.0","name":"Kramers GEO",
+	"description":"Geolocation single event data entry",
+	"icons":{
+		"16":null,
+		"48":null,
+		"128":"/img/icone-128.png"
+	},
+	"developer":{
+		"url":"https://github.com/eivinwi/KramersGeo/",
+		"name":"Kramers GEO",
+		"company":"Game of light Inc*",
+		"email":null
+	},
+	"activities":{
+		"dhis":{
+			"href":"http://apps.dhis2.org/demo"
+			}
+		},
+	"launchUrl":null,
+	"launch_path":"/index.html",
+	"installs_allowed_from":null,
+	"default_locale":"en"
 }

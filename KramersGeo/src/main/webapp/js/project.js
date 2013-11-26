@@ -98,7 +98,7 @@ function get_location() {
 	if (Modernizr.geolocation) {
 		navigator.geolocation.getCurrentPosition(location_found, handle_error, option);
 	} else {
-		x.innerHTML = "Geolocation is not supportet by your browse, you can mark the position manually"
+		x.innerHTML = "Geolocation is not supportet by your browse, you can mark your position manually by choosing the pin tool"
 	}
 }
 
@@ -196,6 +196,7 @@ function add_comment() {
 	}
 }
 
+//Skal lage json data for innsending av innsamlet data
 function submit_form() {
 	/*
 	var data = { 	
@@ -208,7 +209,9 @@ function submit_form() {
 	 	"dataValues": [
 			{	"dataElement": "qrur9Dvnyt5", "value": "22" }, 
 			{	"dataElement": "oZg33kd9taw", "value": "Male" },
-			{	"dataElement": "msodh3rEMJa", "value": "2013-05-18" } ] 
+			{	"dataElement": "msodh3rEMJa", "value": "2013-05-18" } 
+			{	"dataElement": "comment", "value": "kommentar skal inn her"} //litt usikker på comment elementet her
+		] 
 	};
 	sendEvent(data);*/
 }
@@ -251,8 +254,6 @@ function sendEvent(data) {
 		console.log("Error sendEvent: " + textStatus + ", " + error);
 	}).done(function() {
 		console.log("second success");
-	}).fail(function() {
-		console.log("error");
 	}).always(function() {
 		console.log("complete");
 	});

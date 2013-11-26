@@ -168,11 +168,12 @@ $(function() {
 	});
 
 	$('#submit').click(function(ev) {
+		add_comment();
 		if (Modernizr.history) {
 	 		var state = {};
 			history.pushState(state, null, link.href);
 		}
-		addComment();
+		//addComment();
 	});
 
 	$('#map').click(function(ev) {
@@ -186,9 +187,13 @@ $(function() {
 	});
 });
 
+//Should save the comment. Now it prints the comment
 function add_comment() {
-	$("postComment").show();
-	alert($("postComment").show("slow"));	
+	var comment = $("#leaveComment").val();
+	//here we should save the comment.
+	if (comment.length > 0) {
+		alert($("#leaveComment").val());	
+	}
 }
 
 function submit_form() {

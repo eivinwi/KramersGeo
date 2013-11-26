@@ -1,35 +1,93 @@
 body {
   height: 100%;
-  background: #000;
+  background: #fff;
   margin: 0;
   padding: 0;
   font: 12px/16px LiberationSansRegular, arial, sans-serif;
 }
 
-    
-#line {
-  height: 100%;
+#leftBar {
+  display: block;
+  width: 235px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: #f7f7f7;
+  border-right: 1px #ddd solid;
+  box-shadow: #ddd 0 0 2px 0;
 }
 
 #form-canvas {
-  height: 100%;
-  padding: 12px 6px;
-  width: 750px;
+  padding: 63px 15px 12px 15px;
+  min-height: 100%;
+  max-width: 515px;
+  margin: 0;
+  top: 0;
+  bottom: 0;
   display: block;
-  position: fixed;
-  margin-left: 300px;
-  top: 44px;
-  background-color: #f7f7f7;
-  border-right: 1px #ddd solid;
-  box-shadow: #ddd 0 0 2px 0;
-  transition: margin-left 0.38s,
-      width 0.38s;
+  position: absolute;
+  overflow: visible;
+  z-index: 0;
+  background: #fff;
+  transform: translate3d(235px,0,0);
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  -webkit-transform: translate3d(235px,0,0);
+  transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
+  transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
 }
 
-.hidden-bar #form-canvas {
-  margin-left: 0px;
-  width: 300px;
+#leftBar {
+  transition: all 0.38s;
+  opacity: 1;
 }
+
+.map #leftBar {
+
+}
+
+#message {
+  width: 515px;
+  translateY: 100%;
+  top: 44px;
+  height: 44px;
+  line-height: 44px;
+  position: absolute;
+  left: 235px;
+  right: 0;
+  background: #fff;
+  margin: 0 auto;
+  vertical-align: baseline;
+  text-align: center;
+  transition: all 0.38s ease 0;
+  -webkit-transition: all 0.38s ease 0;
+  transform: translateY(-100%);
+  -webkit-transform: translateY(-100%);
+  -webkit-font-smoothing: antialiased;
+}
+
+#message span {
+  font-size: 1.25em;
+}
+
+#message label {
+  margin-left: 1.25em;
+}
+
+.map #message {
+  transform: translateY(0%);  
+  -webkit-transform: translateY(0%);
+}
+
+.map #form-canvas {
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(-0,0,0);
+  border-right: 1px #ddd solid;
+  background: #f7f7f7;
+  overflow-y: auto;
+  width: 235px;
+}
+
 
 #button-space {
   position: static;
@@ -41,12 +99,86 @@ body {
 }
 
 #map-canvas {
-  height: 100%;
-  width: 100%;
-  background-color: #ffffff;
-  overflow: visible;
-  /*display: block;*/
+  display: block;
+  min-height: 50%;
+  position: absolute;
+  left: 235px;
+  right: 0px;
+  bottom: 0;
   margin: 0;
+  width: auto;
+  top: 44px;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.38s ease 0;
+}
+#age-div {
+  padding-right: 0;
+}
+.map #gender-div {
+  width: 66%;
+}
+
+/* Eat margin between Age/location */
+.input-group .form-group {
+  margin-bottom: 0;
+}
+.form-group + .form-horizontal {
+  margin-top: -15px;
+}
+
+.map #map-canvas {
+  opacity: 1;
+}
+.exp {
+/*  transition: all 0.38s; */
+  letter-spacing: 0;
+  margin: 0;
+  opacity: 1;
+}
+.map .exp {
+  display: none;
+  letter-spacing: -1em;
+  opacity: 0;
+}
+
+/* stack bootstrap */
+.map .col-sm-3,
+.map .col-sm-9 {
+  width: 100%;
+}
+.map .non-stacked {
+  display: none;
+}
+
+.map .col-sm-3,
+.map .col-sm-6,
+.map .col-sm-9 {
+  float: none;
+}
+.control-label {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.form-horizontal .control-label {
+  padding-top: 7px;
+  margin-bottom: 0;
+}
+@media screen and (max-width:768px) {
+.form-horizontal .control-label {
+  text-align: left;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0 0 5px 0;
+}
+}
+.map .control-label {
+  text-align: left;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0 0 5px 0;
 }
 
 /*
@@ -85,6 +217,9 @@ h1 {
 
 #nav {
   position: fixed;
+  overflow: hidden;
+  top: 0;
+  margin: 0;
   left: 595px;
   height: 44px;
 }
@@ -96,6 +231,7 @@ h1 {
     padding: 0 16px;
     color: #fff;
 }
+
 #nav a:hover {
     background: #5398d8;
 }

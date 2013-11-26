@@ -48,7 +48,7 @@
   
 	<div id="form-canvas" class="container">
     <form role="form" method="post" class="form-horizontal">
-      <div class="form-group">
+      <div class="form-group" id="age_gender_group">
         <div class="col-sm-3 n-stacked">
         </div>
         <label for="age" class="control-labe col-xs-4">Age</label>
@@ -74,7 +74,7 @@
 
 
       <div class="form-group">
-        <label for="location" class="control-label col-sm-3">Location</label>
+        <label for="location" class="control-label col-sm-3" id="loc_lab">Location</label>
         <div class="col-sm-9">
         <div class="input-group" data-toggle="buttons">
         <input type="search" class="form-control input-sm" value="" id="location">
@@ -91,7 +91,7 @@
         </div><!-- .col-sm-9 -->
       </div><!-- .form-group -->
 
-      <div class="form-group">
+      <div class="form-group" id="icd_group">
         <label for="icd" class="control-label col-sm-3">ICD: </label>
         <div class="ui-widget">
           <div class="col-sm-9">
@@ -100,7 +100,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="admission_group">
         <label for="dateadmission" class="col-sm-3 control-label">Admission</label>
            
         <div class="col-sm-9">
@@ -108,7 +108,7 @@
         </div>
       </div>
          
-      <div class="form-group">
+      <div class="form-group" id="discharged_group">
         <label for="datedischarged" class="control-label col-sm-3">Discharged</label>
         <div class="col-sm-9">
           <input type="date" required class="datepicker form-control input-sm" id="datedischarged" name="datedischarged" placeholder="mm/dd/yyyy">
@@ -116,7 +116,7 @@
       </div>
          
       
-      <div class="form-group">
+      <div class="form-group" id="discharged_mode_group">
         <label class="control-label col-sm-3">Discharge mode</label>
         <div class="col-sm-9 input-group">
         <div class="btn-group btn-group-sm" data-toggle="buttons">
@@ -141,7 +141,7 @@
 
 
       <!-- Commentbox-->
-      <div class="form-group">
+      <div class="form-group" id="comment_group">
         <label class="control-label col-sm-3">Comment</label>
         <div class="col-sm-9">
           <div id="comment" title="Leave a note">
@@ -157,7 +157,7 @@
 
       <div class="col-sm-3 not-stacked">
       </div>
-      <div class="btn-group col-xs-9 form-group">
+      <div class="btn-group col-xs-9 form-group" id="submit_group">
         <button type="submit" id="submit"class="btn btn-primary">
         Complete
         </button>

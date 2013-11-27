@@ -2,9 +2,9 @@
 	"version":"1.0.0.0","name":"Kramers GEO",
 	"description":"Geolocation single event data entry",
 	"icons":{
-		"16":null,
-		"48":null,
-		"128":"/img/icone-128.png"
+		"16":"/images/icone-16.PNG",
+		"48":"/images/icone-48.PNG",
+		"128":"/images/icone-128.png"
 	},
 	"developer":{
 		"url":"https://github.com/eivinwi/KramersGeo/",

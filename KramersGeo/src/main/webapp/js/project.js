@@ -107,7 +107,23 @@ function get_location() {
 
 //should save the location, and add it to the form.
 function location_found(position) {
-	alert(position.latitude + "," + position.longitude);
+	alert(position.coords.latitude + "," + position.coords.longitude);
+	var setLocation = function (positionO) {
+		var lat = positionO.coords.latitude, lng = positionO.coords.longitude;
+		$('#lat').val(lat)
+		$('#lng').val(lng)
+		if (marker != null) {
+		  marker.setVisible(false)
+		  marker.setMap(null)
+		}
+
+		marker = new google.maps.Marker({
+		  position: latLng,
+		  map: map,
+		  animation: google.maps.Animation.DROP
+		});
+	};
+	setLocation(position);
 }
 
 //Handles when an error occur

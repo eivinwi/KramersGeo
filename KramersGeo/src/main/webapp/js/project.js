@@ -4,9 +4,12 @@ var orgList = [];
 var progList = [];
 var orgsTmp = [];
 var progTmp = [];
+var progOrgArray = [];
 var ICD = [];
 var selectedOrg;
 var selectedProg;
+
+var url = "";
 
 var GoogleAPIKey = 'AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8';
 
@@ -126,27 +129,30 @@ $(function() {
             event.preventDefault();
             selectedOrg = ui.item.label;
             $( "#orgName" ).val( ui.item.label );
-            // $( "#orgId" ).val( ui.item.value );
+            searchForPrograms();	//fills in available programs for selected org
    		}
     }).click(function( event, ui ) {
         $(this).autocomplete('search', " ");
     });
 });
 
+/* TODO: show the label
 $(function() {
-    $( "#progName" ).autocomplete({
-        source: progList,
-        autoFocus: true,
-        select: function( event, ui ) {
-            event.preventDefault();
-            selectedProg = ui.item.label;
-            $( "#progName" ).val( ui.item.label );
-            // $( "#progId" ).val( ui.item.value );
-    	}
-    }).click(function( event, ui ) {
-        $(this).autocomplete('search', " ");
-    });
-});
+	$( "#orgName" ).autocomplete({
+		source: function(request, response) {
+			var results = $.ui.autocomplete.filter(orgList, request.term);
+			var res = results.slice(0.10);
+			response(results.slice(0, 10), function(item) {
+				return {
+					label: item.label,
+					value: item.value
+				}
+			});
+		}
+	}).click(function( event, ui ) {
+		$(this).autocomplete('search', " ");
+	});
+});*/
 
 $(function() {
 	$("#icd").autocomplete({
@@ -216,27 +222,6 @@ function submit_form() {
 	sendEvent(data);*/
 }
 
-function loadPrograms() {
-	console.log("Trying to load programs.");
-	$.getJSON("programs.json", function(data) {
-		$.each(data.programs, function(key, val) {
-			progTmp.push(val);
-		});
-	}).done(function() {
-		console.log("Programs loaded");
-		populateProgs();
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading programs: " + textStatus + ", " + error);
-	});
-}
-
-function populateProgs() {
-	for(var i = 0; i < progTmp.length; i++) {
-		var prog = {label: progTmp[i].name, value: progTmp[i].id}
-		progList.push(prog);
-	}
-}
-
 // should send data in json format
 function sendEvent(data) {
 	/**
@@ -259,11 +244,31 @@ function sendEvent(data) {
 	});
 }
 
+function loadPrograms() {
+	//url + /api/ + "programs.json"
+	$.getJSON("programs.json", function(data) {
+		$.each(data.programs, function(key, val) {
+			progTmp.push(val);
+		});
+	}).done(function() {
+		console.log("Programs loaded");
+		populateProgs();
+	}).fail(function(jqXhr, textStatus, error) {
+		console.log("Error loading programs: " + textStatus + ", " + error);
+	});
+}
+
+function populateProgs() {
+	for(var i = 0; i < progTmp.length; i++) {
+		var prog = {label: progTmp[i].name, value: progTmp[i].id}
+		progList.push(prog);
+	}
+	loadProgOrgs();
+}
+
 // TODO: caching
 function loadOrganisations() {
-	console.log("Trying to load organisation tree.");
-
-	// $.getJSON(test_url + '/api/organisationUnits.json', function(data) {
+	// $.getJSON(url + '/api/organisationUnits.json', function(data) {
     $.getJSON("organisationUnits.json", function(data) {
    		$.each(data.organisationUnits, function(key, val) {
    			orgsTmp.push(val);
@@ -283,9 +288,8 @@ function populateOrgs() {
 	}
 }
 
-// api/optionSets/eUZ79clX7y1.json
+//url +  api/optionSets/eUZ79clX7y1.json
 function loadICD() {
-	console.log("Trying to load ICD dignoses.");
 	$.getJSON("eUZ79clX7y1.json", function(data) {
  		/*
 		 * $.each(data.options, function(v) { ICD.push(JSON.parse(v)); });
@@ -300,8 +304,7 @@ function loadICD() {
 		}
 
 	}).done(function(data) {
-		console.log("ICD diagnoses loaded."+data.length);
-		// populateICD();
+		console.log("ICD diagnoses loaded.");
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error loading diagnoses: " + textStatus + ", " + error);
 	});
@@ -313,4 +316,52 @@ function test() {
 	formcanvas.hide()
 	var $body = $(document.body)
 	$body.hide();
+}
+
+//loads information about what organisations is connected to each program
+//necesarry because the dhis2 api is stupid
+function loadProgOrgs() {
+	progOrgArray = new Array(progList.length);
+	console.log("Loading program<->organisation connections");
+	for (var i = 0; i < progList.length; i++) {
+		getOrgProg(i);
+	}
+}
+
+function getOrgProg (i) {
+	progOrgArray[i] = [];
+	$.getJSON(url + progList[i].value + ".json", function(data) {
+		$.each(data.organisationUnits, function(key, val) {
+				progOrgArray[i].push(val);
+			});
+	}).done(function() {
+		console.log("Loaded: " + url + progList[i].value +".json");
+	}).fail(function(jqXhr, textStatus, error) {
+		console.log("Error loading prog<->org connections: " + textStatus + ", " + error);
+	});
+}
+
+
+//searches for programs for currently selected organisation, fills them into currentProgs
+function searchForPrograms() {
+	var sel = ClearOptionsFast('progName');
+	for (var i = 0; i < progList.length; i++) {
+		for (var j = 0; j < progOrgArray[i].length; j++)  {
+			if(progOrgArray[i][j].name === selectedOrg) {
+				var opt = document.createElement('option');
+				opt.innerHTML = progList[i].label;
+				opt.value = progList[i].value; //perhaps label
+				sel.appendChild(opt);
+			}
+		}
+	}
+}
+
+function ClearOptionsFast(id)
+{
+	var selectObj = document.getElementById(id);
+	var selectParentNode = selectObj.parentNode;
+	var newSelectObj = selectObj.cloneNode(false); // Make a shallow copy
+	selectParentNode.replaceChild(newSelectObj, selectObj);
+	return newSelectObj;
 }

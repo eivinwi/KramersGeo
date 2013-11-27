@@ -33,10 +33,19 @@ body {
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
   -webkit-transform: translate3d(235px,0,0);
+  /*For chrome 1-25, and safari 3.2+*/
+  -webkit-transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
+  -webkit-transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
+  /*Firefox 4-15*/
+  -moz-transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
+  -moz-transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
+  /*Opera 10.50-12.00*/
+  -o-transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
+  -o-transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
+  /*For newer browsers: Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
   transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
   transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
 }
-
 #leftBar {
   transition: all 0.38s;
   opacity: 1;
@@ -235,4 +244,3 @@ h1 {
 #nav a:hover {
     background: #5398d8;
 }
-

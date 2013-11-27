@@ -101,7 +101,7 @@ function get_location() {
 	if (Modernizr.geolocation) {
 		navigator.geolocation.getCurrentPosition(location_found, handle_error, option);
 	} else {
-		x.innerHTML = "Geolocation is not supportet by your browse, you can mark your position manually by choosing the pin tool"
+		x.innerHTML = "Geolocation is not supportet by your byrowse, you can mark your position by choosing the pin tool"
 	}
 }
 
@@ -125,6 +125,7 @@ function location_found(position) {
 		});
 	};
 	setLocation(position);
+	$('#location').val(results[0].formatted_address);
 }
 
 //Handles when an error occur
@@ -132,9 +133,9 @@ function handle_error(err) {
 	if (err == 1) {
 		alert("you have not allowed access to your location");
 	} else if (err == 2) {
-		alert("the network is down or the positioning satellites can’t be contacted, we recomend you to type in the position manually");
+		alert("the network is down or the positioning satellites can’t be contacted, you can mark your position by choosing the pin tool");
 	} else { // err == 3rt("stud
-		alert("network is up but it takes too long to calculate the user’s position, we recomend you to type in the position manually");
+		alert("network is up but it takes too long to calculate the user’s position, you can mark your position by choosing the pin tool");
 	}
 }
 
@@ -148,7 +149,7 @@ $(function() {
             $( "#orgName" ).val( ui.item.label );
             searchForPrograms();	//fills in available programs for selected org
    		}
-    }).click(function( event, ui ) {
+    }).click(function( event, ui ) {ICD
         $(this).autocomplete('search', " ");
     });
 });

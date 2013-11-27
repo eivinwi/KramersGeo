@@ -210,7 +210,7 @@ $(function() {
 	});
 });
 
-//Should save the comment. Now it prints the comment
+//Should save the comment. 
 function add_comment() {
 	var comment = $("#leaveComment").val();
 	//here we should save the comment.

@@ -1,5 +1,5 @@
 {
-	"version":"1.0","name":"Kramers GEO",
+	"version":"1.0.0.0","name":"Kramers GEO",
 	"description":"Geolocation single event data entry",
 	"icons":{
 		"16":null,
@@ -8,7 +8,7 @@
 	},
 	"developer":{
 		"url":"https://github.com/eivinwi/KramersGeo/",
-		"name":"Kramers GEO",
+		"name":"André Kramer Orten, Rune A. Magnussen, Eivind Wikheim, Kenneth Klette Jonassen",
 		"company":"Game of light Inc*",
 		"email":null
 	},

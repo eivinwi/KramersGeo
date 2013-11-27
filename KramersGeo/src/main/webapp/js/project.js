@@ -108,6 +108,7 @@ function get_location() {
 //should save the location, and add it to the form.
 function location_found(position) {
 	alert(position.coords.latitude + "," + position.coords.longitude);
+	//Funker dette, hmm?, kanskje :S
 	var setLocation = function (positionO) {
 		var lat = positionO.coords.latitude, lng = positionO.coords.longitude;
 		$('#lat').val(lat)

@@ -2,9 +2,9 @@
 	"version":"1.0.0.0","name":"GEOgrafrica",
 	"description":"Geolocation single event data entry",
 	"icons":{
-		"16":"/images/icone-16.PNG",
-		"48":"/images/icone-48.PNG",
-		"128":"/images/icone-128.png"
+		"16":"/images/Geografrica-16.png",
+		"48":"/images/Geografrica-48.png",
+		"128":"/images/Geografrica-128.png"
 	},
 	"developer":{
 		"url":"https://github.com/eivinwi/KramersGeo/",

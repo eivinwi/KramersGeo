@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 <head>
 	<meta charset=utf-8>
 	<title>Single Event Data Entry</title>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css">
 	<link rel="stylesheet" media="screen and (min-device-width: 721px)" href="css/project.css">
 	<link rel="stylesheet" media="screen and (max-device-width: 720px)" href="css/mobile.css">
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
-  <script src="//modernizr.com/downloads/modernizr-latest.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
 	<script src="js/project.js"></script>
 </head>
 
@@ -43,12 +42,34 @@
   </div>
 
 
+
   <div id="leftBar">
   </div>
   
 	<div id="form-canvas" class="container">
     <form role="form" method="post" class="form-horizontal">
-      <div class="form-group">
+
+      <div class="form-group" id="org_prog_group">
+        <label for="orgName" class="control-label col-sm-3">Organisation: </label>
+        <div class="ui-widget">
+          <div class="col-sm-9">
+            <input type="text" id="orgName" name="orgName" class="form-control input-sm">
+          </div>
+        </div> 
+        <br>
+        <label for="progName" class="control-label col-sm-3"> Program: </label>
+        <div class="col-sm-9">
+<<<<<<< HEAD
+          <select id="progName" name="progName" type="text" class="form-control input-sm">
+
+=======
+          <select id="progName" name="progName" type="text" onchange="getSelectedProg()" class="form-control input-sm">
+>>>>>>> f2c40ccb756cd433c7ebcd521617708e338478ae
+          </select>
+        </div> 
+      </div>
+
+      <div class="form-group" id="age_gender_group">
         <div class="col-sm-3 n-stacked">
         </div>
         <label for="age" class="control-labe col-xs-4">Age</label>
@@ -74,7 +95,7 @@
 
 
       <div class="form-group">
-        <label for="location" class="control-label col-sm-3">Location</label>
+        <label for="location" class="control-label col-sm-3" id="loc_lab">Location</label>
         <div class="col-sm-9">
         <div class="input-group" data-toggle="buttons">
         <input type="search" class="form-control input-sm" value="" id="location">
@@ -91,16 +112,16 @@
         </div><!-- .col-sm-9 -->
       </div><!-- .form-group -->
 
-
-      <div class="form-group">
-        <label for="icd" class="control-label col-sm-3">ICD</label>
-
-        <div class="col-sm-9">
-          <input type="text" id="icd" name="icd" class="form-control input-sm">
+      <div class="form-group" id="icd_group">
+        <label for="icd" class="control-label col-sm-3">ICD: </label>
+        <div class="ui-widget">
+          <div class="col-sm-9">
+           <input type="text" id="icd" name="icd" class="form-control input-sm">
+          </div>
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group" id="admission_group">
         <label for="dateadmission" class="col-sm-3 control-label">Admission</label>
            
         <div class="col-sm-9">
@@ -108,15 +129,27 @@
         </div>
       </div>
          
-      <div class="form-group">
+      <div class="form-group" id="discharged_group">
         <label for="datedischarged" class="control-label col-sm-3">Discharged</label>
         <div class="col-sm-9">
           <input type="date" required class="datepicker form-control input-sm" id="datedischarged" name="datedischarged" placeholder="mm/dd/yyyy">
         </div>
       </div>
          
-      
-      <div class="form-group">
+        <!-- Test Test Test-->
+      <input type="checkbox" onclick="display(this)">Add more users</input>
+      <div id="yourDiv"> ...other forms... </div>
+
+       <div class="form-group" id="test">
+        <label for="dateadmission" class="col-sm-3 control-label">test</label>
+           
+        <div class="col-sm-9">
+          <input type="date" class="datepicker form-control input-sm" id="test2" name="dateadmission" placeholder="abc">
+        </div>
+      </div>
+      <!-- Test Test Test -->
+
+      <div class="form-group" id="discharged_mode_group">
         <label class="control-label col-sm-3">Discharge mode</label>
         <div class="col-sm-9 input-group">
         <div class="btn-group btn-group-sm" data-toggle="buttons">
@@ -139,144 +172,49 @@
         </div><!-- col -->
       </div><!-- form-group -->
 
-      <!--
-      <div class="form-group">
-        <button type="button" id=comment data-content="<textarea autofocus class=form-control rows=3 cols=40></textarea>" data-placement=top class="btn btn-default btn-sm">
-           Add comment
-        </button>
-      </div>
-      -->
-=======
-  <head>
-    <meta charset=utf-8>
-    <title>Single Event Data Entry</title>
-    <link rel="stylesheet"	 href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" media="screen and (min-device-width: 721px)" href="css/project.css">
-    <link rel="stylesheet" media="screen and (max-device-width: 720px)" href="css/mobile.css">
-    <script src="js/jquery-2.0.3.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/project.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  </head>
-  
-  <body>
-    <div id="header">
-	    <a id="headerText" href="../dhis-web-dashboard-integration/index.action" title="View interpretations">
-		    <img id="headerBanner" src="http://apps.dhis2.org/demo/dhis-web-commons/css/light_blue/logo_banner.png">
-			<h1>DHIS 2 Demo - Sierra Leone</h1>
-	    </a>
-	      
-	    <ul id="nav" class="nav navbar-nav">
-			<li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Maintenance</a></li>
-			<li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Services</a></li>
-			<li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Help</a></li>
-			<li><a href="http://apps.dhis2.org/demo/dhis-web-commons-about/modules.action">Profile</a></li>
-		</ul>
-    </div>
+<!--
+      <div class="form-group" id="comment_group">
+        <label class="control-label col-sm-3">Comment</label>
+        <div class="col-sm-9">
+          <div class="input-group input-group-lg">
+            <input type="text" id="leaveComment" class="form-control" paceholder="Comment">
+          </div>
+        </div>
+      </div> -->
 
-    <div id="map-canvas"></div>
-
-    <div id="form-canvas">
-	    <div id="button-space">
-			<a href="#" class="btn btn-info btn-small" onclick="show_hide_form()">
-				<i class="icon-white icon-ok"></i>Show map
-			</a>
-	    </div>
-
-	    <form align="center">
-			<div class="ui-widget">
-			  <label for="orgName">Organisation:</label> 
-			  <input id="orgName">
-			</div>
-			<br>
-
-			<div class="ui-widget">
-			  <label for="progName">Program: </label> 
-			  <input id="progName">
-			</div>
-			<br>
-
-			<fieldset>
-				<label for=dateadmission>Date of Admission 
-					<input type="date" class=datepicker id="dateadmission">
-				</label>
-				<br><br> 
-				<label for=datedischarge>Date of Discharge
-					<input type="date" class=datepicker id="datedischarge">
-				</label>
-			</fieldset>
-
-			<div id="radio">
-				<br>
-				<label for="radio">Gender</label> 
-				<input type="radio" id="radio1" name="radio"> 
-				<label for="radio1">Male</label> 
-				<input type="radio" id="radio2" name="radio" checked="checked"> 
-				<label for="radio2">Female</label>
-				<input type="number" min="0" max="120">
-				<label> Age: </label>
-			</div>
-		        
-		        
-			<br> <br>
-			<div id="status">
-				<label for="status">Status: </label> 
-				<input type="radio" id="status1" name="status" value="Died" checked="checked">
-				<label for="status1">Died</label> 
-				<input type="radio" id="status2" name="status" value="Transferred">
-				<label for="status2">Transferred</label>
-				<input type="radio" id="status3" name="status" value="Discharged">
-				<label for="status3">Discharged</label>
-				<br><br>
-			</div>
-
-			<div class="ui-widget">
-			  <label for="icd">ICD: </label> 
-			  <input id="icd">
-			</div>
-
-			<br>
-			<div class="span5">
-			  <label>Comment</label> <br>
-			  <textarea name="message" id="message" class="input-xlarge span5" rows="10"></textarea>
-			</div>
-			<!--        <button type="submit" class="btn btn-primary pull-right">Send</button> -->
-	    </form>
-	       
-	    <div id='postComment'>
-	    	<a href="#" class="btn btn-info btn-small" onclick="submit_form()">
-	    		<i class="icon-white icon-share-alt"></i> Submit
-	    	</a>
-	    </div>
-    </div>
-
-    <script>
-    	$(document).ready(function() {
-	    	//initialize_map();
-	    	//test()
-	    	loadOrganisations();
-	    	loadPrograms();
-	    	loadICD();
-    	});
-    </script>
->>>>>>> master
+      <!-- Commentbox Denne er her kun foreløpig-->
+      <div class="form-group" id="comment_group">
+        <label class="control-label col-sm-3">Comment</label>
+        <div class="col-sm-9">
+       <!--   <div id="comment" title="Leave a note"> -->
+            <input type="hidden" id="leaveId" />
+            <textarea name="leaveComment" id="leaveComment" cols="49" class="form-control"></textarea>
+            <br class="clear" />
+          <!--</div> --><!-- comment-->
+        </div> <!-- col -->
+      </div><!-- form-group --> 
+      <!-- end of commentbox-->
 
       <div class="col-sm-3 not-stacked">
       </div>
-      <div class="btn-group col-xs-9 form-group">
-        <button type="submit" id=submit class="btn btn-primary">
+      <div class="btn-group col-xs-9 form-group" id="submit_group">
+        <button type="submit" id="submit"class="btn btn-primary">
         Complete
         </button>
       </div>
 
-<<<<<<< HEAD
       </form>
   </div><!-- #form-canvas -->
+
+  <script>
+    $(document).ready(function() {
+      loadOrganisations();
+      loadPrograms();
+      loadICD();
+      //disableDialog();
+    //  initialize_gmaps();
+    });
+  </script>
+
 </body>
 </html>
-=======
-  </body>
-</html>
->>>>>>> master

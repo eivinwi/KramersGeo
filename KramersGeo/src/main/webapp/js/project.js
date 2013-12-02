@@ -423,7 +423,7 @@ function getOrgProg (i) {
 
 	$.ajax({
 		type: "GET",
-		url: dhis_url + progList[i].value +"/",
+		url: dhis_url + "api/programs/" + progList[i].value,
 		dataType: 'json',
 		async: false,
 		headers: {

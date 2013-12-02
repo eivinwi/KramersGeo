@@ -262,6 +262,16 @@ function sendEvent(data) {
 	});
 }
 
+//For testing. Skal benytte noe lignende til å kun vise riktig forms
+function display(e) {
+	
+	if (e.checked) {
+		document.getElementById('test').style.display = 'block';
+	} else {
+		document.getElementById('test').style.display = 'none';
+	}
+}
+
 function loadPrograms() {
 	//url + /api/ + "programs.json"
 	$.getJSON("programs.json", function(data) {

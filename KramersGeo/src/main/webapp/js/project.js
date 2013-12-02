@@ -363,33 +363,15 @@ function getOrgProg (i) {
 //TODO: caching
 //url +  api/optionSets/eUZ79clX7y1.json
 function loadICD() {
-	$.getJSON("eUZ79clX7y1.json", function(data) {
-		for ( var idx=0, len = data.options.length; idx < len; idx++ ) {
-   			var icd_elem = data.options[idx];
-			ICD[idx] = {
-				"id" : icd_elem,
-				"label" : icd_elem
-			};
-		}
-	}).done(function(data) {
-		console.log("ICD diagnoses loaded.");
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading diagnoses: " + textStatus + ", " + error);
-	});
- 		/*
-		 * $.each(data.options, function(v) { ICD.push(JSON.parse(v)); });
-		 */
-		 
-	/*$.ajax({
+	$.ajax({
 		type: "GET",
 		url: dhis_url + "api/optionSets/eUZ79clX7y1",
 		dataType: 'json',
 		//async: false,
 		headers: {
-			Authorization: "Basic" + btoa(user+":"+password)
+			Authorization: "Basic " + btoa(user+":"+password)
 		},
 		success: function(data) {
-			console.log("wtf");
 			for ( var idx=0, len = data.options.length; idx < len; idx++ ) {
    				var icd_elem = data.options[idx];
 				ICD[idx] = {
@@ -402,13 +384,14 @@ function loadICD() {
 		error: function(jqXhr, textStatus, error) {
 			console.log("Error loading ICD codes: " + textStatus + ", " + error);
 		}
-	});*/
+	});
 }
 
 var forms = [];
+var types = {"string" : "text", "int" : "number", "date": "date"};
 
 function getProgramStage() {
-	$.ajax({
+/*	$.ajax({
 		type: "GET",
 		url: url + "api/programStages/" + selectedProg,
 		dataType: 'json',
@@ -420,12 +403,34 @@ function getProgramStage() {
 			
 			console.log("ProgramStage loaded");
 
+			//TODO:
+			//create forms
+			var opt;
+
+			if(data.optionSet == null) { //no given info, basic empty field
+
+			} else { //get the optionset
+				$.ajax({
+					type: "GET",
+					url: url + "api/optionSets/" + selectedProg,
+					dataType: 'json'
+					headers: {
+						Authorization: "Basic " + btoa(user+":"+password)
+					},
+					success: function() {
+
+					},
+					error: function(jqXhr, textStatus, error) {
+						console.log("Error loading OptionSets: " + textStatus + ", " + error);
+					}
+				});
+			}
+
 		},
 		error: function(jqXhr, textStatus, error) {
 			console.log("Error loading ProgramStage: " + textStatus + ", " + error);
 		}
-	});
-
+	});*/
 }
 
 
@@ -434,7 +439,7 @@ function searchForPrograms() {
 	var sel = ClearOptionsFast('progName');
 	for (var i = 0; i < progList.length; i++) {
 		for (var j = 0; j < progOrgArray[i].length; j++)  {
-			if(progOrgArray[i][j].name === selectedOrg) {
+			if(progOrgArray[i][j].name == selectedOrg) {
 				var opt = document.createElement('option');
 				opt.innerHTML = progList[i].label;
 				opt.value = progList[i].value; //perhaps label

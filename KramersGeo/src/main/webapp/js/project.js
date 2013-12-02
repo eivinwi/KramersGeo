@@ -265,8 +265,6 @@ function sendEvent(data) {
 		console.log("complete");
 	});
 }
-
-//For testing. Skal benytte noe lignende til å kun vise riktig forms
 function display(e) {
 	alert(selectedProg);
 	if (e.checked) {

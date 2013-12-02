@@ -294,9 +294,14 @@ function populateProgs() {
 	loadProgOrgs();
 }
 
+
 // TODO: caching
 function loadOrganisations() {
-	// $.getJSON(url + '/api/organisationUnits.json', function(data) {
+//	var orgurl = url + "api/organisationUnits.json";
+	var orgurl = "http://apps.dhis2.org/demo/api/organisationUnits.json";
+	var user = "admin";
+	var password = "district";
+	//$.getJSON(orgurl, function(data) {
     $.getJSON("organisationUnits.json", function(data) {
    		$.each(data.organisationUnits, function(key, val) {
    			orgsTmp.push(val);
@@ -335,6 +340,24 @@ function loadICD() {
 		console.log("ICD diagnoses loaded.");
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error loading diagnoses: " + textStatus + ", " + error);
+	});
+}
+
+var forms = [];
+
+function getProgramStage() {
+	//url + "api/programStages/" + selectedProg + ".json"
+
+	$.getJSON("Zj7UnCAulEk.json", function(data) {
+		$.each(data.programStageDataElements, function(key, val) {
+   			//alert(JSON.stringify(val, null, 4));
+   			forms.push(val.dataElement);
+   			console.log("Forms: " + val.dataElement.name);
+   		});
+	}).done(function(){
+		console.log("ProgramStage loaded.");
+	}).fail(function(jqXhr, textStatus, error) {
+		console.log("Error loading ProgramStage: " + textStatus + ", " + error);
 	});
 }
 

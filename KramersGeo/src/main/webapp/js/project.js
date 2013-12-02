@@ -297,6 +297,7 @@ function loadPrograms() {
 				progList.push(opt);
 			});
 			console.log("Programs loaded");
+			loadProgOrgs();
 		},
 		error: function(jqXhr, textStatus, error) {
 			console.log("Error loading programs: " + textStatus + ", " + error);
@@ -320,7 +321,6 @@ function loadOrganisations() {
 				orgList.push(opt);
 			});
 			console.log("OrganisationUnits loaded");
-			loadProgOrgs();
 		},
 		error: function(jqXhr, textStatus, error) {
 			console.log("Error loading organisationUnits: " + textStatus + ", " + error);
@@ -331,6 +331,7 @@ function loadOrganisations() {
 //loads information about what organisations is connected to each program
 //necesarry because the dhis2 api is stupid
 function loadProgOrgs() {
+	console.log("Trying to load " + progList.length + " prog/org connections");
 	progOrgArray = new Array(progList.length);
 	for (var i = 0; i < progList.length; i++) {
 		getOrgProg(i);
@@ -343,7 +344,7 @@ function getOrgProg (i) {
 		type: "GET",
 		url: dhis_url + "api/programs/" + progList[i].value,
 		dataType: 'json',
-		//async: false,
+		async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
@@ -397,7 +398,7 @@ function getProgramStage() {
 		dataType: 'json',
 		async: false,
 		headers: {
-			Authorization: "Basic" + btoa(user+":"+password)
+			Authorization: "Basic " + btoa(user+":"+password)
 		},
 		success: function(data) {
 			
@@ -409,7 +410,8 @@ function getProgramStage() {
 
 			if(data.optionSet == null) { //no given info, basic empty field
 
-			} else { //get the optionset
+			} 
+			else { //get the optionset
 				$.ajax({
 					type: "GET",
 					url: url + "api/optionSets/" + selectedProg,
@@ -418,6 +420,7 @@ function getProgramStage() {
 						Authorization: "Basic " + btoa(user+":"+password)
 					},
 					success: function() {
+						//got a optionset
 
 					},
 					error: function(jqXhr, textStatus, error) {

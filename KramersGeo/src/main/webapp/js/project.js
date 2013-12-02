@@ -1,15 +1,18 @@
+/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security */
+
 'use strict';
 
 var orgList = [];
 var progList = [];
-var orgsTmp = [];
-var progTmp = [];
 var progOrgArray = [];
 var ICD = [];
 var selectedOrg;
 var selectedProg;
 
+var user = "admin";
+var password = "district";
 var url = "";
+var dhis_url = "http://apps.dhis2.org/dev/"
 
 var GoogleAPIKey = 'AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8';
 
@@ -157,6 +160,7 @@ $(function() {
 
 function getSelectedProg() {
 	selectedProg = document.getElementById('progName').value;
+	getProgramStage();
 }
 /* TODO: show the label
 $(function() {
@@ -276,17 +280,26 @@ function display(e) {
 	}
 }
 
+
 function loadPrograms() {
-	//url + /api/ + "programs.json"
-	$.getJSON("programs.json", function(data) {
-		$.each(data.programs, function(key, val) {
-			progTmp.push(val);
-		});
-	}).done(function() {
-		console.log("Programs loaded");
-		populateProgs();
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading programs: " + textStatus + ", " + error);
+	$.ajax({
+		type: "GET",
+		url: dhis_url + "api/programs/",
+		dataType: 'json',
+		async: false,
+		headers: {
+			Authorization : "Basic " + btoa(user+":"+password)
+		},
+		success: function(data) {
+			$.each(data.programs, function(key, val) {
+				var opt = { label: val.name, value: val.id };
+				progList.push(opt);
+			});
+			console.log("Programs loaded");
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading programs: " + textStatus + ", " + error);
+		},
 	});
 }
 
@@ -301,29 +314,29 @@ function populateProgs() {
 
 // TODO: caching
 function loadOrganisations() {
-//	var orgurl = url + "api/organisationUnits.json";
-	var orgurl = "http://apps.dhis2.org/demo/api/organisationUnits.json";
-	var user = "admin";
-	var password = "district";
-	//$.getJSON(orgurl, function(data) {
-    $.getJSON("organisationUnits.json", function(data) {
-   		$.each(data.organisationUnits, function(key, val) {
-   			orgsTmp.push(val);
-   		});
-	}).done(function(){
-		console.log("Organisation tree loaded.");
-    	populateOrgs();
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading organisation units: " + textStatus + ", " + error);
+	$.ajax({
+		type: "GET",
+		url: dhis_url + "api/organisationUnits/",
+		dataType: 'json',
+		async: false,
+		headers: {
+			Authorization : "Basic " + btoa(user+":"+password)
+		},
+		success: function(data) {
+			$.each(data.organisationUnits, function(key, val) {
+				var opt = { label: val.name, value: val.id };
+				console.log(opt);
+				orgList.push(opt);
+			});
+			console.log("organisationUnits loaded");
+			loadProgOrgs();
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading organisationUnits: " + textStatus + ", " + error);
+		},
 	});
 }
 
-function populateOrgs() {
-	for(var i = 0; i < orgsTmp.length; i++) {
-		var org = {label: orgsTmp[i].name, value: orgsTmp[i].id}
-		orgList.push(org);
-	}
-}
 
 //url +  api/optionSets/eUZ79clX7y1.json
 function loadICD() {
@@ -350,9 +363,10 @@ function loadICD() {
 var forms = [];
 
 function getProgramStage() {
-	//url + "api/programStages/" + selectedProg + ".json"
-
-	$.getJSON("Zj7UnCAulEk.json", function(data) {
+	/*//url + "api/programStages/" + selectedProg + ".json"
+	alert(selectedProg + ".json");
+	//$.getJSON("Zj7UnCAulEk.json", function(data) {
+	$.getJSON(selectedProg + ".json", function(data) {
 		$.each(data.programStageDataElements, function(key, val) {
    			//alert(JSON.stringify(val, null, 4));
    			forms.push(val.dataElement);
@@ -363,6 +377,27 @@ function getProgramStage() {
 	}).fail(function(jqXhr, textStatus, error) {
 		console.log("Error loading ProgramStage: " + textStatus + ", " + error);
 	});
+*/
+
+	$.ajax({
+		type: "GET",
+		url: url + "api/programStages/" + selectedProg,
+		dataType: 'json',
+		async: false,
+		headers: {
+			Authorization: "Basic" + bota(user+":"+password)
+		},
+		success: function(data) {
+			
+			//TODO
+			//create forms
+
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading ProgramStage: " + textStatus + ", " + error);
+		}
+	});
+
 }
 
 // Test for å hide form, og gjøre map større, og motsatt...
@@ -377,7 +412,7 @@ function test() {
 //necesarry because the dhis2 api is stupid
 function loadProgOrgs() {
 	progOrgArray = new Array(progList.length);
-	console.log("Loading program<->organisation connections");
+	console.log("Trying to load " + progList.length + " progOrg connections");
 	for (var i = 0; i < progList.length; i++) {
 		getOrgProg(i);
 	}
@@ -385,16 +420,27 @@ function loadProgOrgs() {
 
 function getOrgProg (i) {
 	progOrgArray[i] = [];
-	$.getJSON(url + progList[i].value + ".json", function(data) {
-		$.each(data.organisationUnits, function(key, val) {
+
+	$.ajax({
+		type: "GET",
+		url: dhis_url + progList[i].value +"/",
+		dataType: 'json',
+		async: false,
+		headers: {
+			Authorization : "Basic " + btoa(user+":"+password)
+		},
+		success: function(data) {
+			$.each(data.organisationUnits, function(key, val) {
 				progOrgArray[i].push(val);
 			});
-	}).done(function() {
-		console.log("Loaded: " + url + progList[i].value +".json");
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading prog<->org connections: " + textStatus + ", " + error);
+			console.log("Prog/org connections loaded");
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading program/org connections: " + textStatus + ", " + error);
+		},
 	});
 }
+
 
 
 //searches for programs for currently selected organisation, fills them into currentProgs

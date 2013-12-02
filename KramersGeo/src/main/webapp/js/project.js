@@ -154,6 +154,10 @@ $(function() {
     });
 });
 
+
+function getSelectedProg() {
+	selectedProg = document.getElementById('progName').value;
+}
 /* TODO: show the label
 $(function() {
 	$( "#orgName" ).autocomplete({
@@ -264,7 +268,7 @@ function sendEvent(data) {
 
 //For testing. Skal benytte noe lignende til å kun vise riktig forms
 function display(e) {
-	
+	alert(selectedProg);
 	if (e.checked) {
 		document.getElementById('test').style.display = 'block';
 	} else {

@@ -256,17 +256,18 @@ function sendEvent(data) {
 	alert("sendEvent: "+data);
 	$.ajax({
 		type: "POST",
-		url: "http://apps.dhis2.org/demo/api/events",
+		url: dhis_url + "api/events",
 		dataType: "json",
-		data: data,
-		username: "admin",
-		password: "district",
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error sendEvent: " + textStatus + ", " + error);
-	}).done(function() {
-		console.log("second success");
-	}).always(function() {
-		console.log("complete");
+		async: false,
+		headers: {
+			Authorization : "Basic " + btoa(user+":"+password)
+		},
+		success: function() {
+			console.log("Sent event");
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error sendEvent: " + textStatus + ", " + error);
+		},
 	});
 }
 
@@ -280,13 +281,13 @@ function display(e) {
 	}
 }
 
-
+//TODO: caching
 function loadPrograms() {
 	$.ajax({
 		type: "GET",
 		url: dhis_url + "api/programs/",
 		dataType: 'json',
-		async: false,
+		//async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
@@ -303,32 +304,22 @@ function loadPrograms() {
 	});
 }
 
-function populateProgs() {
-	for(var i = 0; i < progTmp.length; i++) {
-		var prog = {label: progTmp[i].name, value: progTmp[i].id}
-		progList.push(prog);
-	}
-	loadProgOrgs();
-}
-
-
 // TODO: caching
 function loadOrganisations() {
 	$.ajax({
 		type: "GET",
 		url: dhis_url + "api/organisationUnits/",
 		dataType: 'json',
-		async: false,
+		//async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
 		success: function(data) {
 			$.each(data.organisationUnits, function(key, val) {
 				var opt = { label: val.name, value: val.id };
-				console.log(opt);
 				orgList.push(opt);
 			});
-			console.log("organisationUnits loaded");
+			console.log("OrganisationUnits loaded");
 			loadProgOrgs();
 		},
 		error: function(jqXhr, textStatus, error) {
@@ -337,82 +328,10 @@ function loadOrganisations() {
 	});
 }
 
-
-//url +  api/optionSets/eUZ79clX7y1.json
-function loadICD() {
-	$.getJSON("eUZ79clX7y1.json", function(data) {
- 		/*
-		 * $.each(data.options, function(v) { ICD.push(JSON.parse(v)); });
-		 */
-		
-		for ( var idx=0, len = data.options.length; idx < len; idx++ ) {
-   			var icd_elem = data.options[idx];
-			ICD[idx] = {
-				"id" : icd_elem,
-				"label" : icd_elem
-			};
-		}
-
-	}).done(function(data) {
-		console.log("ICD diagnoses loaded.");
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading diagnoses: " + textStatus + ", " + error);
-	});
-}
-
-var forms = [];
-
-function getProgramStage() {
-	/*//url + "api/programStages/" + selectedProg + ".json"
-	alert(selectedProg + ".json");
-	//$.getJSON("Zj7UnCAulEk.json", function(data) {
-	$.getJSON(selectedProg + ".json", function(data) {
-		$.each(data.programStageDataElements, function(key, val) {
-   			//alert(JSON.stringify(val, null, 4));
-   			forms.push(val.dataElement);
-   			console.log("Forms: " + val.dataElement.name);
-   		});
-	}).done(function(){
-		console.log("ProgramStage loaded.");
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading ProgramStage: " + textStatus + ", " + error);
-	});
-*/
-
-	$.ajax({
-		type: "GET",
-		url: url + "api/programStages/" + selectedProg,
-		dataType: 'json',
-		async: false,
-		headers: {
-			Authorization: "Basic" + bota(user+":"+password)
-		},
-		success: function(data) {
-			
-			//TODO
-			//create forms
-
-		},
-		error: function(jqXhr, textStatus, error) {
-			console.log("Error loading ProgramStage: " + textStatus + ", " + error);
-		}
-	});
-
-}
-
-// Test for å hide form, og gjøre map større, og motsatt...
-function test() {	
-	var formcanvas = $(document.form-canvas)
-	formcanvas.hide()
-	var $body = $(document.body)
-	$body.hide();
-}
-
 //loads information about what organisations is connected to each program
 //necesarry because the dhis2 api is stupid
 function loadProgOrgs() {
 	progOrgArray = new Array(progList.length);
-	console.log("Trying to load " + progList.length + " progOrg connections");
 	for (var i = 0; i < progList.length; i++) {
 		getOrgProg(i);
 	}
@@ -420,12 +339,11 @@ function loadProgOrgs() {
 
 function getOrgProg (i) {
 	progOrgArray[i] = [];
-
 	$.ajax({
 		type: "GET",
 		url: dhis_url + "api/programs/" + progList[i].value,
 		dataType: 'json',
-		async: false,
+		//async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
@@ -441,6 +359,74 @@ function getOrgProg (i) {
 	});
 }
 
+
+//TODO: caching
+//url +  api/optionSets/eUZ79clX7y1.json
+function loadICD() {
+	$.getJSON("eUZ79clX7y1.json", function(data) {
+		for ( var idx=0, len = data.options.length; idx < len; idx++ ) {
+   			var icd_elem = data.options[idx];
+			ICD[idx] = {
+				"id" : icd_elem,
+				"label" : icd_elem
+			};
+		}
+	}).done(function(data) {
+		console.log("ICD diagnoses loaded.");
+	}).fail(function(jqXhr, textStatus, error) {
+		console.log("Error loading diagnoses: " + textStatus + ", " + error);
+	});
+ 		/*
+		 * $.each(data.options, function(v) { ICD.push(JSON.parse(v)); });
+		 */
+		 
+	/*$.ajax({
+		type: "GET",
+		url: dhis_url + "api/optionSets/eUZ79clX7y1",
+		dataType: 'json',
+		//async: false,
+		headers: {
+			Authorization: "Basic" + btoa(user+":"+password)
+		},
+		success: function(data) {
+			console.log("wtf");
+			for ( var idx=0, len = data.options.length; idx < len; idx++ ) {
+   				var icd_elem = data.options[idx];
+				ICD[idx] = {
+					"id" : icd_elem,
+					"label" : icd_elem
+				};
+			}
+			console.log("ICD loaded");
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading ICD codes: " + textStatus + ", " + error);
+		}
+	});*/
+}
+
+var forms = [];
+
+function getProgramStage() {
+	$.ajax({
+		type: "GET",
+		url: url + "api/programStages/" + selectedProg,
+		dataType: 'json',
+		async: false,
+		headers: {
+			Authorization: "Basic" + btoa(user+":"+password)
+		},
+		success: function(data) {
+			
+			console.log("ProgramStage loaded");
+
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading ProgramStage: " + textStatus + ", " + error);
+		}
+	});
+
+}
 
 
 //searches for programs for currently selected organisation, fills them into currentProgs
@@ -458,8 +444,8 @@ function searchForPrograms() {
 	}
 }
 
-function ClearOptionsFast(id)
-{
+
+function ClearOptionsFast(id) {
 	var selectObj = document.getElementById(id);
 	var selectParentNode = selectObj.parentNode;
 	var newSelectObj = selectObj.cloneNode(false); // Make a shallow copy

@@ -1,6 +1,6 @@
-/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security */
-
 'use strict';
+
+/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security */
 
 var orgList = [];
 var progList = [];
@@ -14,132 +14,48 @@ var password = "district";
 var url = "";
 var dhis_url = "http://apps.dhis2.org/dev/"
 
-var GoogleAPIKey = 'AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8';
-
-function initialize_gmaps() {
-	var acOptions = { componentRestrictions: {country: 'no'} };
-
-	var mapOptions = {
-		zoom: 8,
-		minZoom: 3,
-		center: new google.maps.LatLng(59.923022,10.752869),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-
-	var ac = new google.maps.places.Autocomplete($('#location')[0], {});
-	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	var gc = new google.maps.Geocoder();
-	//var places = new google.maps.places.PlacesService(map);
-	var marker = null;
-
-	var setLocation = function (latLng) {
-		var lat = latLng.ob, lng = latLng.pb;
-		$('#lat').val(lat)
-		$('#lng').val(lng)
-		if (marker != null) {
-		  marker.setVisible(false)
-		  marker.setMap(null)
-		}
-
-		marker = new google.maps.Marker({
-		  position: latLng,
-		  map: map,
-		  animation: google.maps.Animation.DROP
-		});
-	};
-
-	google.maps.event.addListener(ac, 'place_changed', function() {
-		var place = ac.getPlace();
-		setLocation(place.geometry.location);
-	});
-
-	google.maps.event.addListener(map, 'rightclick', function(ev) {
-		/*
-		var deltaLatitude  = ev.ca.y /  111111;
-		var deltaLongitude = ev.ca.x / (111111 * Math.cos(ev.latLng.pb));
-		var sw = new google.maps.LatLng(
-		  ev.latLng.lat() - deltaLatitude  / 2,
-		  ev.latLng.lng() - deltaLongitude / 2);   
-		var ne = new google.maps.LatLng(
-		  ev.latLng.lat() + deltaLatitude  / 2,
-		  ev.latLng.lng() + deltaLongitude / 2);   
-		var extent = new google.maps.LatLngBounds(sw, ne)
-		*/
-		var gcReq = {
-			// bounds: extent, 
-			location: ev.latLng
-		}
-
-		setLocation(ev.latLng);
-		gc.geocode(gcReq, function (results, status) {
-			console.log(status)
-			console.log(results)
-			$('#location').val(results[0].formatted_address);
-		});
-
-
-		if ($('#autohide:checked').length) {
-			$('body').removeClass('map');
-		  	$('#map').val(0);
-			$('#map').removeClass('active');
-		}
-	});
-}
-
-var add_map = function()
-{	
-	var script = document.createElement('script');
-	script.type = 'text/javascript';
-	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
-		'libraries=places&' +
-		'sensor=false&' +
-		'key=' + GoogleAPIKey +
-		'&callback=initialize_gmaps';
-	document.body.appendChild(script); 
-}
 
 //if user just want to get location from browser
-function get_location() {
+function geolocate_toggle(enabled) {
+	if (!Modernizr.geolocation) {
+		alert('Geolocation is not supportet by your byrowse, you can mark your position by choosing the pin tool')
+    return;
+  }
+
 	var option = {frequency: 500, maximumAge: 0, timeout: 10000, enableHighAccuracy:true};
-	if (Modernizr.geolocation) {
-		navigator.geolocation.getCurrentPosition(location_found, handle_error, option);
-	} else {
-		x.innerHTML = "Geolocation is not supportet by your byrowse, you can mark your position by choosing the pin tool"
-	}
-}
 
-//should save the location, and add it to the form.
-function location_found(position) {
-	alert(position.coords.latitude + "," + position.coords.longitude);
-	//Funker dette, hmm?, kanskje :S
-	var setLocation = function (positionO) {
-		var lat = positionO.coords.latitude, lng = positionO.coords.longitude;
-		$('#lat').val(lat)
-		$('#lng').val(lng)
-		if (marker != null) {
-		  marker.setVisible(false)
-		  marker.setMap(null)
-		}
+  var geo_found = function (pos) {
+    /* Location found */
+    $('#lat').val(pos.coords.latitude)
+    $('#lng').val(pos.coords.longitude)
+    $('#location').val('Current position')
+  }
 
-		marker = new google.maps.Marker({
-		  position: latLng,
-		  map: map,
-		  animation: google.maps.Animation.DROP
-		});
-	};
-	setLocation(position);
-	$('#location').val(results[0].formatted_address);
-}
+  var geo_error = function (err) {
+    if (err == 1) {
+  	  alert("you have not allowed access to your location");
+	  } else if (err == 2) {
+	  	alert("the network is down or the positioning satellites can’t be contacted, you can mark your position by choosing the pin tool");
+	  } else { // err == 3rt("stud
+	  	alert("network is up but it takes too long to calculate the user’s position, you can mark your position by choosing the pin tool");
+	  }
+  }
 
-//Handles when an error occur
-function handle_error(err) {
-	if (err == 1) {
-		alert("you have not allowed access to your location");
-	} else if (err == 2) {
-		alert("the network is down or the positioning satellites can’t be contacted, you can mark your position by choosing the pin tool");
-	} else { // err == 3rt("stud
-		alert("network is up but it takes too long to calculate the user’s position, you can mark your position by choosing the pin tool");
-	}
+  console.log('geolocation: ' + enabled)
+  $('#location')
+    .toggleClass('current-location', enabled)
+    .attr('readonly', enabled)
+  
+  $('#geolocate')
+    .toggleClass('active', enabled)
+
+  if (enabled) {
+    navigator.geolocation.getCurrentPosition(geo_found, geo_error, option)
+  } else {
+    if ($('#location').val() == 'Current position') {
+      $('#location').val('')
+    }
+  }
 }
 
 $(function() {
@@ -181,42 +97,93 @@ $(function() {
 });*/
 
 $(function() {
+  /* Parse all script-tags with template-class, expect ID of script-tag
+   * to start with 'template-' (for semantics), which will be stripped away
+   * in the compiled template stored in templates[].
+   */
+  var dynamic = $('#dynamic')
+  var templates = [];
+  $('.template').each(function(i, tmp) {
+    tmp = $(tmp)
+    templates[tmp.attr('id').substring(9)] = _.template(tmp.html())
+  })
+  
+  dynamic.append(templates['age_gender']({}))
+  
+  dynamic.append(templates['location']({
+    name: 'location'
+  }))
+  
+  dynamic.append(templates['text']({
+    name: 'icd',
+    label: 'ICD'
+  }))
+  
 	$("#icd").autocomplete({
-	    source: function(request, response) {
-	        var results = $.ui.autocomplete.filter(ICD, request.term);
-	        response(results.slice(0, 10));
-	    }
+	  source: function(request, response) {
+	    var results = $.ui.autocomplete.filter(ICD, request.term);
+	    response(results.slice(0, 10));
+	  }
 	});
+  
+  dynamic.append(templates['date']({
+    name: 'admissiondate',
+    label: 'Admission'
+  }))
+  
+  dynamic.append(templates['date']({
+    name: 'admissiondate',
+    label: 'Discharge'
+  }))
+  
+  dynamic.append(templates['dischargemode']({
+    label: 'Discharge mode'
+  }))
+  
+  dynamic.append(templates['longText']({
+    label: 'Comment',
+    name: 'comment'
+  }))
+
+  loadPrograms();
+  loadOrganisations();
+  loadICD()
+  //disableDialog()
 });
 
 $(function() {
-	if (!Modernizr.inputtypes.date) {
-		$('.datepicker').datepicker();
-	}
-
 	$('#comment').popover({
 		html: true,
 		title: 'Comment'
 	});
 
 	$('#submit').click(function(ev) {
-		add_comment();
 		if (Modernizr.history) {
 	 		var state = {};
 			history.pushState(state, null, link.href);
 		}
+		add_comment();
 		//addComment();
 	});
 
-	$('#map').click(function(ev) {
-		$('body').toggleClass('map', $(this).val());
-		add_map();
+	if (!Modernizr.inputtypes.date) {
+		$('.datepicker').datepicker();
+	}
+
+  $('#dynamic').on('click', '#map', function(ev) {
+    ev.stopImmediatePropagation()
+    $(this).toggleClass('active')
+		$('body').toggleClass('map', $(this).hasClass('active'));
+    geolocate_toggle(false)
 	});
 
-	$('#locate').click(function(e) {
-		e.preventDefault();
-		get_location();
+	$('#dynamic').on('click', '#geolocate', function(ev) {
+    ev.stopImmediatePropagation()
+    $(this).toggleClass('active')
+    geolocate_toggle($(this).hasClass('active'))
 	});
+
+  maps_init()
 });
 
 //Should save the comment. 
@@ -258,7 +225,7 @@ function sendEvent(data) {
 		type: "POST",
 		url: dhis_url + "api/events",
 		dataType: "json",
-		async: false,
+		//async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
@@ -344,7 +311,7 @@ function getOrgProg (i) {
 		type: "GET",
 		url: dhis_url + "api/programs/" + progList[i].value,
 		dataType: 'json',
-		async: false,
+		//async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},

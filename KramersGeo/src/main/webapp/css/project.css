@@ -17,6 +17,10 @@ body {
   box-shadow: #ddd 0 0 2px 0;
 }
 
+#leftBar > div {
+  padding-top: 63px;
+}
+
 #form-canvas {
   padding: 63px 15px 12px 15px;
   min-height: 100%;
@@ -134,6 +138,15 @@ body {
 }
 .form-group + .form-horizontal {
   margin-top: -15px;
+}
+
+input.current-location {
+  color: #04a;
+  background: #fff;
+}
+
+button:focus {
+  outline: none !important;
 }
 
 .map #map-canvas {

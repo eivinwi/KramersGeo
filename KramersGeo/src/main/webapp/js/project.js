@@ -13,7 +13,7 @@ var selectedProg;
 var user = "admin";
 var password = "district";
 var url = "";
-var dhis_url = "http://apps.dhis2.org/demo/"
+var dhis_url = "http://apps.dhis2.org/dev/"
 
 
 //if user just want to get location from browser
@@ -36,9 +36,9 @@ function geolocate_toggle(enabled) {
     if (err == 1) {
   	  alert("you have not allowed access to your location");
 	  } else if (err == 2) {
-	  	alert("the network is down or the positioning satellites canâ€™t be contacted, you can mark your position by choosing the pin tool");
+	  	alert("the network is down or the positioning satellites can’t be contacted, you can mark your position by choosing the pin tool");
 	  } else { // err == 3rt("stud
-	  	alert("network is up but it takes too long to calculate the userâ€™s position, you can mark your position by choosing the pin tool");
+	  	alert("network is up but it takes too long to calculate the user’s position, you can mark your position by choosing the pin tool");
 	  }
   }
 
@@ -210,7 +210,7 @@ function submit_form() {
 			{	"dataElement": "qrur9Dvnyt5", "value": "22" }, 
 			{	"dataElement": "oZg33kd9taw", "value": "Male" },
 			{	"dataElement": "msodh3rEMJa", "value": "2013-05-18" } 
-			{	"dataElement": "comment", "value": "kommentar skal inn her"} //litt usikker pÃ¥ comment elementet her
+			{	"dataElement": "comment", "value": "kommentar skal inn her"} //litt usikker på comment elementet her
 		] 
 	};
 	sendEvent(data);*/
@@ -219,7 +219,7 @@ function submit_form() {
 // should send data in json format
 function sendEvent(data) {
 	/**
-	 * oppsett for Ã¥ sende data til serveren
+	 * oppsett for å sende data til serveren
 	 */
 	alert("sendEvent: "+data);
 	$.ajax({
@@ -239,9 +239,8 @@ function sendEvent(data) {
 	});
 }
 
-//For testing. Skal benytte noe lignende til Ã¥ kun vise riktig forms
-function display(e) {
-	alert(selectedProg);
+//For testing. Skal benytte noe lignende til å kun vise riktig forms
+function display(e) {	
 	if (e.checked) {
 		document.getElementById('test').style.display = 'block';
 	} else {

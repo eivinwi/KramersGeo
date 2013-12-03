@@ -5,6 +5,7 @@
 var orgList = [];
 var progList = [];
 var progOrgArray = [];
+var progStageArray = [];
 var ICD = [];
 var selectedOrg;
 var selectedProg;
@@ -12,7 +13,7 @@ var selectedProg;
 var user = "admin";
 var password = "district";
 var url = "";
-var dhis_url = "http://apps.dhis2.org/dev/"
+var dhis_url = "http://apps.dhis2.org/demo/"
 
 
 //if user just want to get location from browser
@@ -35,9 +36,9 @@ function geolocate_toggle(enabled) {
     if (err == 1) {
   	  alert("you have not allowed access to your location");
 	  } else if (err == 2) {
-	  	alert("the network is down or the positioning satellites can’t be contacted, you can mark your position by choosing the pin tool");
+	  	alert("the network is down or the positioning satellites canâ€™t be contacted, you can mark your position by choosing the pin tool");
 	  } else { // err == 3rt("stud
-	  	alert("network is up but it takes too long to calculate the user’s position, you can mark your position by choosing the pin tool");
+	  	alert("network is up but it takes too long to calculate the userâ€™s position, you can mark your position by choosing the pin tool");
 	  }
   }
 
@@ -209,7 +210,7 @@ function submit_form() {
 			{	"dataElement": "qrur9Dvnyt5", "value": "22" }, 
 			{	"dataElement": "oZg33kd9taw", "value": "Male" },
 			{	"dataElement": "msodh3rEMJa", "value": "2013-05-18" } 
-			{	"dataElement": "comment", "value": "kommentar skal inn her"} //litt usikker på comment elementet her
+			{	"dataElement": "comment", "value": "kommentar skal inn her"} //litt usikker pÃ¥ comment elementet her
 		] 
 	};
 	sendEvent(data);*/
@@ -218,7 +219,7 @@ function submit_form() {
 // should send data in json format
 function sendEvent(data) {
 	/**
-	 * oppsett for å sende data til serveren
+	 * oppsett for Ã¥ sende data til serveren
 	 */
 	alert("sendEvent: "+data);
 	$.ajax({
@@ -238,7 +239,7 @@ function sendEvent(data) {
 	});
 }
 
-//For testing. Skal benytte noe lignende til å kun vise riktig forms
+//For testing. Skal benytte noe lignende til Ã¥ kun vise riktig forms
 function display(e) {
 	alert(selectedProg);
 	if (e.checked) {
@@ -307,6 +308,7 @@ function loadProgOrgs() {
 
 function getOrgProg (i) {
 	progOrgArray[i] = [];
+	progStageArray[i] = [];
 	$.ajax({
 		type: "GET",
 		url: dhis_url + "api/programs/" + progList[i].value,
@@ -318,6 +320,9 @@ function getOrgProg (i) {
 		success: function(data) {
 			$.each(data.organisationUnits, function(key, val) {
 				progOrgArray[i].push(val);
+			});
+			$.each(data.programStages, function(key, val) {
+				progStageArray[i].push(val.id);
 			});
 			console.log("Prog/org connections loaded");
 		},
@@ -359,48 +364,87 @@ var forms = [];
 var types = {"string" : "text", "int" : "number", "date": "date"};
 
 function getProgramStage() {
-/*	$.ajax({
-		type: "GET",
-		url: url + "api/programStages/" + selectedProg,
-		dataType: 'json',
-		async: false,
-		headers: {
-			Authorization: "Basic " + btoa(user+":"+password)
-		},
-		success: function(data) {
-			
-			console.log("ProgramStage loaded");
+	var arr = progStageArray[selectedProg];
 
-			//TODO:
-			//create forms
-			var opt;
+	for(var i = 0; i < arr.length; i++) {
+		console.log("Loading forms for: " + arr[i]);
 
-			if(data.optionSet == null) { //no given info, basic empty field
+		$.ajax({
+			type: "GET",
+			url: dhis_url + "api/programStages/" + arr[i],
+			dataType: 'json',
+			async: false,
+			headers: {
+				Authorization: "Basic " + btoa(user+":"+password)
+			},
+			success: function(data) {
+				console.log("ProgramStage loaded");
 
-			} 
-			else { //get the optionset
-				$.ajax({
-					type: "GET",
-					url: url + "api/optionSets/" + selectedProg,
-					dataType: 'json'
-					headers: {
-						Authorization: "Basic " + btoa(user+":"+password)
-					},
-					success: function() {
-						//got a optionset
+				$.each(data.programStageDataElements, function() {
+					/* fetch the element of each form 
+					 */
 
-					},
-					error: function(jqXhr, textStatus, error) {
-						console.log("Error loading OptionSets: " + textStatus + ", " + error);
-					}
+					console.log(this.dataElement);
+					var dId = this.dataElement.id;
+
+					/*fetch each dataElement in the programStage*/
+					$.ajax({
+						type: "GET",
+						url: dhis_url + "api/dataElements/" + dId,
+						dataType: 'json',
+						async: false,
+						headers: {
+							Authorization: "Basic " + btoa(user+":"+password)
+						},
+						success: function(dataElement) {
+
+							//GOT THE DATAELEMENT
+
+							/*
+							 * If it has optionset, get it 
+							 */
+							 var dId = this.dataElement.id;
+							if(dataElement.optionSet != null) {
+								$.ajax({
+									type: "GET",
+									url: dhis_url + "api/optionSets/" + dId,
+									dataType: 'json',
+									async: false,
+									headers: {
+										Authorization: "Basic " + btoa(user+":"+password)
+									},
+									success: function(optionSet) {
+										//got optionset, create options for the form:
+										var options = [];
+										$.each(optionSet.options, function(key, value) {
+											var opt = document.createElement('option');
+											opt.innerHTML = value.name; //?
+											opt.value = value;
+											options.appendChild(opt);			
+										});
+
+									},
+									error: function(jqXhr, textStatus, error) {
+										console.log("Error loading optionSet: " + textStatus + ", " + error);
+									}
+								});
+							}	
+							else {
+								//No optionset, regular form
+							}
+						},
+						error: function(jqXhr, textStatus, error) {
+							console.log("Error loading dataElement: " + textStatus + ", " + error);
+						}
+					})
+
 				});
+			},
+			error: function(jqXhr, textStatus, error) {
+				console.log("Error loading ProgramStage: " + textStatus + ", " + error);
 			}
-
-		},
-		error: function(jqXhr, textStatus, error) {
-			console.log("Error loading ProgramStage: " + textStatus + ", " + error);
-		}
-	});*/
+		});
+	}
 }
 
 
@@ -412,7 +456,7 @@ function searchForPrograms() {
 			if(progOrgArray[i][j].name == selectedOrg) {
 				var opt = document.createElement('option');
 				opt.innerHTML = progList[i].label;
-				opt.value = progList[i].value; //perhaps label
+				opt.value = i; //perhaps label
 				sel.appendChild(opt);
 			}
 		}

@@ -9,7 +9,12 @@
 	<link rel="stylesheet" media="screen and (max-device-width: 720px)" href="css/mobile.css">
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
-  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+
+  <!-- http://www.jstorage.info/#usage -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+  <script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>
+  <script> /* $.jStorage is now available */ </script>
+  <script src="http://netdna.bootstrapcdn.com/bootcommentstrap/3.0.2/js/bootstrap.min.js"></script>
   <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
   <script src="js/underscore-min.js"></script>
 	<script src="js/maps.js"></script>
@@ -35,6 +40,7 @@
 
   <div id="map-canvas">
   </div>
+  
   <div id="message">
     <span>Right-click on map to set location</span>
     <label for="autohide">
@@ -42,7 +48,6 @@
     Hide map when set
     </label>
   </div>
-
 
   <div id="leftBar">
   <div class="form-group" id="org_prog_group">
@@ -64,13 +69,7 @@
     <form role="form" method="post" class="form-horizontal">
 
 
-
-
-
-
-
-
-        <!-- Test Test Test-->
+        <!-- Test Test Test
       <input type="checkbox" onclick="display(this)">Add more users</input>
       <div id="yourDiv"> ...other forms... </div>
 
@@ -81,9 +80,8 @@
           <input type="date" class="datepicker form-control input-sm" id="test2" name="dateadmission" placeholder="abc">
         </div>
       </div>
-      <!-- Test Test Test -->
+       Test Test Test-->
       
-
 
 <!--
       <div class="form-group" id="comment_group">
@@ -98,7 +96,6 @@
       <!-- Dynamic elements added to this div -->
       <div id="dynamic"></div>
 
-
       <div class="col-sm-3 not-stacked">
       </div>
       <div class="btn-group col-xs-9 form-group" id="submit_group">
@@ -106,8 +103,7 @@
         Complete
         </button>
       </div>
-
-      </form>
+    </form>
   </div><!-- #form-canvas -->
 
   

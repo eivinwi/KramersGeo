@@ -263,7 +263,7 @@ function loadPrograms() {
 				var opt = { label: val.name, value: val.id };
 				progList.push(opt);
 			});
-			console.log("Programs loaded");
+			//console.log("Programs loaded");
 			loadProgOrgs();
 		},
 		error: function(jqXhr, textStatus, error) {
@@ -287,7 +287,7 @@ function loadOrganisations() {
 				var opt = { label: val.name, value: val.id };
 				orgList.push(opt);
 			});
-			console.log("OrganisationUnits loaded");
+			//console.log("OrganisationUnits loaded");
 		},
 		error: function(jqXhr, textStatus, error) {
 			console.log("Error loading organisationUnits: " + textStatus + ", " + error);
@@ -298,7 +298,6 @@ function loadOrganisations() {
 //loads information about what organisations is connected to each program
 //necesarry because the dhis2 api is stupid
 function loadProgOrgs() {
-	console.log("Trying to load " + progList.length + " prog/org connections");
 	progOrgArray = new Array(progList.length);
 	for (var i = 0; i < progList.length; i++) {
 		getOrgProg(i);
@@ -323,7 +322,7 @@ function getOrgProg (i) {
 			$.each(data.programStages, function(key, val) {
 				progStageArray[i].push(val.id);
 			});
-			console.log("Prog/org connections loaded");
+			//console.log("Prog/org connections loaded");
 		},
 		error: function(jqXhr, textStatus, error) {
 			console.log("Error loading program/org connections: " + textStatus + ", " + error);
@@ -366,8 +365,6 @@ function getProgramStage() {
 	var arr = progStageArray[selectedProg];
 
 	for(var i = 0; i < arr.length; i++) {
-		console.log("Loading forms for: " + arr[i]);
-
 		$.ajax({
 			type: "GET",
 			url: dhis_url + "api/programStages/" + arr[i],
@@ -377,13 +374,7 @@ function getProgramStage() {
 				Authorization: "Basic " + btoa(user+":"+password)
 			},
 			success: function(data) {
-				console.log("ProgramStage loaded");
-
-				$.each(data.programStageDataElements, function() {
-					/* fetch the element of each form 
-					 */
-
-					console.log(this.dataElement);
+				$.each(data.programStageDataElements, function() {;
 					var dId = this.dataElement.id;
 
 					/*fetch each dataElement in the programStage*/
@@ -397,11 +388,8 @@ function getProgramStage() {
 						},
 						success: function(dataElement) {
 
-							//GOT THE DATAELEMENT
-							console.log(dataElement);
-
 							/*
-							 * If it has optionset, get it 
+							 * Got dataElement, check if it has optionset, if so; get it 
 							 */
 							if(dataElement.optionSet != null) {
 								var optId = dataElement.optionSet.id;
@@ -422,10 +410,8 @@ function getProgramStage() {
 												opt.innerHTML = value.name; //?
 												opt.value = value;
 												options.push(opt);		
-												console.log("LOADED OPTIONSET: " + value);
 											}
 										});
-										
 									},
 									error: function(jqXhr, textStatus, error) {
 										console.log("Error loading optionSet: " + textStatus + ", " + error);

@@ -152,11 +152,6 @@ $(function() {
 });
 
 $(function() {
-	$('#comment').popover({
-		html: true,
-		title: 'Comment'
-	});
-
 	$('#submit').click(function(ev) {
 		if (Modernizr.history) {
 	 		var state = {};
@@ -311,7 +306,6 @@ function getOrgProg (i) {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
 		success: function(data) {
-      console.log(data)
 			$.each(data.organisationUnits, function(key, val) {
 				progOrgArray[i].push(val);
 			});

@@ -204,15 +204,13 @@ function submit_form() {
 		"orgUnit": selectedProg, 
 		"eventDate": "2013-05-17",
 	 	"status": "COMPLETED", 
-	 	"storedBy": "admin", 
+	 	"storedBy": user, 
 	 	"coordinate": {"latitude": "59.8", "longitude": "10.9"}, 			
-	 	"dataValues": [
-			{	"dataElement": "qrur9Dvnyt5", "value": "22" }, 
-			{	"dataElement": "oZg33kd9taw", "value": "Male" },
-			{	"dataElement": "msodh3rEMJa", "value": "2013-05-18" } 
-			{	"dataElement": "comment", "value": "kommentar skal inn her"} //litt usikker på comment elementet her
-		] 
+	 	"dataValues": [] 
 	};
+
+	//Loop through forms and fill in dataValues
+
 	sendEvent(data);*/
 }
 
@@ -225,11 +223,12 @@ function sendEvent(data) {
 	$.ajax({
 		type: "POST",
 		url: dhis_url + "api/events",
-		dataType: "json",
-		//async: false,
+		dataType: 'json',
+		//need contenttype?
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
+		data: data,
 		success: function() {
 			console.log("Sent event");
 		},
@@ -254,7 +253,6 @@ function loadPrograms() {
 		type: "GET",
 		url: dhis_url + "api/programs/",
 		dataType: 'json',
-		//async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
@@ -278,7 +276,6 @@ function loadOrganisations() {
 		type: "GET",
 		url: dhis_url + "api/organisationUnits/",
 		dataType: 'json',
-		//async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
@@ -311,7 +308,6 @@ function getOrgProg (i) {
 		type: "GET",
 		url: dhis_url + "api/programs/" + progList[i].value,
 		dataType: 'json',
-		//async: false,
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
@@ -369,7 +365,6 @@ function getProgramStage() {
 			type: "GET",
 			url: dhis_url + "api/programStages/" + arr[i],
 			dataType: 'json',
-			async: false,
 			headers: {
 				Authorization: "Basic " + btoa(user+":"+password)
 			},
@@ -382,11 +377,15 @@ function getProgramStage() {
 						type: "GET",
 						url: dhis_url + "api/dataElements/" + dId,
 						dataType: 'json',
-						async: false,
 						headers: {
 							Authorization: "Basic " + btoa(user+":"+password)
 						},
 						success: function(dataElement) {
+
+							/*
+								GOT DATAELEMENT
+								CREATE FORMS DYNAMICALLY
+							*/
 
 							/*
 							 * Got dataElement, check if it has optionset, if so; get it 
@@ -397,7 +396,6 @@ function getProgramStage() {
 									type: "GET",
 									url: dhis_url + "api/optionSets/" + optId,
 									dataType: 'json',
-									async: false,
 									headers: {
 										Authorization: "Basic " + btoa(user+":"+password)
 									},

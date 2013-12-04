@@ -42,7 +42,6 @@ function geolocate_toggle(enabled) {
 	  }
   }
 
-  console.log('geolocation: ' + enabled)
   $('#location')
     .toggleClass('current-location', enabled)
     .attr('readonly', enabled)
@@ -312,6 +311,7 @@ function getOrgProg (i) {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
 		success: function(data) {
+      console.log(data)
 			$.each(data.organisationUnits, function(key, val) {
 				progOrgArray[i].push(val);
 			});

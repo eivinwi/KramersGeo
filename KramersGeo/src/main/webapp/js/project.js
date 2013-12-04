@@ -148,7 +148,7 @@ $(function() {
 
   loadPrograms();
   loadOrganisations();
-  loadICD()
+  //loadICD()
   //disableDialog()
 });
 
@@ -334,7 +334,7 @@ function getOrgProg (i) {
 
 //TODO: caching
 //url +  api/optionSets/eUZ79clX7y1.json
-function loadICD() {
+/*function loadICD() {
 	$.ajax({
 		type: "GET",
 		url: dhis_url + "api/optionSets/eUZ79clX7y1",
@@ -357,7 +357,7 @@ function loadICD() {
 			console.log("Error loading ICD codes: " + textStatus + ", " + error);
 		}
 	});
-}
+}*/
 
 var forms = [];
 var types = {"string" : "text", "int" : "number", "date": "date"};
@@ -398,15 +398,16 @@ function getProgramStage() {
 						success: function(dataElement) {
 
 							//GOT THE DATAELEMENT
+							console.log(dataElement);
 
 							/*
 							 * If it has optionset, get it 
 							 */
-							 var dId = this.dataElement.id;
 							if(dataElement.optionSet != null) {
+								var optId = dataElement.optionSet.id;
 								$.ajax({
 									type: "GET",
-									url: dhis_url + "api/optionSets/" + dId,
+									url: dhis_url + "api/optionSets/" + optId,
 									dataType: 'json',
 									async: false,
 									headers: {
@@ -416,12 +417,15 @@ function getProgramStage() {
 										//got optionset, create options for the form:
 										var options = [];
 										$.each(optionSet.options, function(key, value) {
-											var opt = document.createElement('option');
-											opt.innerHTML = value.name; //?
-											opt.value = value;
-											options.appendChild(opt);			
+											if(value != null) {
+												var opt = document.createElement('option');
+												opt.innerHTML = value.name; //?
+												opt.value = value;
+												options.push(opt);		
+												console.log("LOADED OPTIONSET: " + value);
+											}
 										});
-
+										
 									},
 									error: function(jqXhr, textStatus, error) {
 										console.log("Error loading optionSet: " + textStatus + ", " + error);

@@ -1,142 +1,62 @@
 'use strict';
 
+/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security */
+
 var orgList = [];
 var progList = [];
-var orgsTmp = [];
-var progTmp = [];
 var progOrgArray = [];
+var progStageArray = [];
 var ICD = [];
 var selectedOrg;
 var selectedProg;
 
+var user = "admin";
+var password = "district";
 var url = "";
+var dhis_url = "http://apps.dhis2.org/demo/"
 
-var GoogleAPIKey = 'AIzaSyDY7GeWGMJ7CiH2okMABZ3HBF9Fx6FXZg8';
-
-function initialize_gmaps() {
-	var acOptions = { componentRestrictions: {country: 'no'} };
-
-	var mapOptions = {
-		zoom: 8,
-		minZoom: 3,
-		center: new google.maps.LatLng(59.923022,10.752869),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-
-	var ac = new google.maps.places.Autocomplete($('#location')[0], {});
-	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-	var gc = new google.maps.Geocoder();
-	//var places = new google.maps.places.PlacesService(map);
-	var marker = null;
-
-	var setLocation = function (latLng) {
-		var lat = latLng.ob, lng = latLng.pb;
-		$('#lat').val(lat)
-		$('#lng').val(lng)
-		if (marker != null) {
-		  marker.setVisible(false)
-		  marker.setMap(null)
-		}
-
-		marker = new google.maps.Marker({
-		  position: latLng,
-		  map: map,
-		  animation: google.maps.Animation.DROP
-		});
-	};
-
-	google.maps.event.addListener(ac, 'place_changed', function() {
-		var place = ac.getPlace();
-		setLocation(place.geometry.location);
-	});
-
-	google.maps.event.addListener(map, 'rightclick', function(ev) {
-		/*
-		var deltaLatitude  = ev.ca.y /  111111;
-		var deltaLongitude = ev.ca.x / (111111 * Math.cos(ev.latLng.pb));
-		var sw = new google.maps.LatLng(
-		  ev.latLng.lat() - deltaLatitude  / 2,
-		  ev.latLng.lng() - deltaLongitude / 2);   
-		var ne = new google.maps.LatLng(
-		  ev.latLng.lat() + deltaLatitude  / 2,
-		  ev.latLng.lng() + deltaLongitude / 2);   
-		var extent = new google.maps.LatLngBounds(sw, ne)
-		*/
-		var gcReq = {
-			// bounds: extent, 
-			location: ev.latLng
-		}
-
-		setLocation(ev.latLng);
-		gc.geocode(gcReq, function (results, status) {
-			console.log(status)
-			console.log(results)
-			$('#location').val(results[0].formatted_address);
-		});
-
-
-		if ($('#autohide:checked').length) {
-			$('body').removeClass('map');
-		  	$('#map').val(0);
-			$('#map').removeClass('active');
-		}
-	});
-}
-
-var add_map = function()
-{	
-	var script = document.createElement('script');
-	script.type = 'text/javascript';
-	script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&' +
-		'libraries=places&' +
-		'sensor=false&' +
-		'key=' + GoogleAPIKey +
-		'&callback=initialize_gmaps';
-	document.body.appendChild(script); 
-}
 
 //if user just want to get location from browser
-function get_location() {
+function geolocate_toggle(enabled) {
+	if (!Modernizr.geolocation) {
+		alert('Geolocation is not supportet by your byrowse, you can mark your position by choosing the pin tool')
+    return;
+  }
+
 	var option = {frequency: 500, maximumAge: 0, timeout: 10000, enableHighAccuracy:true};
-	if (Modernizr.geolocation) {
-		navigator.geolocation.getCurrentPosition(location_found, handle_error, option);
-	} else {
-		x.innerHTML = "Geolocation is not supportet by your byrowse, you can mark your position by choosing the pin tool"
-	}
-}
 
-//should save the location, and add it to the form.
-function location_found(position) {
-	alert(position.coords.latitude + "," + position.coords.longitude);
-	//Funker dette, hmm?, kanskje :S
-	var setLocation = function (positionO) {
-		var lat = positionO.coords.latitude, lng = positionO.coords.longitude;
-		$('#lat').val(lat)
-		$('#lng').val(lng)
-		if (marker != null) {
-		  marker.setVisible(false)
-		  marker.setMap(null)
-		}
+  var geo_found = function (pos) {
+    /* Location found */
+    $('#lat').val(pos.coords.latitude)
+    $('#lng').val(pos.coords.longitude)
+    $('#location').val('Current position')
+  }
 
-		marker = new google.maps.Marker({
-		  position: latLng,
-		  map: map,
-		  animation: google.maps.Animation.DROP
-		});
-	};
-	setLocation(position);
-	$('#location').val(results[0].formatted_address);
-}
+  var geo_error = function (err) {
+    if (err == 1) {
+  	  alert("you have not allowed access to your location");
+	  } else if (err == 2) {
+	  	alert("the network is down or the positioning satellites canâ€™t be contacted, you can mark your position by choosing the pin tool");
+	  } else { // err == 3rt("stud
+	  	alert("network is up but it takes too long to calculate the userâ€™s position, you can mark your position by choosing the pin tool");
+	  }
+  }
 
-//Handles when an error occur
-function handle_error(err) {
-	if (err == 1) {
-		alert("you have not allowed access to your location");
-	} else if (err == 2) {
-		alert("the network is down or the positioning satellites can’t be contacted, you can mark your position by choosing the pin tool");
-	} else { // err == 3rt("stud
-		alert("network is up but it takes too long to calculate the user’s position, you can mark your position by choosing the pin tool");
-	}
+  console.log('geolocation: ' + enabled)
+  $('#location')
+    .toggleClass('current-location', enabled)
+    .attr('readonly', enabled)
+  
+  $('#geolocate')
+    .toggleClass('active', enabled)
+
+  if (enabled) {
+    navigator.geolocation.getCurrentPosition(geo_found, geo_error, option)
+  } else {
+    if ($('#location').val() == 'Current position') {
+      $('#location').val('')
+    }
+  }
 }
 
 $(function() {
@@ -157,6 +77,7 @@ $(function() {
 
 function getSelectedProg() {
 	selectedProg = document.getElementById('progName').value;
+	getProgramStage();
 }
 /* TODO: show the label
 $(function() {
@@ -177,42 +98,93 @@ $(function() {
 });*/
 
 $(function() {
+  /* Parse all script-tags with template-class, expect ID of script-tag
+   * to start with 'template-' (for semantics), which will be stripped away
+   * in the compiled template stored in templates[].
+   */
+  var dynamic = $('#dynamic')
+  var templates = [];
+  $('.template').each(function(i, tmp) {
+    tmp = $(tmp)
+    templates[tmp.attr('id').substring(9)] = _.template(tmp.html())
+  })
+  
+  dynamic.append(templates['age_gender']({}))
+  
+  dynamic.append(templates['location']({
+    name: 'location'
+  }))
+  
+  dynamic.append(templates['text']({
+    name: 'icd',
+    label: 'ICD'
+  }))
+  
 	$("#icd").autocomplete({
-	    source: function(request, response) {
-	        var results = $.ui.autocomplete.filter(ICD, request.term);
-	        response(results.slice(0, 10));
-	    }
+	  source: function(request, response) {
+	    var results = $.ui.autocomplete.filter(ICD, request.term);
+	    response(results.slice(0, 10));
+	  }
 	});
+  
+  dynamic.append(templates['date']({
+    name: 'admissiondate',
+    label: 'Admission'
+  }))
+  
+  dynamic.append(templates['date']({
+    name: 'admissiondate',
+    label: 'Discharge'
+  }))
+  
+  dynamic.append(templates['dischargemode']({
+    label: 'Discharge mode'
+  }))
+  
+  dynamic.append(templates['longText']({
+    label: 'Comment',
+    name: 'comment'
+  }))
+
+  loadPrograms();
+  loadOrganisations();
+  loadICD()
+  //disableDialog()
 });
 
 $(function() {
-	if (!Modernizr.inputtypes.date) {
-		$('.datepicker').datepicker();
-	}
-
 	$('#comment').popover({
 		html: true,
 		title: 'Comment'
 	});
 
 	$('#submit').click(function(ev) {
-		add_comment();
 		if (Modernizr.history) {
 	 		var state = {};
 			history.pushState(state, null, link.href);
 		}
+		add_comment();
 		//addComment();
 	});
 
-	$('#map').click(function(ev) {
-		$('body').toggleClass('map', $(this).val());
-		add_map();
+	if (!Modernizr.inputtypes.date) {
+		$('.datepicker').datepicker();
+	}
+
+  $('#dynamic').on('click', '#map', function(ev) {
+    ev.stopImmediatePropagation()
+    $(this).toggleClass('active')
+		$('body').toggleClass('map', $(this).hasClass('active'));
+    geolocate_toggle(false)
 	});
 
-	$('#locate').click(function(e) {
-		e.preventDefault();
-		get_location();
+	$('#dynamic').on('click', '#geolocate', function(ev) {
+    ev.stopImmediatePropagation()
+    $(this).toggleClass('active')
+    geolocate_toggle($(this).hasClass('active'))
 	});
+
+  maps_init()
 });
 
 //Should save the comment. 
@@ -238,7 +210,7 @@ function submit_form() {
 			{	"dataElement": "qrur9Dvnyt5", "value": "22" }, 
 			{	"dataElement": "oZg33kd9taw", "value": "Male" },
 			{	"dataElement": "msodh3rEMJa", "value": "2013-05-18" } 
-			{	"dataElement": "comment", "value": "kommentar skal inn her"} //litt usikker på comment elementet her
+			{	"dataElement": "comment", "value": "kommentar skal inn her"} //litt usikker pÃ¥ comment elementet her
 		] 
 	};
 	sendEvent(data);*/
@@ -247,28 +219,34 @@ function submit_form() {
 // should send data in json format
 function sendEvent(data) {
 	/**
-	 * oppsett for å sende data til serveren
+	 * oppsett for Ã¥ sende data til serveren
 	 */
 	alert("sendEvent: "+data);
 	$.ajax({
 		type: "POST",
-		url: "http://apps.dhis2.org/demo/api/events",
+		url: dhis_url + "api/events",
 		dataType: "json",
-		data: data,
-		username: "admin",
-		password: "district",
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error sendEvent: " + textStatus + ", " + error);
-	}).done(function() {
-		console.log("second success");
-	}).always(function() {
-		console.log("complete");
+		//async: false,
+		headers: {
+			Authorization : "Basic " + btoa(user+":"+password)
+		},
+		success: function() {
+			console.log("Sent event");
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error sendEvent: " + textStatus + ", " + error);
+		},
 	});
 }
 
-//For testing. Skal benytte noe lignende til å kun vise riktig forms
+<<<<<<< HEAD
+//For testing. Skal benytte noe lignende til Ã¥ kun vise riktig forms
 function display(e) {
 	alert(selectedProg);
+=======
+//For testing. Skal benytte noe lignende til å kun vise riktig forms
+function display(e) {	
+>>>>>>> 9d6c019e9d94c9423a6aae14407fa15c2ef5b72e
 	if (e.checked) {
 		document.getElementById('test').style.display = 'block';
 	} else {
@@ -276,53 +254,93 @@ function display(e) {
 	}
 }
 
+//TODO: caching
 function loadPrograms() {
-	//url + /api/ + "programs.json"
-	$.getJSON("programs.json", function(data) {
-		$.each(data.programs, function(key, val) {
-			progTmp.push(val);
-		});
-	}).done(function() {
-		console.log("Programs loaded");
-		populateProgs();
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading programs: " + textStatus + ", " + error);
+	$.ajax({
+		type: "GET",
+		url: dhis_url + "api/programs/",
+		dataType: 'json',
+		//async: false,
+		headers: {
+			Authorization : "Basic " + btoa(user+":"+password)
+		},
+		success: function(data) {
+			$.each(data.programs, function(key, val) {
+				var opt = { label: val.name, value: val.id };
+				progList.push(opt);
+			});
+			console.log("Programs loaded");
+			loadProgOrgs();
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading programs: " + textStatus + ", " + error);
+		},
 	});
-}
-
-function populateProgs() {
-	for(var i = 0; i < progTmp.length; i++) {
-		var prog = {label: progTmp[i].name, value: progTmp[i].id}
-		progList.push(prog);
-	}
-	loadProgOrgs();
 }
 
 // TODO: caching
 function loadOrganisations() {
-	// $.getJSON(url + '/api/organisationUnits.json', function(data) {
-    $.getJSON("organisationUnits.json", function(data) {
-   		$.each(data.organisationUnits, function(key, val) {
-   			orgsTmp.push(val);
-   		});
-	}).done(function(){
-		console.log("Organisation tree loaded.");
-    	populateOrgs();
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading organisation units: " + textStatus + ", " + error);
+	$.ajax({
+		type: "GET",
+		url: dhis_url + "api/organisationUnits/",
+		dataType: 'json',
+		//async: false,
+		headers: {
+			Authorization : "Basic " + btoa(user+":"+password)
+		},
+		success: function(data) {
+			$.each(data.organisationUnits, function(key, val) {
+				var opt = { label: val.name, value: val.id };
+				orgList.push(opt);
+			});
+			console.log("OrganisationUnits loaded");
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading organisationUnits: " + textStatus + ", " + error);
+		},
 	});
 }
 
-function populateOrgs() {
-	for(var i = 0; i < orgsTmp.length; i++) {
-		var org = {label: orgsTmp[i].name, value: orgsTmp[i].id}
-		orgList.push(org);
+//loads information about what organisations is connected to each program
+//necesarry because the dhis2 api is stupid
+function loadProgOrgs() {
+	console.log("Trying to load " + progList.length + " prog/org connections");
+	progOrgArray = new Array(progList.length);
+	for (var i = 0; i < progList.length; i++) {
+		getOrgProg(i);
 	}
 }
 
+function getOrgProg (i) {
+	progOrgArray[i] = [];
+	progStageArray[i] = [];
+	$.ajax({
+		type: "GET",
+		url: dhis_url + "api/programs/" + progList[i].value,
+		dataType: 'json',
+		//async: false,
+		headers: {
+			Authorization : "Basic " + btoa(user+":"+password)
+		},
+		success: function(data) {
+			$.each(data.organisationUnits, function(key, val) {
+				progOrgArray[i].push(val);
+			});
+			$.each(data.programStages, function(key, val) {
+				progStageArray[i].push(val.id);
+			});
+			console.log("Prog/org connections loaded");
+		},
+		error: function(jqXhr, textStatus, error) {
+			console.log("Error loading program/org connections: " + textStatus + ", " + error);
+		},
+	});
+}
+
+
+//TODO: caching
 //url +  api/optionSets/eUZ79clX7y1.json
 function loadICD() {
-<<<<<<< HEAD
 	$.ajax({
 		type: "GET",
 		url: dhis_url + "api/optionSets/eUZ79clX7y1",
@@ -351,97 +369,87 @@ var forms = [];
 var types = {"string" : "text", "int" : "number", "date": "date"};
 
 function getProgramStage() {
-/*	$.ajax({
-		type: "GET",
-		url: url + "api/programStages/" + selectedProg,
-		dataType: 'json',
-		async: false,
-		headers: {
-			Authorization: "Basic" + btoa(user+":"+password)
-		},
-		success: function(data) {
-			
-			console.log("ProgramStage loaded");
+	var arr = progStageArray[selectedProg];
 
-			//TODO:
-			//create forms
-			var opt;
+	for(var i = 0; i < arr.length; i++) {
+		console.log("Loading forms for: " + arr[i]);
 
-			if(data.optionSet == null) { //no given info, basic empty field
+		$.ajax({
+			type: "GET",
+			url: dhis_url + "api/programStages/" + arr[i],
+			dataType: 'json',
+			async: false,
+			headers: {
+				Authorization: "Basic " + btoa(user+":"+password)
+			},
+			success: function(data) {
+				console.log("ProgramStage loaded");
 
-			} else { //get the optionset
-				$.ajax({
-					type: "GET",
-					url: url + "api/optionSets/" + selectedProg,
-					dataType: 'json'
-					headers: {
-						Authorization: "Basic " + btoa(user+":"+password)
-					},
-					success: function() {
+				$.each(data.programStageDataElements, function() {
+					/* fetch the element of each form 
+					 */
 
-					},
-					error: function(jqXhr, textStatus, error) {
-						console.log("Error loading OptionSets: " + textStatus + ", " + error);
-					}
+					console.log(this.dataElement);
+					var dId = this.dataElement.id;
+
+					/*fetch each dataElement in the programStage*/
+					$.ajax({
+						type: "GET",
+						url: dhis_url + "api/dataElements/" + dId,
+						dataType: 'json',
+						async: false,
+						headers: {
+							Authorization: "Basic " + btoa(user+":"+password)
+						},
+						success: function(dataElement) {
+
+							//GOT THE DATAELEMENT
+
+							/*
+							 * If it has optionset, get it 
+							 */
+							 var dId = this.dataElement.id;
+							if(dataElement.optionSet != null) {
+								$.ajax({
+									type: "GET",
+									url: dhis_url + "api/optionSets/" + dId,
+									dataType: 'json',
+									async: false,
+									headers: {
+										Authorization: "Basic " + btoa(user+":"+password)
+									},
+									success: function(optionSet) {
+										//got optionset, create options for the form:
+										var options = [];
+										$.each(optionSet.options, function(key, value) {
+											var opt = document.createElement('option');
+											opt.innerHTML = value.name; //?
+											opt.value = value;
+											options.appendChild(opt);			
+										});
+
+									},
+									error: function(jqXhr, textStatus, error) {
+										console.log("Error loading optionSet: " + textStatus + ", " + error);
+									}
+								});
+							}	
+							else {
+								//No optionset, regular form
+							}
+						},
+						error: function(jqXhr, textStatus, error) {
+							console.log("Error loading dataElement: " + textStatus + ", " + error);
+						}
+					})
+
 				});
+			},
+			error: function(jqXhr, textStatus, error) {
+				console.log("Error loading ProgramStage: " + textStatus + ", " + error);
 			}
-
-		},
-		error: function(jqXhr, textStatus, error) {
-			console.log("Error loading ProgramStage: " + textStatus + ", " + error);
-		}
-	});*/
-=======
-	$.getJSON("eUZ79clX7y1.json", function(data) {
- 		/*
-		 * $.each(data.options, function(v) { ICD.push(JSON.parse(v)); });
-		 */
-		
-		for ( var idx=0, len = data.options.length; idx < len; idx++ ) {
-   			var icd_elem = data.options[idx];
-			ICD[idx] = {
-				"id" : icd_elem,
-				"label" : icd_elem
-			};
-		}
-
-	}).done(function(data) {
-		console.log("ICD diagnoses loaded.");
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading diagnoses: " + textStatus + ", " + error);
-	});
-}
-
-// Test for å hide form, og gjøre map større, og motsatt...
-function test() {	
-	var formcanvas = $(document.form-canvas)
-	formcanvas.hide()
-	var $body = $(document.body)
-	$body.hide();
-}
-
-//loads information about what organisations is connected to each program
-//necesarry because the dhis2 api is stupid
-function loadProgOrgs() {
-	progOrgArray = new Array(progList.length);
-	console.log("Loading program<->organisation connections");
-	for (var i = 0; i < progList.length; i++) {
-		getOrgProg(i);
+		});
 	}
-}
-
-function getOrgProg (i) {
-	progOrgArray[i] = [];
-	$.getJSON(url + progList[i].value + ".json", function(data) {
-		$.each(data.organisationUnits, function(key, val) {
-				progOrgArray[i].push(val);
-			});
-	}).done(function() {
-		console.log("Loaded: " + url + progList[i].value +".json");
-	}).fail(function(jqXhr, textStatus, error) {
-		console.log("Error loading prog<->org connections: " + textStatus + ", " + error);
-	});
->>>>>>> 76af2f097f2f3149242dfae50d94b16539db9be4
 }
 
 
@@ -453,15 +461,15 @@ function searchForPrograms() {
 			if(progOrgArray[i][j].name == selectedOrg) {
 				var opt = document.createElement('option');
 				opt.innerHTML = progList[i].label;
-				opt.value = progList[i].value; //perhaps label
+				opt.value = i; //perhaps label
 				sel.appendChild(opt);
 			}
 		}
 	}
 }
 
-function ClearOptionsFast(id)
-{
+
+function ClearOptionsFast(id) {
 	var selectObj = document.getElementById(id);
 	var selectParentNode = selectObj.parentNode;
 	var newSelectObj = selectObj.cloneNode(false); // Make a shallow copy

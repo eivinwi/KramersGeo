@@ -113,6 +113,8 @@
         select: function(ev, ui) {
           ev.preventDefault()
           $('#orgName').val(ui.item.label)
+          $('#orgId').val(ui.item.value)
+          org_selected(ui.item.label, ui.item.value)
         }
       });
       

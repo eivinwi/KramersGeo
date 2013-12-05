@@ -116,10 +116,11 @@
     var programs_loaded = function()
     {
       $('#orgName').autocomplete({
-        source: orgList,
-        autoFocus: true,
-        select: function (ev, ui) {
-          /* Inhibit jquery from writing id value in field */
+        source: function(request, response) {
+          var results = $.ui.autocomplete.filter(orgList, request.term);
+          response(results.slice(0, 10));
+        },
+        select: function(ev, ui) {
           ev.preventDefault()
 
           /* Fill field with name of organization */

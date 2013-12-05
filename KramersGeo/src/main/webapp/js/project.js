@@ -37,7 +37,7 @@ $("#icd").autocomplete({
     }
 });
 
-/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security */
+/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security*/
 
 var orgList = [];
 var progList = [];
@@ -96,14 +96,6 @@ function geolocate_toggle(enabled) {
 }
 
 $(function() {
-	var test = {};
-	test["test"] = "lol";
-	test["en"] = "1";
-	test["to"] = "2";
-	test["coordinate"] = {"latitude": "10.7", "longitude": "10.3"};
-	alert(JSON.stringify(test));
-
-
     $( "#orgName" ).autocomplete({
         source: orgList,
         autoFocus: true,
@@ -277,6 +269,11 @@ function submit_form() {
 	jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
 	jsonData["dataValues"] = [];
 	//Loop through forms and fill in dataValues
+	var formCol = document.forms;
+	for (var i = 0; i < document.forms.length; i++) {
+		//do's this work?
+		alert(formCol[i].name);
+	}
 
 	alert(JSON.strigify(jsonData));
 	/* Eksempel på data
@@ -286,7 +283,7 @@ function submit_form() {
 		"eventDate": "2013-05r-17",
 	 	"status": "COMPLETED", 
 	 	"storedBy": user, 
-	 	"coordinate": {"latitude": "59.8", "longitude": "10.9"}, 			
+	 	"coordinate": {"latitude": "59.8", "longitude": "10.9"}, 
 	 	"dataValues": [] 
 	};
 

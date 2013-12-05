@@ -49,19 +49,6 @@
     if (!Modernizr.inputtypes.date) {
       $('.datepicker').datepicker();
     }
-    
-    $('#dynamic').on('click', '#map', function(ev) {
-      ev.stopImmediatePropagation()
-      $(this).toggleClass('active')
-      $('body').toggleClass('map', $(this).hasClass('active'));
-      geolocate_toggle(false)
-    });
-    
-    $('#dynamic').on('click', '#geolocate', function(ev) {
-      ev.stopImmediatePropagation()
-      $(this).toggleClass('active')
-      geolocate_toggle($(this).hasClass('active'))
-    });
   }
 
   var org_init = function()
@@ -296,7 +283,6 @@
     org_init()
     programs_init()
     draw_form()
-    maps_init()
     
     $('#progName').change(program_stage_select)
   });

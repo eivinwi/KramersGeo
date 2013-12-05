@@ -84,6 +84,7 @@
         var opt = { label: val.name, value: val.id };
         orgList.push(opt);
       });
+      //console.log("OrganisationUnits loaded");
     });
   }
   
@@ -191,6 +192,9 @@
    */
   var templates_init = function ()
   {
+    var oldForm =$('#dynamic')
+    var form = oldForm.clone(true, false)
+    var templates = [];
     $('.template').each(function(i, tmp) {
       tmp = $(tmp)
       templates[tmp.attr('id').substring(9)] = _.template(tmp.html())

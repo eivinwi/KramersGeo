@@ -59,10 +59,25 @@
   var org_init = function()
   {
     apiGET("/api/organisationUnits", function (data) {
-      $.each(data.organisationUnits, function(key, val) {
-        var opt = { label: val.name, value: val.id };
-        orgList.push(opt);
-      });
+      for (var i = 0; i <= data.pager.pageCount; i++) {
+        $.ajax({
+          type: "GET",
+          url: dhis_url + "/api/organisationUnits?page="+i,
+          dataType: 'json',
+          headers: {
+            Authorization: "Basic " + btoa(user + ":" + password)
+          },
+          success: function(data) {
+            $.each(data.organisationUnits, function(key, val) {
+              var opt = { label: val.name, value: val.id };
+              orgList.push(opt);
+            });
+          },
+          error: function(jqXhr, textStatus, error) {
+            console.log("Error GET " + path + ": " + textStatus + ", " + error);
+          },
+        })
+      };
       //console.log("OrganisationUnits loaded");
     });
   }
@@ -95,20 +110,17 @@
     var programs_loaded = function()
     {
       $('#orgName').autocomplete({
-        source: orgList,
-        autoFocus: true,
-        select: function (ev, ui) {
-          /* Inhibit jquery from writing id value in field */
+        source: function(request, response) {
+          var results = $.ui.autocomplete.filter(orgList, request.term);
+          response(results.slice(0, 10));
+        },
+        select: function(ev, ui) {
           ev.preventDefault()
-
-          /* Fill field with name of organization */
           $('#orgName').val(ui.item.label)
           $('#orgId').val(ui.item.value)
-
-          /* name, id */
           org_selected(ui.item.label, ui.item.value)
         }
-      })
+      });
       
       $('#orgName').click(function(event, ui) {
         $(this).autocomplete('search', " ");

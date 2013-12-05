@@ -59,6 +59,14 @@ function geolocate_toggle(enabled) {
 }
 
 $(function() {
+	var test = {};
+	test["test"] = "lol";
+	test["en"] = "1";
+	test["to"] = "2";
+	test["coordinate"] = {"latitude": "10.7", "longitude": "10.3"};
+	alert(JSON.stringify(test));
+
+
     $( "#orgName" ).autocomplete({
         source: orgList,
         autoFocus: true,
@@ -80,7 +88,7 @@ function getSelectedProg() {
 }
 /* TODO: show the label
 $(function() {
-	$( "#orgName" ).autocomplete({
+	$( "#orgName" ).autocomplete({r
 		source: function(request, response) {
 			var results = $.ui.autocomplete.filter(orgList, request.term);
 			var res = results.slice(0.10);
@@ -184,28 +192,42 @@ $(function() {
 //Should save the comment. 
 function add_comment() {
 	var comment = $("#leaveComment").val();
-	//here we should save the comment.
+	//here we should save the comment, and merge it with the other json data.
+	//May put it in dataValues ??
 	if (comment.length > 0) {
 		alert($("#leaveComment").val());	
 	}
+	submit_form;
 }
 
-//Skal lage json data for innsending av innsamlet data
+//Skal lage json-data for innsending til dhis2
 function submit_form() {
-	/*
+	var jsonData = {}; //Create's a empty variable, to be filled.
+	jsonData["program"] = selectedProg;
+	jsonData["orgUnit"] = selectedOrg;
+	jsonData["eventDate"] = "2013-05-17"; //eksemempel
+	jsonData["status"] = "COMPLETED";
+	jsonData["storedBy"] = user;
+	//have to store the location, when it gets set
+	jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
+	jsonData["dataValues"] = [];
+	//Loop through forms and fill in dataValues
+
+	alert(JSON.strigify(jsonData));
+	/* Eksempel på data
 	var data = { 	
 		"program": selectedOrg, 
 		"orgUnit": selectedProg, 
-		"eventDate": "2013-05-17",
+		"eventDate": "2013-05r-17",
 	 	"status": "COMPLETED", 
 	 	"storedBy": user, 
 	 	"coordinate": {"latitude": "59.8", "longitude": "10.9"}, 			
 	 	"dataValues": [] 
 	};
 
-	//Loop through forms and fill in dataValues
 
-	sendEvent(data);*/
+	*/
+	sendEvent(jsonData);
 }
 
 // should send data in json format

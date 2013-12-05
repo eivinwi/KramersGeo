@@ -6,6 +6,10 @@
   var user = "admin";
   var password = "district";
   var dhis_url = "http://apps.dhis2.org/dev"
+  var latitude = "";
+  var longitude = "";
+  var selectedProg = "";
+  var selectedOrg = "";
 
   var orgList = [];
   var orgProgram = [];
@@ -43,8 +47,8 @@
         var state = {};
         history.pushState(state, null, link.href);
       }
-      add_comment();
-      //addComment();
+      //add_comment();
+      sendEvent();
     });
     
     if (!Modernizr.inputtypes.date) {
@@ -217,7 +221,23 @@
   /**
    * Should send data in json format
    */
+
   var sendEvent = function (data) {
+    var jsonData = {}; //Create's a empty variable, to be filled.
+    jsonData["program"] = selectedProg; //stemmer kanskje ikke helt nå
+    jsonData["orgUnit"] = selectedOrg; //stemmer kanskje ikke helt nå
+    jsonData["eventDate"] = "2013-05-17"; //eksemempel
+    jsonData["status"] = "COMPLETED";
+    jsonData["storedBy"] = user;
+    //have to store the location, when it gets set
+    jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
+    jsonData["dataValues"] = [];
+
+    var formCol = document.forms;
+    alert(JSON.stringify(jsonData));
+    for (var i = 0; i < document.forms.length; i++) {
+      alert(formCol[i].name);
+    }
     /*
      var data = {
      "program": selectedOrg,
@@ -230,7 +250,7 @@
      };
      */
     
-    alert("sendEvent: "+data);
+    alert("sendEvent: "+jsonData);
     $.ajax({
       type: "POST",
       url: dhis_url + "api/events",
@@ -239,7 +259,7 @@
       headers: {
         Authorization : "Basic " + btoa(user+":"+password)
       },
-      data: data,
+      data: JSON.stringify(jsonData),
       success: function() {
         console.log("Sent event");
       },
@@ -314,7 +334,6 @@
     org_init()
     programs_init()
     draw_form()
-    
     $('#progName').change(program_stage_select)
   });
 

@@ -1,4 +1,41 @@
-'use strict';
+//'use strict';
+
+$(function() {
+    $( "#orgName" ).autocomplete({
+        source: orgList,
+        autoFocus: true,
+        select: function( event, ui ) {
+            event.preventDefault();
+            selectedOrg = ui.item.label;
+            $( "#orgName" ).val( ui.item.label );
+            // $( "#orgId" ).val( ui.item.value );
+        }
+    }).click(function( event, ui ) {
+        $(this).autocomplete('search', " ");
+    });
+});
+
+$(function() {
+    $( "#progName" ).autocomplete({
+        source: progList,
+        autoFocus: true,
+        select: function( event, ui ) {
+            event.preventDefault();
+            selectedProg = ui.item.label;
+            $( "#progName" ).val( ui.item.label );
+            // $( "#progId" ).val( ui.item.value );
+        }
+    }).click(function( event, ui ) {
+        $(this).autocomplete('search', " ");
+    });
+});
+
+$("#icd").autocomplete({
+    source: function(request, response) {
+        var results = $.ui.autocomplete.filter(ICD, request.term);
+        response(results.slice(0, 10));
+    }
+});
 
 /* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security */
 
@@ -168,7 +205,9 @@ $(function() {
 		add_comment();
 		//addComment();
 	});
+}
 
+<<<<<<< HEAD
 	if (!Modernizr.inputtypes.date) {
 		$('.datepicker').datepicker();
 	}
@@ -187,6 +226,32 @@ $(function() {
 	});
 
   maps_init()
+=======
+$("#radio").buttonset();
+$( "#status" ).buttonset();
+$('.datepicker').datepicker();
+
+if (!Modernizr.inputtypes.date) {
+	$('.datepicker').datepicker();
+}
+
+$('#comment').popover({
+	html: true,
+	title: 'Comment'
+});
+
+$('#submit').click(function(ev) {
+	if (Modernizr.history) {
+ 		var state = {};
+		history.pushState(state, null, link.href);
+	}
+});
+
+$('#map').click(function(ev) {
+	$('body').toggleClass('map', $(this).val());
+	});
+	add_map();
+>>>>>>> b5a7584a9d90a885bf257900ac18084f19ff4e55
 });
 
 //Should save the comment. 

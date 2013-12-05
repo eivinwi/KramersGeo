@@ -228,7 +228,7 @@ function sendEvent(data) {
 		headers: {
 			Authorization : "Basic " + btoa(user+":"+password)
 		},
-		data: data,
+		data: data, //JSON.stringify?
 		success: function() {
 			console.log("Sent event");
 		},

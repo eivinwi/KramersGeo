@@ -66,7 +66,6 @@ $(function() {
 	test["coordinate"] = {"latitude": "10.7", "longitude": "10.3"};
 	alert(JSON.stringify(test));
 
-
     $( "#orgName" ).autocomplete({
         source: orgList,
         autoFocus: true,
@@ -212,6 +211,9 @@ function submit_form() {
 	jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
 	jsonData["dataValues"] = [];
 	//Loop through forms and fill in dataValues
+	for (var i = 0; i < document.forms.length; i++) {
+		//perhaps?? ish
+	}
 
 	alert(JSON.strigify(jsonData));
 	/* Eksempel på data

@@ -175,14 +175,14 @@
     maps_init()
     
     
-    $('#dynamic').on('click', '#map', function(ev) {
+    $('#form-canvas').on('click', '#map', function(ev) {
       ev.stopImmediatePropagation()
       $(this).toggleClass('active')
       $('body').toggleClass('map', $(this).hasClass('active'));
       geolocate_toggle(false)
     });
     
-    $('#dynamic').on('click', '#geolocate', function(ev) {
+    $('#form-canvas').on('click', '#geolocate', function(ev) {
       ev.stopImmediatePropagation()
       $(this).toggleClass('active')
       geolocate_toggle($(this).hasClass('active'))

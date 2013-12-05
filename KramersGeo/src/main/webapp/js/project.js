@@ -1,43 +1,6 @@
-//'use strict';
+'use strict';
 
-$(function() {
-    $( "#orgName" ).autocomplete({
-        source: orgList,
-        autoFocus: true,
-        select: function( event, ui ) {
-            event.preventDefault();
-            selectedOrg = ui.item.label;
-            $( "#orgName" ).val( ui.item.label );
-            // $( "#orgId" ).val( ui.item.value );
-        }
-    }).click(function( event, ui ) {
-        $(this).autocomplete('search', " ");
-    });
-});
-
-$(function() {
-    $( "#progName" ).autocomplete({
-        source: progList,
-        autoFocus: true,
-        select: function( event, ui ) {
-            event.preventDefault();
-            selectedProg = ui.item.label;
-            $( "#progName" ).val( ui.item.label );
-            // $( "#progId" ).val( ui.item.value );
-        }
-    }).click(function( event, ui ) {
-        $(this).autocomplete('search', " ");
-    });
-});
-
-$("#icd").autocomplete({
-    source: function(request, response) {
-        var results = $.ui.autocomplete.filter(ICD, request.term);
-        response(results.slice(0, 10));
-    }
-});
-
-/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security*/
+/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security */
 
 var orgList = [];
 var progList = [];
@@ -96,6 +59,14 @@ function geolocate_toggle(enabled) {
 }
 
 $(function() {
+	var test = {};
+	test["test"] = "lol";
+	test["en"] = "1";
+	test["to"] = "2";
+	test["coordinate"] = {"latitude": "10.7", "longitude": "10.3"};
+	alert(JSON.stringify(test));
+
+
     $( "#orgName" ).autocomplete({
         source: orgList,
         autoFocus: true,
@@ -197,9 +168,7 @@ $(function() {
 		add_comment();
 		//addComment();
 	});
-}
 
-<<<<<<< HEAD
 	if (!Modernizr.inputtypes.date) {
 		$('.datepicker').datepicker();
 	}

@@ -256,9 +256,29 @@
   
   /**
    * Should send data in json format
+   * Don't need data in at the moment,
    */
+
   var sendEvent = function (data) {
-    /*
+    var jsonData = {}; //Create's a empty variable, to be filled.
+    jsonData["program"] = selectedProg; //Må sette selectedProg når vi henter prog's
+    jsonData["orgUnit"] = selectedOrg; //Må sette selectedOrg når vi henter org's
+    jsonData["eventDate"] = "2013-05-17"; //eksemempel
+    jsonData["status"] = "COMPLETED";
+    jsonData["storedBy"] = user;
+    //have to store the location, when it gets set
+    jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
+    jsonData["dataValues"] = [];
+
+    //alert(JSON.stringify(jsonData));
+    var formElement = new Array();
+    $("form :input").each(function(){
+        formElement.push($(this));
+        console.log($(this).attr("id") + ": " + $(this).val())
+    })
+    console.log("Form length : " + formElement.length);
+    alert("yolo");
+      /*
      var data = {
      "program": selectedOrg,
      "orgUnit": selectedProg,
@@ -270,7 +290,7 @@
      };
      */
     
-    alert("sendEvent: "+data);
+    alert("sendEvent: "+jsonData);
     $.ajax({
       type: "POST",
       url: dhis_url + "api/events",
@@ -279,7 +299,7 @@
       headers: {
         Authorization : "Basic " + btoa(user+":"+password)
       },
-      data: data,
+      data: JSON.stringify(jsonData),
       success: function() {
         console.log("Sent event");
       },

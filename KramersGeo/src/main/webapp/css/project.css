@@ -10,7 +10,7 @@ body {
   display: block;
   width: 235px;
   position: absolute;
-  top: 0;r
+  top: 0;
   bottom: 0;
   background: #f7f7f7;
   border-right: 1px #ddd solid;
@@ -33,30 +33,37 @@ body {
   overflow: visible;
   z-index: 0;
   background: #fff;
-  transform: translate3d(235px,0,0);
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
+
+  /* Standards compilant */
+  transform: translate3d(235px,0,0);
+  transition: transform 0.38s ease 0, background 0.38s ease 0;
+
+  /* Older webkit support (overrides code above) */
   -webkit-transform: translate3d(235px,0,0);
-  /*For chrome 1-25, and safari 3.2+*/
-  -webkit-transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
-  -webkit-transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
-  /*Firefox 4-15*/
-  -moz-transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
-  -moz-transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
-  /*Opera 10.50-12.00*/
-  -o-transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
-  -o-transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
-  /*For newer browsers: Chrome 26, Firefox 16+, IE 10+, Opera 12.10+ */
-  transition: -webkit-transform 0.38s, transform 0.38s, background 0.38s;
-  transition: -webkit-transform 0.38s ease 0, background 0.38s ease 0;
+  -webkit-transition: -webkit-transform 0.38s ease 0, background 0.38s;
 }
+
+.map #form-canvas {
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(-0,0,0);
+  border-right: 1px #ddd solid;
+  background: #f7f7f7;
+  overflow-y: auto;
+  width: 235px;
+}
+
 #leftBar {
-  transition: all 0.38s;
-  opacity: 1;
+  transform: translate3d(0px,0,0);
+  transition: transform 0.38s ease 0;
+  -webkit-transform: translate3d(0px,0,0);
+  -webkit-transition: -webkit-transform 0.38s ease 0;
 }
 
 .map #leftBar {
-
+  transform: translate3d(235px,0,0);
+  -webkit-transform: translate3d(-235px,0,0);
 }
 
 #message {
@@ -90,15 +97,6 @@ body {
 .map #message {
   transform: translateY(0%);  
   -webkit-transform: translateY(0%);
-}
-
-.map #form-canvas {
-  transform: translate3d(0,0,0);
-  -webkit-transform: translate3d(-0,0,0);
-  border-right: 1px #ddd solid;
-  background: #f7f7f7;
-  overflow-y: auto;
-  width: 235px;
 }
 
 
@@ -165,17 +163,17 @@ button:focus {
 }
 
 /* stack bootstrap */
-.map .col-sm-3,
-.map .col-sm-9 {
+.map #form-canvas .col-sm-3,
+.map #form-canvas .col-sm-9 {
   width: 100%;
 }
 .map .non-stacked {
   display: none;
 }
 
-.map .col-sm-3,
-.map .col-sm-6,
-.map .col-sm-9 {
+.map #form-canvas .col-sm-3,
+.map #form-canvas .col-sm-6,
+.map #form-canvas .col-sm-9 {
   float: none;
 }
 .control-label {

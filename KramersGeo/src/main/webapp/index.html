@@ -7,15 +7,17 @@
   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.min.css">
 	<link rel="stylesheet" media="screen and (min-device-width: 721px)" href="css/project.css">
 	<link rel="stylesheet" media="screen and (max-device-width: 720px)" href="css/mobile.css">
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
 
-  <!-- http://www.jstorage.info/#usage -->
+  <!-- http://www.jstorage.info/#usage 
   <script src="//cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
-  <script src="https://raw.github.com/andris9/jStorage/master/jstorage.js"></script>
-  <script> /* $.jStorage is now available */ </script>
-  <script src="http://netdna.bootstrapcdn.com/bootcommentstrap/3.0.2/js/bootstrap.min.js"></script>
+  <script src="https://raw.github.comgList.p/andris9/jStorage/master/jstorage.js"></script>
+  <script> /* $.jStorage is now available */ </script> -->
   <script src="http://modernizr.com/downloads/modernizr-latest.js"></script>
+
   <script src="js/underscore-min.js"></script>
 	<script src="js/maps.js"></script>
 	<script src="js/project.js"></script>
@@ -50,7 +52,7 @@
   </div>
 
   <div id="leftBar">
-  <div class="form-group" id="org_prog_group">
+  <div class="form-group">
     <label for="orgName" class="control-label col-sm-3">Organisation</label>
     <div class="ui-widget">
       <div class="col-sm-9">
@@ -59,39 +61,14 @@
     </div> 
     <label for="progName" class="control-label col-sm-3">Program</label>
     <div class="col-sm-9">
-      <select id="progName" name="progName" type="text" onchange="getSelectedProg()" class="form-control input-sm">
+      <select id="progName" name="progName" onchange="getSelectedProg()" class="form-control">
       </select>
     </div> 
-    </div>
+  </div>
   </div>
   
 	<div id="form-canvas" class="container">
     <form role="form" method="post" class="form-horizontal">
-
-
-        <!-- Test Test Test
-      <input type="checkbox" onclick="display(this)">Add more users</input>
-      <div id="yourDiv"> ...other forms... </div>
-
-       <div class="form-group" id="test">
-        <label for="dateadmission" class="col-sm-3 control-label">test</label>
-           
-        <div class="col-sm-9">
-          <input type="date" class="datepicker form-control input-sm" id="test2" name="dateadmission" placeholder="abc">
-        </div>
-      </div>
-       Test Test Test-->
-      
-
-<!--
-      <div class="form-group" id="comment_group">
-        <label class="control-label col-sm-3">Comment</label>
-        <div class="col-sm-9">
-          <div class="input-group input-group-lg">
-            <input type="text" id="leaveComment" class="form-control" paceholder="Comment">
-          </div>
-        </div>
-      </div> -->
 
       <!-- Dynamic elements added to this div -->
       <div id="dynamic"></div>
@@ -106,6 +83,8 @@
     </form>
   </div><!-- #form-canvas -->
 
+
+<!-- TEMPLATES -->
   
 <script type="text/template" id="template-text" class="template">
   <div class="form-group">
@@ -180,7 +159,7 @@
     <label class="control-label col-sm-3"><%= label %></label>
     <div class="col-sm-9 input-group">
     <div class="btn-group btn-group-sm" data-toggle="buttons">
-      <label class="btn btn-default tip" for="modeD" data-toggle="tooltip" title="Discharged">
+      <label class="btn btn-default tip" for="modeD" title="Discharged">
       <input type="radio" name="<%= name %>" value="Discharged" id="modeD"> Dis<span class=exp>charged</span>
       </label>
       <label class="btn btn-default tip" for="modeT" title="Transferred">

@@ -20,7 +20,7 @@
 
   <script src="js/underscore-min.js"></script>
 	<script src="js/maps.js"></script>
-	<script src="js/project.js"></script>
+	<script src="js/form.js"></script>
 </head>
 
 <body>
@@ -57,11 +57,12 @@
     <div class="ui-widget">
       <div class="col-sm-9">
         <input type="text" id="orgName" name="orgName" class="form-control input-sm">
+        <input type=hidden id=orgId name=orgId>
       </div>
     </div> 
     <label for="progName" class="control-label col-sm-3">Program</label>
     <div class="col-sm-9">
-      <select id="progName" name="progName" onchange="getSelectedProg()" class="form-control">
+      <select id="progName" name="progName" class="form-control">
       </select>
     </div> 
   </div>

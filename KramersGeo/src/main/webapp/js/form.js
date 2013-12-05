@@ -12,6 +12,7 @@
   var progList = [];
   var progOrgArray = [];
   var progStageArray = [];
+  var optionSets = {};
   var ICD = [];
   
   /**
@@ -258,6 +259,13 @@
     var selectedProg = $(this).val()
     var stages = progStageArray[selectedProg];
     
+    var dataelement_complete = function (dataElement, optionSet)
+    {
+      console.log('complete dataelement')
+      console.log(dataElement)
+      console.log(optionSet)
+    }
+    
     $(stages).each(function(i, stage) {
       apiGET("/api/programStages/" + stage, function (data) {
         
@@ -267,7 +275,30 @@
           
           /* Fetch each dataElement in the programStage */
           apiGET("/api/dataElements/" + dId, function (dataElement) {
-            console.log(dataElement)
+            if (dataElement.optionSet == null) {
+              dataelement_complete(dataElement, [])
+            } else {
+							var optId = dataElement.optionSet.id;
+              
+              if (!optionSets[optId]) {
+                apiGET("/api/optionSets/" + optId, function (data) {
+                  var optionSet = [];
+                  
+									$.each(data.options, function(i, option) {
+                    optionSet.push(option)
+									})
+
+                  /* Save for reuse */
+                  optionSets[optId] = optionSet;
+                  
+                  dataelement_complete(dataElement, optionSet)
+								})                
+              } else {
+                var optionSet = optionSets[optId];
+                
+                dataelement_complete(dataElement, optionSet)
+              }
+            }
           })
         })
       })

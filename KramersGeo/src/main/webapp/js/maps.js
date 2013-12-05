@@ -23,16 +23,10 @@
    */
   var setLocation = function (coords)
   {
-    console.log(coords)
-    
     var lat = coords.pb || coords.latitude
     var lng = coords.qb || coords.longitude
     var latLng = new google.maps.LatLng(lat, lng)
     
-    console.log(lat)
-    console.log(lng)
-    console.log(latLng)
-
     $('#lat').val(lat)
     $('#lng').val(lng)
   

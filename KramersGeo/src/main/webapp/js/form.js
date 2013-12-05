@@ -45,7 +45,7 @@
     $('#submit').click(function(ev) {
       if (Modernizr.history) {
         var state = {};
-        history.pushState(state, null, link.href);
+        history.pushState(state, null, this.href);
       }
       //add_comment();
       sendEvent();
@@ -232,12 +232,13 @@
   
   /**
    * Should send data in json format
+   * Don't need data in at the moment,
    */
 
   var sendEvent = function (data) {
     var jsonData = {}; //Create's a empty variable, to be filled.
-    jsonData["program"] = selectedProg; //stemmer kanskje ikke helt nå
-    jsonData["orgUnit"] = selectedOrg; //stemmer kanskje ikke helt nå
+    jsonData["program"] = selectedProg; //Må sette selectedProg når vi henter prog's
+    jsonData["orgUnit"] = selectedOrg; //Må sette selectedOrg når vi henter org's
     jsonData["eventDate"] = "2013-05-17"; //eksemempel
     jsonData["status"] = "COMPLETED";
     jsonData["storedBy"] = user;
@@ -245,12 +246,15 @@
     jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
     jsonData["dataValues"] = [];
 
-    var formCol = document.forms;
-    alert(JSON.stringify(jsonData));
-    for (var i = 0; i < document.forms.length; i++) {
-      alert(formCol[i].name);
-    }
-    /*
+    //alert(JSON.stringify(jsonData));
+    var formElement = new Array();
+    $("form :input").each(function(){
+        formElement.push($(this));
+        console.log($(this).attr("id") + ": " + $(this).val())
+    })
+    console.log("Form length : " + formElement.length);
+    alert("yolo");
+      /*
      var data = {
      "program": selectedOrg,
      "orgUnit": selectedProg,

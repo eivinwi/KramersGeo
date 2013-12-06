@@ -3,9 +3,13 @@
 /* Scope - forms */
 (function($)
 {
-  var dhis_username = "admin"
-  var dhis_password = "district"
-  var dhis_url = "http://apps.dhis2.org/dev/api/"
+  var user = "admin";
+  var password = "district";
+  var dhis_url = "http://apps.dhis2.org/dev"
+  var latitude = "";
+  var longitude = "";
+  var selectedProg = "";
+  var selectedOrg = "";
 
   var orgList = [];
   var orgProgram = [];
@@ -14,8 +18,6 @@
   var progStageArray = [];
   var optionSets = {};
   var ICD = [];
-  var apiGETqueue = {};
-  var templates = [];
   
   /**
    * GET request to the DHIS API
@@ -24,37 +26,14 @@
    */
   var apiGET = function(path, successCallback)
   {
-    /* Caching-unique UUID */
-    var uuid = 'cb_' + encodeURI(path.replace(/[\/?@&=+$#]/g, "_"))
-    
-    /* Callback queue exists? */
-    if (apiGETqueue[uuid] != null) {
-      apiGETqueue[uuid].push(successCallback)
-      return
-    }
-    
-    /* New queue initialized with given callback */
-    apiGETqueue[uuid] = [successCallback]
-    
     $.ajax({
       type: "GET",
       url: [dhis_url, path, '.jsonp'].join(''),
       dataType: 'jsonp',
-      xhrFields: {
-        withCredentials: true
+      headers: {
+        Authorization: "Basic " + btoa(user + ":" + password)
       },
-      jsonpCallback: uuid,
-      cache: true,
-      username: dhis_username,
-      password: dhis_password,
-      success: function (data) {
-        var queue = apiGETqueue[uuid]
-        delete apiGETqueue[uuid]
-        
-        $.each(queue, function (i, f) {
-          f(data)
-        })
-      },
+      success: successCallback,
       error: function(jqXhr, textStatus, error) {
         console.log("Error GET " + path + ": " + textStatus + ", " + error);
       },
@@ -66,10 +45,10 @@
     $('#submit').click(function(ev) {
       if (Modernizr.history) {
         var state = {};
-        history.pushState(state, null, link.href);
+        history.pushState(state, null, this.href);
       }
-      add_comment();
-      //addComment();
+      //add_comment();
+      sendEvent();
     });
     
     if (!Modernizr.inputtypes.date) {
@@ -115,14 +94,14 @@
       var sel = $('<optgroup />')
           
       sel.attr('label', orgName)
-      
-      $.each(programs, function(i, program) {
+          
+      for (var i = 0; i < programs.length; i++) {
         var opt = document.createElement('option');
           
         opt.innerHTML = progList[i].label;
         opt.value = i;
         sel.append(opt);
-      })
+      }
       
       $('#progName').html(sel)
       sel.trigger('change')
@@ -137,15 +116,11 @@
         },
         select: function(ev, ui) {
           ev.preventDefault()
-
-          /* Fill field with name of organization */
           $('#orgName').val(ui.item.label)
           $('#orgId').val(ui.item.value)
-
-          /* name, id */
           org_selected(ui.item.label, ui.item.value)
         }
-      })
+      });
       
       $('#orgName').click(function(event, ui) {
         $(this).autocomplete('search', " ");
@@ -164,7 +139,7 @@
         return;
       }
 
-      apiGET("programs/" + progList[i].value, function (data) {
+      apiGET("/api/programs/" + progList[i].value, function (data) {
         $.each(data.organisationUnits, function(key, val) {
           if (!orgProgram[val.id]) {
              orgProgram[val.id] = [];
@@ -190,7 +165,7 @@
       }
     }
     
-    apiGET("programs", function (data) {
+    apiGET("/api/programs", function (data) {
       $.each(data.programs, function(key, val) {
         var opt = { label: val.name, value: val.id };
         progList.push(opt);
@@ -206,7 +181,7 @@
    * to start with 'template-' (for semantics), which will be stripped away
    * in the compiled template stored in templates[].
    */
-  var templates_init = function ()
+  var draw_form = function()
   {
     var oldForm =$('#dynamic')
     var form = oldForm.clone(true, false)
@@ -215,16 +190,8 @@
       tmp = $(tmp)
       templates[tmp.attr('id').substring(9)] = _.template(tmp.html())
     })
-  }
-  
-  var templates_test = function()
-  {
-    var oldForm = $('#dynamic')
-    var form    = oldForm.clone(false)
     
-    form.append(templates['age_gender']({
-      compulsory: false
-    }))
+    form.append(templates['age_gender']({}))
     
     form.append(templates['location']({
       name: 'location'
@@ -232,8 +199,7 @@
     
     form.append(templates['text']({
       name: 'icd',
-      label: 'ICD',
-      compulsory: false
+      label: 'ICD'
     }))
     
     $("#icd").autocomplete({
@@ -244,25 +210,21 @@
     });
     form.append(templates['date']({
       name: 'admissiondate',
-      label: 'Admission',
-      compulsory: false
+      label: 'Admission'
     }))
     
     form.append(templates['date']({
       name: 'admissiondate',
-      label: 'Discharge',
-      compulsory: false
+      label: 'Discharge'
     }))
     
     form.append(templates['dischargemode']({
-      label: 'Discharge mode',
-      compulsory: false
+      label: 'Discharge mode'
     }))
     
     form.append(templates['longText']({
       label: 'Comment',
-      name: 'comment',
-      compulsory: false
+      name: 'comment'
     }))
     
     oldForm.replaceWith(form)
@@ -274,10 +236,6 @@
    */
 
   var sendEvent = function (data) {
-    var longitude = "";
-    var latitude = "";
-    var selectedProg ="";
-    var selectedOrg = "";
     var jsonData = {}; //Create's a empty variable, to be filled.
     jsonData["program"] = selectedProg; //Må sette selectedProg når vi henter prog's
     jsonData["orgUnit"] = selectedOrg; //Må sette selectedOrg når vi henter org's
@@ -291,10 +249,11 @@
     //alert(JSON.stringify(jsonData));
     var formElement = new Array();
     $("form :input").each(function(){
-        formElement.push($(this)); //should push to dataValues
-        console.log($(this).attr("name") + ": " + $(this).val());
+        formElement.push($(this));
+        console.log($(this).attr("id") + ": " + $(this).val())
     })
-    alert("yolo")
+    console.log("Form length : " + formElement.length);
+    alert("yolo");
       /*
      var data = {
      "program": selectedOrg,
@@ -334,105 +293,46 @@
   var program_stage_select = function(ev)
   {
     var selectedProg = $(this).val()
-    var stages = progStageArray[selectedProg]
-    /* Clone dynamic-div element, but not children */
-    var newForm = $('<div id=dynamic />')
-    var newFormElmRemaining = 0
+    var stages = progStageArray[selectedProg];
     
-    /* Initialize dataelement DOM context for consistent ordering */
-    var dataelement_init = function (stageElement)
+    var dataelement_complete = function (dataElement, optionSet)
     {
-      
-      var element = $('<div />').attr('id', stageElement.dataElement.id)
-      
-      if (stageElement.compulsory) {
-        element.addClass('compulsory')
-      }
-      
-      newFormElmRemaining++
-      newForm.append(element)
-      return element
-    }
-    
-    /* Draw complete dataelement; optionally render form */
-    var dataelement_complete = function (dataElement, optionSet, newElement)
-    {
-//      console.log(dataElement)
-      
-      //console.log(optionSet)
-      var template = templates['text'];
-      
-      if (dataElement.type == 'date') {
-        template = templates['date']
-      } else if (dataElement.type == 'int') {
-        template = templates['number']        
-      } else {
-      }
-      
-      if (dataElement.name == 'Gender') {
-        template = templates['age_gender']
-      } else if (dataElement.name == 'Age') {
-        template = templates['dummy']
-      }
-      
-      if (dataElement.name == 'Mode of Discharge') {
-        template = templates['dischargemode']
-      }
-      
-      newElement.replaceWith(template({
-        name: dataElement.id,
-        label: dataElement.formName || dataElement.name,
-        data: dataElement,
-        options: optionSet,
-        compulsory: newElement.hasClass('compulsory')
-      }))
-      
-      newFormElmRemaining--
-      
-      /* Render form if complete */
-      if (newFormElmRemaining == 0) {
-        /* Replace document dynamic-div */
-        $('#dynamic').replaceWith(newForm)
-      }
+      console.log('complete dataelement')
+      console.log(dataElement)
+      console.log(optionSet)
     }
     
     $(stages).each(function(i, stage) {
-      apiGET("programStages/" + stage, function (data) {
-        
+      apiGET("/api/programStages/" + stage, function (data) {
         
         /* Got stages for this program */
         $.each(data.programStageDataElements, function() {
           var dId = this.dataElement.id;
           
-          var newElement = dataelement_init(this)
-          
           /* Fetch each dataElement in the programStage */
-          apiGET("dataElements/" + dId, function (dataElement) {
-            /* Expection from loading ICD optionSet due to size/processing */
-            if (dataElement.optionSet == null ||
-                dataElement.optionSet.name == 'Diagnosis ICD10') {
-              dataelement_complete(dataElement, [], newElement)
+          apiGET("/api/dataElements/" + dId, function (dataElement) {
+            if (dataElement.optionSet == null) {
+              dataelement_complete(dataElement, [])
             } else {
 							var optId = dataElement.optionSet.id;
               
-              /* First request for this optionSet? */
-              if (optionSets[optId] == null) {
-                apiGET("optionSets/" + optId, function (data) {
+              if (!optionSets[optId]) {
+                apiGET("/api/optionSets/" + optId, function (data) {
                   var optionSet = [];
                   
-                  $.each(data.options, function(i, option) {
+									$.each(data.options, function(i, option) {
                     optionSet.push(option)
-                  })
-                    
-                  dataelement_complete(dataElement, optionSet, newElement)
+									})
 
                   /* Save for reuse */
                   optionSets[optId] = optionSet;
-                })
+                  
+                  dataelement_complete(dataElement, optionSet)
+								})                
               } else {
                 var optionSet = optionSets[optId];
                 
-                dataelement_complete(dataElement, optionSet, newElement)
+                dataelement_complete(dataElement, optionSet)
               }
             }
           })
@@ -449,9 +349,7 @@
     form_init()
     org_init()
     programs_init()
-    templates_init()
-    templates_test()
-    
+    draw_form()
     $('#progName').change(program_stage_select)
   });
 

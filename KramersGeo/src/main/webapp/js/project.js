@@ -1,6 +1,6 @@
 'use strict';
 
-/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security*/
+/* Siden fungerer bare dersom du bruker Chrome/Chromium med --disable-web-security */
 
 var orgList = [];
 var progList = [];
@@ -59,6 +59,14 @@ function geolocate_toggle(enabled) {
 }
 
 $(function() {
+	var test = {};
+	test["test"] = "lol";
+	test["en"] = "1";
+	test["to"] = "2";
+	test["coordinate"] = {"latitude": "10.7", "longitude": "10.3"};
+	alert(JSON.stringify(test));
+
+
     $( "#orgName" ).autocomplete({
         source: orgList,
         autoFocus: true,
@@ -179,6 +187,32 @@ $(function() {
 	});
 
   maps_init()
+=======
+$("#radio").buttonset();
+$( "#status" ).buttonset();
+$('.datepicker').datepicker();
+
+if (!Modernizr.inputtypes.date) {
+	$('.datepicker').datepicker();
+}
+
+$('#comment').popover({
+	html: true,
+	title: 'Comment'
+});
+
+$('#submit').click(function(ev) {
+	if (Modernizr.history) {
+ 		var state = {};
+		history.pushState(state, null, link.href);
+	}
+});
+
+$('#map').click(function(ev) {
+	$('body').toggleClass('map', $(this).val());
+	});
+	add_map();
+>>>>>>> b5a7584a9d90a885bf257900ac18084f19ff4e55
 });
 
 //Should save the comment. 

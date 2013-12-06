@@ -3,9 +3,15 @@
 /* Scope - forms */
 (function($)
 {
+<<<<<<< HEAD
+  var user = "admin";
+  var password = "district";
+  var dhis_url = "http://apps.dhis2.org/dev"
+=======
   var dhis_username = "admin"
   var dhis_password = "district"
   var dhis_url = "http://apps.dhis2.org/dev/api/"
+>>>>>>> c61f170986e52d6f345d2ec7cf5978d71233f998
 
   var orgList = [];
   var orgProgram = [];
@@ -79,26 +85,11 @@
 
   var org_init = function()
   {
-    apiGET("/api/organisationUnits", function (data) {
-      for (var i = 0; i <= data.pager.pageCount; i++) {
-        $.ajax({
-          type: "GET",
-          url: dhis_url + "/api/organisationUnits?page="+i,
-          dataType: 'json',
-          headers: {
-            Authorization: "Basic " + btoa(user + ":" + password)
-          },
-          success: function(data) {
-            $.each(data.organisationUnits, function(key, val) {
-              var opt = { label: val.name, value: val.id };
-              orgList.push(opt);
-            });
-          },
-          error: function(jqXhr, textStatus, error) {
-            console.log("Error GET " + path + ": " + textStatus + ", " + error);
-          },
-        })
-      };
+    apiGET("organisationUnits", function (data) {
+      $.each(data.organisationUnits, function(key, val) {
+        var opt = { label: val.name, value: val.id };
+        orgList.push(opt);
+      });
       //console.log("OrganisationUnits loaded");
     });
   }
@@ -227,7 +218,8 @@
     }))
     
     form.append(templates['location']({
-      name: 'location'
+      name: 'location',
+      compulsory: false
     }))
     
     form.append(templates['text']({
@@ -289,7 +281,6 @@
     jsonData["dataValues"] = [];
 
     //alert(JSON.stringify(jsonData));
-    var formElement = new Array();
     $("form :input").each(function(){
         formElement.push($(this)); //should push to dataValues
         console.log($(this).attr("name") + ": " + $(this).val());

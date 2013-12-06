@@ -79,26 +79,11 @@
 
   var org_init = function()
   {
-    apiGET("/api/organisationUnits", function (data) {
-      for (var i = 0; i <= data.pager.pageCount; i++) {
-        $.ajax({
-          type: "GET",
-          url: dhis_url + "/api/organisationUnits?page="+i,
-          dataType: 'json',
-          headers: {
-            Authorization: "Basic " + btoa(user + ":" + password)
-          },
-          success: function(data) {
-            $.each(data.organisationUnits, function(key, val) {
-              var opt = { label: val.name, value: val.id };
-              orgList.push(opt);
-            });
-          },
-          error: function(jqXhr, textStatus, error) {
-            console.log("Error GET " + path + ": " + textStatus + ", " + error);
-          },
-        })
-      };
+    apiGET("organisationUnits", function (data) {
+      $.each(data.organisationUnits, function(key, val) {
+        var opt = { label: val.name, value: val.id };
+        orgList.push(opt);
+      });
       //console.log("OrganisationUnits loaded");
     });
   }
@@ -227,7 +212,8 @@
     }))
     
     form.append(templates['location']({
-      name: 'location'
+      name: 'location',
+      compulsory: false
     }))
     
     form.append(templates['text']({

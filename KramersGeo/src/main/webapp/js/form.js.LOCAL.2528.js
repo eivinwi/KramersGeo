@@ -289,7 +289,6 @@
     jsonData["dataValues"] = [];
 
     //alert(JSON.stringify(jsonData));
-    var formElement = new Array();
     $("form :input").each(function(){
         formElement.push($(this)); //should push to dataValues
         console.log($(this).attr("name") + ": " + $(this).val());

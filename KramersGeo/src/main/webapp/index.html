@@ -87,13 +87,27 @@
 
 
 <!-- TEMPLATES -->
+
+<script type="text/template" id="template-dummy" class="template">
+</script>
   
 <script type="text/template" id="template-text" class="template">
   <div class="form-group">
     <label for="<%= name %>" class="control-label col-sm-3"><%= label%></label>
     <div class="ui-widget">
     <div class="col-sm-9">
-      <input type="text" id="<%= name %>" name="<%= name %>" class="form-control input-sm">
+      <input type="text" id="<%= name %>" name="<%= name %>" class="form-control input-sm <%= (compulsory ? 'required" required' : '"') %>>
+    </div>
+    </div>
+  </div>
+</script>
+
+<script type="text/template" id="template-number" class="template">
+  <div class="form-group">
+    <label for="<%= name %>" class="control-label col-sm-3"><%= label%></label>
+    <div class="ui-widget">
+    <div class="col-sm-9">
+      <input type="number" id="<%= name %>" name="<%= name %>" class="form-control input-sm <%= (compulsory ? 'required" required' : '"') %>>
     </div>
     </div>
   </div>
@@ -104,7 +118,7 @@
     <label for="location" class="control-label col-sm-3" id="loc_lab">Location</label>
     <div class="col-sm-9">
     <div class="input-group" data-toggle="buttons">
-      <input type="search" class="form-control input-sm" value="" id="location">
+      <input type="search" class="form-control input-sm <%= (compulsory ? 'required" required' : '"') %> value="" id="location">
       <div class="input-group-btn">
         <button type="button" id="map" class="btn btn-default btn-sm">
         <span class="glyphicon glyphicon-map-marker"></span>
@@ -128,7 +142,7 @@
   <div class="col-sm-3 non-stacked">
   </div>
   <div class="col-xs-4" id="age-div">
-    <input type="number" class="form-control input-sm" id="age" min=0 max=999>
+    <input type="number" class="form-control input-sm <%= (compulsory ? 'required" required' : '"') %> id="age" min=0 max=999>
   </div>
   
   <div class="btn-group btn-group-sm col-sm-5" id="gender-div" data-toggle="buttons">
@@ -146,7 +160,7 @@
   <div class="form-group">
     <label for="<%= name %>" class="col-sm-3 control-label"><%= label %></label>
     <div class="col-sm-9">
-      <input type="date" class="datepicker form-control input-sm" id="<%= name %>" name="<%= name %>" placeholder="mm/dd/yyyy">
+      <input type="date" class="datepicker form-control input-sm <%= (name ? 'required" required' : '"') %> id="<%= name %>" name="<%= name %>" placeholder="mm/dd/yyyy">
     </div>
   </div>
   <script type="text/javascript">
@@ -160,7 +174,7 @@
   <div class="form-group">
     <label class="control-label col-sm-3"><%= label %></label>
     <div class="col-sm-9 input-group">
-    <div class="btn-group btn-group-sm" data-toggle="buttons">
+    <div class="btn-group btn-group-sm <%= (compulsory ? 'required' : '') %>" data-toggle="buttons">
       <label class="btn btn-default tip" for="modeD" title="Discharged">
       <input type="radio" name="<%= name %>" value="Discharged" id="modeD"> Dis<span class=exp>charged</span>
       </label>
@@ -187,7 +201,7 @@
     <div class="col-sm-9">
       <!--   <div id="comment" title="Leave a note"> -->
       <input type="hidden" id="leaveId">
-      <textarea name="<%= name %>" id="<%= name %>" cols="49" class="form-control"></textarea>
+      <textarea name="<%= name %>" id="<%= name %>" cols="49" class="form-control <%= (name ? 'required" required' : '"') %>></textarea>
         <!--</div> --><!-- comment-->
     </div> <!-- col -->
   </div><!-- form-group --> 

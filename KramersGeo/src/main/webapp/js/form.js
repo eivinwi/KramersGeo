@@ -6,10 +6,6 @@
   var user = "admin";
   var password = "district";
   var dhis_url = "http://apps.dhis2.org/dev"
-  var latitude = "";
-  var longitude = "";
-  var selectedProg = "";
-  var selectedOrg = "";
 
   var orgList = [];
   var orgProgram = [];
@@ -236,6 +232,10 @@
    */
 
   var sendEvent = function (data) {
+    var longitude = "";
+    var latitude = "";
+    var selectedProg ="";
+    var selectedOrg = "";
     var jsonData = {}; //Create's a empty variable, to be filled.
     jsonData["program"] = selectedProg; //Må sette selectedProg når vi henter prog's
     jsonData["orgUnit"] = selectedOrg; //Må sette selectedOrg når vi henter org's
@@ -247,13 +247,11 @@
     jsonData["dataValues"] = [];
 
     //alert(JSON.stringify(jsonData));
-    var formElement = new Array();
     $("form :input").each(function(){
-        formElement.push($(this));
-        console.log($(this).attr("id") + ": " + $(this).val())
+        formElement.push($(this)); //should push to dataValues
+        console.log($(this).attr("name") + ": " + $(this).val());
     })
-    console.log("Form length : " + formElement.length);
-    alert("yolo");
+    alert("yolo")
       /*
      var data = {
      "program": selectedOrg,

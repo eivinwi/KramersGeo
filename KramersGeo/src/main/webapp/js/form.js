@@ -208,9 +208,6 @@
    */
   var templates_init = function ()
   {
-    var oldForm =$('#dynamic')
-    var form = oldForm.clone(true, false)
-    var templates = [];
     $('.template').each(function(i, tmp) {
       tmp = $(tmp)
       templates[tmp.attr('id').substring(9)] = _.template(tmp.html())
@@ -227,7 +224,8 @@
     }))
     
     form.append(templates['location']({
-      name: 'location'
+      name: 'location',
+      compulsory: false      
     }))
     
     form.append(templates['text']({

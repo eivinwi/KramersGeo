@@ -5,7 +5,8 @@
 {
   var dhis_username = "admin"
   var dhis_password = "district"
-  var dhis_url = "http://apps.dhis2.org/dev/api/"
+  //var dhis_url = "//admin:district@apps.dhis2.org/dev/api/"
+  var dhis_url = "//folk.uio.no/kennetkl/KramersGeo/cache/index.php/"
 
   var orgList = [];
   var orgProgram = [];
@@ -36,17 +37,30 @@
     /* New queue initialized with given callback */
     apiGETqueue[uuid] = [successCallback]
     
+    /**
+     * JSONP does not support custom headers due to limitations of <script>-tag.
+     * DHIS API does not support cross-site requests
+     * DHIS API does not (properly) support HTTP authentication, but redirects
+     * API requests to an HTML login screen.
+     */
     $.ajax({
       type: "GET",
-      url: [dhis_url, path, '.jsonp'].join(''),
-      dataType: 'jsonp',
+      url: [dhis_url, path, '.json'].join(''),
+      //dataType: 'jsonp',
+      dataType: 'json',
+      jsonpCallback: uuid,
+      cache: true,
+      crossDomain: true,
+      headers: {
+        Authorization: "Basic "+ btoa([dhis_username,dhis_password].join(':'))
+      },
+      /*
       xhrFields: {
         withCredentials: true
       },
-      jsonpCallback: uuid,
-      cache: true,
       username: dhis_username,
       password: dhis_password,
+      */
       success: function (data) {
         var queue = apiGETqueue[uuid]
         delete apiGETqueue[uuid]
@@ -79,14 +93,15 @@
 
   var org_init = function()
   {
-    apiGET("/api/organisationUnits", function (data) {
+    apiGET("organisationUnits", function (data) {
       for (var i = 0; i <= data.pager.pageCount; i++) {
+        break;
         $.ajax({
           type: "GET",
           url: dhis_url + "/api/organisationUnits?page="+i,
           dataType: 'json',
           headers: {
-            Authorization: "Basic " + btoa(user + ":" + password)
+            Authorization: "Basic YWJjOmFiYw==" //"" + btoa(user + ":" + password)
           },
           success: function(data) {
             $.each(data.organisationUnits, function(key, val) {

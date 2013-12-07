@@ -95,27 +95,14 @@
   {
     apiGET("organisationUnits", function (data) {
       for (var i = 0; i <= data.pager.pageCount; i++) {
-        break;
-        $.ajax({
-          type: "GET",
-          url: dhis_url + "/api/organisationUnits?page="+i,
-          dataType: 'json',
-          headers: {
-            Authorization: "Basic YWJjOmFiYw==" //"" + btoa(user + ":" + password)
-          },
-          success: function(data) {
-            $.each(data.organisationUnits, function(key, val) {
-              var opt = { label: val.name, value: val.id };
-              orgList.push(opt);
-            });
-          },
-          error: function(jqXhr, textStatus, error) {
-            console.log("Error GET " + path + ": " + textStatus + ", " + error);
-          },
+        apiGET("organisationUnits?page=" + i, function (data) {
+          $.each(data.organisationUnits, function(key, val) {
+            var opt = { label: val.name, value: val.id };
+            orgList.push(opt);
+          })
         })
-      };
-      //console.log("OrganisationUnits loaded");
-    });
+      }
+    })
   }
   
   var programs_init = function()

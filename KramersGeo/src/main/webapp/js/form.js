@@ -276,11 +276,9 @@
   var sendEvent = function (data) {
     var longitude = "";
     var latitude = "";
-    var selectedProg ="";
-    var selectedOrg = "";
     var jsonData = {}; //Create's a empty variable, to be filled.
-    jsonData["program"] = selectedProg; //Må sette selectedProg når vi henter prog's
-    jsonData["orgUnit"] = selectedOrg; //Må sette selectedOrg når vi henter org's
+    jsonData["program"] = $("#progName").attr("value");
+    jsonData["orgUnit"] = $("#orgName").attr("value"); 
     jsonData["eventDate"] = "2013-05-17"; //eksemempel
     jsonData["status"] = "COMPLETED";
     jsonData["storedBy"] = user;
@@ -288,13 +286,14 @@
     jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
     jsonData["dataValues"] = [];
 
-    //alert(JSON.stringify(jsonData));
-    var formElement = new Array();
     $("form :input").each(function(){
-        formElement.push($(this)); //should push to dataValues
-        console.log($(this).attr("name") + ": " + $(this).val());
+      //må luke bort visse elementer- Blant annet looper vi nå over hver enkelt radio button ...
+      //Use something like $(this).is(':checked')
+        programData["dataValues"].push("dataElement": $(this).attr("name"), "value": $(this).attr("value"));
+        console.log($(this).attr("id") + ": " + $(this).attr("name") + ": " + $(this).val());
     })
-    alert("yolo")
+    alert(JSON.stringify(jsonData));
+    
       /*
      var data = {
      "program": selectedOrg,

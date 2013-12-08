@@ -289,7 +289,7 @@
     $("form :input").each(function(){
       //må luke bort visse elementer- Blant annet looper vi nå over hver enkelt radio button ...
       //Use something like $(this).is(':checked')
-        programData["dataValues"].push("dataElement" + ":" +  $(this).attr("name")+ "," + "value" + ":" + $(this).val());
+        programData["dataValues"].push("dataElement" + ": " +  $(this).attr("name")+ ", " + "value" + ": " + $(this).val());
         console.log($(this).attr("id") + ": " + $(this).attr("name") + ": " + $(this).val());
     })
     alert(JSON.stringify(jsonData));

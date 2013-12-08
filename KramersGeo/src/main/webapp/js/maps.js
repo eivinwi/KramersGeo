@@ -107,14 +107,10 @@
     };
 
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-    var ac = new google.maps.places.Autocomplete($('#location')[0], {});
     var gc = new google.maps.Geocoder();
 
-    /* Add via location autocomplete */
-    google.maps.event.addListener(ac, 'place_changed', function() {
-      var place = ac.getPlace();
-      setLocation(place.geometry.location);
-    });
+    /* If location field already visible in DOM */
+    $('#location').trigger('focus');
 
     /* Add via click on map */
     google.maps.event.addListener(map, 'rightclick', function(ev) {
@@ -165,7 +161,7 @@
       '&callback=gmaps_loaded';
     document.body.appendChild(script);
   }
-  
+
   
   /**
    * DOM loaded
@@ -173,7 +169,6 @@
   $(function ()
   {
     maps_init()
-    
     
     $('#form-canvas').on('click', '#map', function(ev) {
       ev.stopImmediatePropagation()
@@ -186,6 +181,20 @@
       ev.stopImmediatePropagation()
       $(this).toggleClass('active')
       geolocate_toggle($(this).hasClass('active'))
+    });
+
+    $('#form-canvas').on('focus', '#location', function(ev) {
+      if (!$(this).data('api-enabled')) {
+        var ac = new google.maps.places.Autocomplete(this, {});
+
+        /* Add via location autocomplete */
+        google.maps.event.addListener(ac, 'place_changed', function() {
+          var place = ac.getPlace();
+          setLocation(place.geometry.location);
+        });
+
+        $(this).data('api-enabled', 1);
+      }
     });
   })
 })($)

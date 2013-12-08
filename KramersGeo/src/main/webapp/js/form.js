@@ -282,19 +282,21 @@
     jsonData["orgUnit"] = $('#orgName').val(); 
     jsonData["eventDate"] = $('#eventDate').val(); //eksemempel
     jsonData["status"] = "COMPLETED";
-    jsonData["storedBy"] = "admin"; //should be dhis_username
+    jsonData["storedBy"] = dhis_username;
     //have to store the location, when it gets set
     jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
     jsonData["dataValues"] = [];
+
     $("form :input").each(function(){
       //må luke bort visse elementer- Blant annet looper vi nå over hver enkelt radio button ...
       //Use something like $(this).is(':checked')
       //to always skip location
-      if ($(this).attr("id") === "location" || $(this).attr("id") === "map" || $(this).attr("id") === "geolocate") {
-        alert("skip location and map");
+      if ($(this).attr("id") === "location" || $(this).attr("id") === "map" 
+          || $(this).attr("id") === "geolocate" || $(this).attr("id") === "submit") {
+        console.log("do nothing");
       } else {
-        alert($(this).attr("id") + ": " + $(this).attr("name") + ": " + $(this).val());
-        programData["dataValues"].push("dataElement" + ": " +  $(this).attr("name")+ ", " + "value" + ": " + $(this).val());
+        console.log("dataElement: " + $(this).attr("name") + ", Value: " + $(this).val());
+        jsonData["dataValues"].push("dataElement: " + $(this).attr("name") + ", value: " + $(this).val());
       }
     })
     alert(JSON.stringify(jsonData));
@@ -310,14 +312,13 @@
      };
      */
     
-    alert("sendEvent: "+jsonData);
     $.ajax({
       type: "POST",
       url: dhis_url + "api/events",
       dataType: 'json',
       //need contenttype?
       headers: {
-        Authorization : "Basic " + btoa(user+":"+password)
+        Authorization : "Basic " + btoa(dhis_username+":"+dhis_password)
       },
       data: JSON.stringify(jsonData),
       success: function() {

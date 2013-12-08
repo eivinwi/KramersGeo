@@ -78,11 +78,12 @@
   var form_init = function()
   {
     $('#submit').click(function(ev) {
+      sendEvent();
       if (Modernizr.history) {
         var state = {};
         history.pushState(state, null, link.href);
       }
-      add_comment();
+      sendEvent();
       //addComment();
     });
     
@@ -273,27 +274,30 @@
    * Don't need data in at the moment,
    */
 
-  var sendEvent = function (data) {
+  var sendEvent = function () {
     var longitude = "";
     var latitude = "";
     var jsonData = {}; //Create's a empty variable, to be filled.
-    jsonData["program"] = $("#progName").attr("value");
-    jsonData["orgUnit"] = $("#orgName").attr("value"); 
-    jsonData["eventDate"] = "2013-05-17"; //eksemempel
+    jsonData["program"] = $('#progName').val();
+    jsonData["orgUnit"] = $('#orgName').val(); 
+    jsonData["eventDate"] = $('#eventDate').val(); //eksemempel
     jsonData["status"] = "COMPLETED";
-    jsonData["storedBy"] = user;
+    jsonData["storedBy"] = "admin"; //should be dhis_username
     //have to store the location, when it gets set
     jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
     jsonData["dataValues"] = [];
-
     $("form :input").each(function(){
       //må luke bort visse elementer- Blant annet looper vi nå over hver enkelt radio button ...
       //Use something like $(this).is(':checked')
+      //to always skip location
+      if ($(this).attr("id") === "location" || $(this).attr("id") === "map" || $(this).attr("id") === "geolocate") {
+        alert("skip location and map");
+      } else {
+        alert($(this).attr("id") + ": " + $(this).attr("name") + ": " + $(this).val());
         programData["dataValues"].push("dataElement" + ": " +  $(this).attr("name")+ ", " + "value" + ": " + $(this).val());
-        console.log($(this).attr("id") + ": " + $(this).attr("name") + ": " + $(this).val());
+      }
     })
     alert(JSON.stringify(jsonData));
-
       /*
      var data = {
      "program": selectedOrg,

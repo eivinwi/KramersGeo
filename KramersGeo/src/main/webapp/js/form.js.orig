@@ -3,10 +3,19 @@
 /* Scope - forms */
 (function($)
 {
+<<<<<<< HEAD
   var dhis_username = "admin"
   var dhis_password = "district"
-  //var dhis_url = "//admin:district@apps.dhis2.org/dev/api/"
-  var dhis_url = "//folk.uio.no/kennetkl/KramersGeo/cache/index.php/"
+  var dhis_url = "http://apps.dhis2.org/dev/api/"
+=======
+  var user = "admin";
+  var password = "district";
+  var dhis_url = "http://apps.dhis2.org/dev"
+  var latitude = "";
+  var longitude = "";
+  var selectedProg = "";
+  var selectedOrg = "";
+>>>>>>> fe560e3be08ee0d231fcba4c1534cf7595db13cb
 
   var orgList = [];
   var orgProgram = [];
@@ -37,30 +46,17 @@
     /* New queue initialized with given callback */
     apiGETqueue[uuid] = [successCallback]
     
-    /**
-     * JSONP does not support custom headers due to limitations of <script>-tag.
-     * DHIS API does not support cross-site requests
-     * DHIS API does not (properly) support HTTP authentication, but redirects
-     * API requests to an HTML login screen.
-     */
     $.ajax({
       type: "GET",
-      url: [dhis_url, path, '.json'].join(''),
-      //dataType: 'jsonp',
-      dataType: 'json',
-      jsonpCallback: uuid,
-      cache: true,
-      crossDomain: true,
-      headers: {
-        Authorization: "Basic "+ btoa([dhis_username,dhis_password].join(':'))
-      },
-      /*
+      url: [dhis_url, path, '.jsonp'].join(''),
+      dataType: 'jsonp',
       xhrFields: {
         withCredentials: true
       },
+      jsonpCallback: uuid,
+      cache: true,
       username: dhis_username,
       password: dhis_password,
-      */
       success: function (data) {
         var queue = apiGETqueue[uuid]
         delete apiGETqueue[uuid]
@@ -80,10 +76,10 @@
     $('#submit').click(function(ev) {
       if (Modernizr.history) {
         var state = {};
-        history.pushState(state, null, link.href);
+        history.pushState(state, null, this.href);
       }
-      add_comment();
-      //addComment();
+      //add_comment();
+      sendEvent();
     });
     
     if (!Modernizr.inputtypes.date) {
@@ -94,15 +90,12 @@
   var org_init = function()
   {
     apiGET("organisationUnits", function (data) {
-      for (var i = 0; i <= data.pager.pageCount; i++) {
-        apiGET("organisationUnits?page=" + i, function (data) {
-          $.each(data.organisationUnits, function(key, val) {
-            var opt = { label: val.name, value: val.id };
-            orgList.push(opt);
-          })
-        })
-      }
-    })
+      $.each(data.organisationUnits, function(key, val) {
+        var opt = { label: val.name, value: val.id };
+        orgList.push(opt);
+      });
+      //console.log("OrganisationUnits loaded");
+    });
   }
   
   var programs_init = function()
@@ -210,6 +203,9 @@
    */
   var templates_init = function ()
   {
+    var oldForm =$('#dynamic')
+    var form = oldForm.clone(true, false)
+    var templates = [];
     $('.template').each(function(i, tmp) {
       tmp = $(tmp)
       templates[tmp.attr('id').substring(9)] = _.template(tmp.html())
@@ -227,7 +223,7 @@
     
     form.append(templates['location']({
       name: 'location',
-      compulsory: false      
+      compulsory: false
     }))
     
     form.append(templates['text']({
@@ -274,11 +270,9 @@
    */
 
   var sendEvent = function (data) {
-    var longitude = "";
-    var latitude = "";
     var jsonData = {}; //Create's a empty variable, to be filled.
-    jsonData["program"] = $("#progName").attr("value");
-    jsonData["orgUnit"] = $("#orgName").attr("value"); 
+    jsonData["program"] = selectedProg; //Må sette selectedProg når vi henter prog's
+    jsonData["orgUnit"] = selectedOrg; //Må sette selectedOrg når vi henter org's
     jsonData["eventDate"] = "2013-05-17"; //eksemempel
     jsonData["status"] = "COMPLETED";
     jsonData["storedBy"] = user;
@@ -286,14 +280,14 @@
     jsonData["coordinate"] = {"latitude": latitude, "longitude": longitude};
     jsonData["dataValues"] = [];
 
+    //alert(JSON.stringify(jsonData));
+    var formElement = new Array();
     $("form :input").each(function(){
-      //må luke bort visse elementer- Blant annet looper vi nå over hver enkelt radio button ...
-      //Use something like $(this).is(':checked')
-        programData["dataValues"].push("dataElement" + ":" +  $(this).attr("name")+ "," + "value" + ":" + $(this).val());
-        console.log($(this).attr("id") + ": " + $(this).attr("name") + ": " + $(this).val());
+        formElement.push($(this));
+        console.log($(this).attr("id") + ": " + $(this).val())
     })
-    alert(JSON.stringify(jsonData));
-
+    console.log("Form length : " + formElement.length);
+    alert("yolo");
       /*
      var data = {
      "program": selectedOrg,
@@ -337,11 +331,6 @@
     /* Clone dynamic-div element, but not children */
     var newForm = $('<div id=dynamic />')
     var newFormElmRemaining = 0
-    
-    newForm.append(templates['location']({
-      name: 'location',
-      compulsory: false      
-    }))
     
     /* Initialize dataelement DOM context for consistent ordering */
     var dataelement_init = function (stageElement)
@@ -453,9 +442,13 @@
     form_init()
     org_init()
     programs_init()
+<<<<<<< HEAD
     templates_init()
-    //templates_test()
+    templates_test()
     
+=======
+    draw_form()
+>>>>>>> fe560e3be08ee0d231fcba4c1534cf7595db13cb
     $('#progName').change(program_stage_select)
   });
 

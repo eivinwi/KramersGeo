@@ -78,12 +78,11 @@
   var form_init = function()
   {
     $('#submit').click(function(ev) {
-      sendEvent();
-      if (Modernizr.history) {
-        var state = {};
-        history.pushState(state, null, link.href);
-      }
-      sendEvent();
+   //   sendEvent();
+   //   if (Modernizr.history) {
+    //    var state = {};
+    //    history.pushState(state, null, link.href);
+    //  }
       //addComment();
     });
     
@@ -296,7 +295,6 @@
         console.log("do nothing");
       } else {
         console.log("dataElement: " + $(this).attr("name") + ", Value: " + $(this).val());
-        jsonData["dataValues"].push("dataElement: " + $(this).attr("name") + ", value: " + $(this).val());
       }
     })
     alert(JSON.stringify(jsonData));

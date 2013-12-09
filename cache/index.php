@@ -18,6 +18,13 @@ function url_get_contents ($url) {
   curl_setopt($ch, CURLOPT_HEADER, 0);
   curl_setopt($ch, CURLOPT_TIMEOUT, 3);
 
+  if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $data = http_build_query($_POST);
+
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+  }
+
   $data = curl_exec($ch);
   return $data;
 }
